@@ -63,7 +63,7 @@ if False:
     try:
         ep.doVerifySODCertificate()
     except Exception as msg:
-       print(msg)
+        print(msg)
     try:
         p = ep.readDataGroups()
         print(ep.doVerifyDGIntegrity(p))

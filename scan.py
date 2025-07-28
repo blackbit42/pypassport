@@ -57,8 +57,8 @@ ep.readPassport()
 #   Save Photo
 photo = ep["75"]["A1"]["5F2E"]
 with open(MRZ + "-photo.jpg", "wb") as f:
-   f.write(photo)
-   print("Saved photo.")
+    f.write(photo)
+    print("Saved photo.")
 
 #   Save Photo Metadata
 photoMeta = ep["75"]["A1"]["meta"]
@@ -66,8 +66,8 @@ photoMeta = ep["75"]["A1"]["meta"]
 photoMeta = encode_binary(photoMeta)
 json_str = json.dumps(photoMeta, indent=3)
 with open(MRZ + "-photo.json", "w") as f:
-   f.write(json_str)
-   print("Saved photo metadata.")
+    f.write(json_str)
+    print("Saved photo metadata.")
 
 #   Save Passport Metadata
 meta = ep["61"]
@@ -75,5 +75,5 @@ meta = ep["61"]
 meta = encode_binary(meta)
 json_str = json.dumps(meta, indent=3)
 with open(MRZ + ".json", "w") as f:
-   f.write(json_str)
-   print("Saved passport metadata.")
+    f.write(json_str)
+    print("Saved passport metadata.")

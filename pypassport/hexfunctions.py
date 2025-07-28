@@ -31,10 +31,10 @@ def binToHexRep(data):
         return ('%02x' % data).upper()
 
     for x in range(len(data)):
-            if (type(data[x]) == int):
-                string += '%02x' % data[x]
-            else:
-                string += '%02x' % ord(data[x])
+        if (type(data[x]) == int):
+            string += '%02x' % data[x]
+        else:
+            string += '%02x' % ord(data[x])
     return string.upper()
 
 
@@ -72,8 +72,8 @@ def hexRepToBin(string):
     output = b''
     x = 0
     while x < len(string):
-            output += struct.pack('B', int(string[x:x + 2], 16))
-            x += 2
+        output += struct.pack('B', int(string[x:x + 2], 16))
+        x += 2
     return output
 
 

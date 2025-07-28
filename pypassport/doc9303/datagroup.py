@@ -452,15 +452,15 @@ class DataGroup16(DataGroup):
         DataGroup.__init__(self, dgFile)
 
     def parse(self):
-         # Read the number of templates
-         self._tagOffset = 0
-         nbInstance = binToHex(self._getValue())
+        # Read the number of templates
+        self._tagOffset = 0
+        nbInstance = binToHex(self._getValue())
 
-         for i in range(nbInstance):
-             # Read each Template Element
-             self[i] = self._parseTemplate(self._getValue())
+        for i in range(nbInstance):
+            # Read each Template Element
+            self[i] = self._parseTemplate(self._getValue())
 
-         return self
+        return self
 
 
 class Com(DataGroup):

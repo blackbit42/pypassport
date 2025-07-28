@@ -49,22 +49,22 @@ def mac(key, msg):
 #        print 'MAC'
 #        print '---'
 
-        size = int(len(msg) / 8)
-        y = b'\0'*8
-        tdesa = DES.new(key[0:8], DES.MODE_CBC, y)
+    size = int(len(msg) / 8)
+    y = b'\0'*8
+    tdesa = DES.new(key[0:8], DES.MODE_CBC, y)
 #        print 'IV: ' + binToHexRep(y)
 
-        for i in range(size):
+    for i in range(size):
 #            print('x' + str(i) + ': ' + binToHexRep(msg[i*8:i*8+8]))
-            y = tdesa.encrypt(msg[i*8:i*8+8])
+        y = tdesa.encrypt(msg[i*8:i*8+8])
 #            print('y' + str(i) + ': ' + binToHexRep(y))
 
-        tdesb = DES.new(key[8:16], DES.MODE_ECB)
-        tdesa = DES.new(key[0:8], DES.MODE_ECB)
+    tdesb = DES.new(key[8:16], DES.MODE_ECB)
+    tdesa = DES.new(key[0:8], DES.MODE_ECB)
 
-        b = tdesb.decrypt(y)
+    b = tdesb.decrypt(y)
 #        print 'b: ' + binToHexRep(b)
-        a = tdesa.encrypt(b)
+    a = tdesa.encrypt(b)
 #        print 'a: ' + binToHexRep(a)
 
-        return a
+    return a
