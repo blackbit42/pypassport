@@ -235,7 +235,7 @@ class DataGroup1(DataGroup):
         # self["5F5B"] = " ".join(list(filter(None,data[5:44].decode().split('<'))))
         self["5F5B"] = data[5:44]
         # Doc no 9bytes TAG 5A
-        self["5A"]   = data[44:53]
+        self["5A"] = data[44:53]
         # check digit 1byte TAG 5F04
         self["5F04"] = data[53:54]
         # Nationality 3bytes TAG 5F2C
@@ -247,11 +247,11 @@ class DataGroup1(DataGroup):
         # Sex 1byte TAG 5F35
         self["5F35"] = data[64:65]
         # DOE 6bytes TAG 59
-        self["59"]   = data[65:71]
+        self["59"] = data[65:71]
         # check digit 1byte TAG 5F06
         self["5F06"] = data[71:72]
         # Optional Data 14bytes TAG 53
-        self["53"]   = data[72:86]
+        self["53"] = data[72:86]
         # check digit 1byte TAG 5F02
         self["5F02"] = data[86:87]
         # composite check digit 1byte TAG 5F07
