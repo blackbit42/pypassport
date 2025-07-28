@@ -258,13 +258,12 @@ class Acr122(PcscReader):
                     return ResponseAPDU(hexListToBin(data), sw1, sw2)
                 raise ReaderException(Acr122.Errors[res[1]][res[2]])
 
-            else:
-                try:
-                    err = Acr122.Errors[res[1]][res[2]]
-                except Exception:
-                    err = "Unknown error"
+            try:
+                err = Acr122.Errors[res[1]][res[2]]
+            except Exception:
+                err = "Unknown error"
 
-                raise ReaderException(err)
+            raise ReaderException(err)
 
         except KeyError:
             # Unknown error from acr122
