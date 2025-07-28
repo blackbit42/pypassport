@@ -16,7 +16,8 @@
 # License along with pyPassport.
 # If not, see <http://www.gnu.org/licenses/>.
 
-import os, struct
+import os
+import struct
 
 from Crypto.Cipher import DES3
 from Crypto.Cipher import DES

@@ -22,7 +22,8 @@ from pypassport import camanager
 from pypassport import openssl
 from pypassport import iso7816
 from pypassport import logger
-import os, traceback
+import os
+import traceback
 
 
 class EPassportException(Exception):

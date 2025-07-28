@@ -16,7 +16,9 @@
 # License along with pyPassport.
 # If not, see <http://www.gnu.org/licenses/>.
 
-import os, sys, time
+import os
+import sys
+import time
 
 from .apdu import CommandAPDU, ResponseAPDU
 from smartcard.util import *

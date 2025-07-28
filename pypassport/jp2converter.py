@@ -16,7 +16,8 @@
 # License along with pyPassport.
 # If not, see <http://www.gnu.org/licenses/>.
 
-import os, sys
+import os
+import sys
 
 
 class jp2ConverterException(Exception):
