@@ -204,7 +204,7 @@ class ISO19794_5:
             feature = {}
             tag = data[offset:offset+2]
             offset += 2
-            feature['FeatureType'] = tag # 1 == 2D; other RFU
+            feature['FeatureType'] = tag  # 1 == 2D; other RFU
 
             tag = data[offset:offset+2]
             offset += 2
@@ -293,11 +293,11 @@ class ISO19794_5:
                      }
 
         header = "46414300"
-        version = "30313000" # '101' 0x0
+        version = "30313000"  # '101' 0x0
         recordLength = intToHexRep(imageSize + 46, 8)
         numberOfImage = "0001"
 
-        ImageBlockLength = intToHexRep(imageSize + 32, 8) # no feature point
+        ImageBlockLength = intToHexRep(imageSize + 32, 8)  # no feature point
         numberOfFeaturePoint = "0000"
         gender = "00"
         eyeColour = "00"

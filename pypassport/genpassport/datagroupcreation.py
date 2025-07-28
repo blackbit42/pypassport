@@ -149,7 +149,7 @@ class DataGroup12Creation(Creation):
     def create(self, authority, issueDate):
         self._dgc.addDataObject("5C", hexRepToBin("5F195F26"))
         self._dgc.addDataObject("5F19", authority)
-        self._dgc.addDataObject("5F26", self._convertDate(issueDate)) # DDMMYYYY => YYYYMMDD
+        self._dgc.addDataObject("5F26", self._convertDate(issueDate))  # DDMMYYYY => YYYYMMDD
 
         return DataGroup12(self._dgc).parse()
 

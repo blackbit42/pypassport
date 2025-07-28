@@ -92,8 +92,8 @@ tagToName = {
              "81": "Biometric Type",
              "82": "Biometric subtype",
              "83": "Creation date and time",
-             "84": "Validity period", # (revized in nov 2008)
-             "85": "Validity period", # (since 2008)
+             "84": "Validity period",  # (revized in nov 2008)
+             "85": "Validity period",  # (since 2008)
              "86": "Creator of biometric reference data",
              "87": "Format Owner",
              "88": "Format Type",
@@ -165,7 +165,7 @@ tagToName = {
 
     # From DG1 (information tags)
              "5F28": "Issuing State or Organization",
-             "5F5B": "Name of Holder", # version 2006
+             "5F5B": "Name of Holder",  # version 2006
              "5B": "Name of Holder",   # version 2008
              "5A": "Document Number",
 
