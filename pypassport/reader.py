@@ -277,9 +277,9 @@ class Acr122(PcscReader):
     def _removePN532Header(self, data):
         # direct transmit or speed change response -- 3 bytes of header
         if (data[0:2] == [0xD5, 0x41] or data[0:2] == [0xD5, 0x4F]) and data[2] == 0x00:
-            return data[3:-2], data[-2], data [-1]
+            return data[3:-2], data[-2], data[-1]
         # otherwise 2 byte of header
-        return data[2:-2], data[-2], data [-1]
+        return data[2:-2], data[-2], data[-1]
 
 
 class TimeOutException(Exception):
