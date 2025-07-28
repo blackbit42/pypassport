@@ -38,6 +38,7 @@ class Ciphering(Logger):
 class SecureMessagingException(Exception):
     def __init__(self, *params):
         Exception.__init__(self, *params)
+
     def __getitem__(self, i):
         return self.args[i]
 
@@ -49,6 +50,7 @@ class SecureMessaging(Ciphering):
     It gives a new transmit method that takes an APDU object formed by the iso7816 layer,
     ciphers it following the doc9303 specification, send the ciphered APDU to the reader layer and returns the unciphered APDU.
     """
+
     def __init__(self, ksenc, ksmac, ssc):
         Ciphering.__init__(self)
         self._ksenc = ksenc

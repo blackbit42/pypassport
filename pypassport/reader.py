@@ -82,6 +82,7 @@ class DumpReader(Reader):
     format: the file naming convention
     ext: the file extension
     """
+
     def __init__(self):
         self._file = None
         self.format = "GRT"

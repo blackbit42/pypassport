@@ -138,6 +138,7 @@ class EPassport(dict, logger.Logger):
 
     """
     # TODO: property pr le buffSize de la lecture et pour choisir si FS ou SFID
+
     def __init__(self, reader, epMrz=None):
         """
         This object provide most of the functionnalities described in the EPassport document.

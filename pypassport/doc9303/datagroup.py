@@ -467,6 +467,7 @@ class Com(DataGroup):
     """
     Implement the parsing of the com file
     """
+
     def __init__(self, dgFile):
         DataGroup.__init__(self, dgFile)
 
@@ -475,6 +476,7 @@ class SOD(DataGroup):
     """
     Implement the sod parsing
     """
+
     def __init__(self, dgFile):
         DataGroup.__init__(self, dgFile)
 
@@ -486,6 +488,7 @@ class CardAccess(DataGroup):
     """
     Implement the CardAccess parsing
     """
+
     def __init__(self, dgFile):
         DataGroup.__init__(self, dgFile)
 
@@ -528,6 +531,7 @@ class DataGroupReader(Logger):
     Read a specific dataGroup from the passport.
     This is the superclass defining the interface for the classes implementing the reading.
     """
+
     def __init__(self, iso7816, maxSize=0xE0):
         """
         @param iso7816: The layer sending iso7816 apdu to the reader.
@@ -633,6 +637,7 @@ class FSDataGroupReader(DataGroupReader):
     Implement the superClass dataGroupReader.
     Implement the reading using FS
     """
+
     def __init__(self, iso7816, maxSize=0xE0):
         DataGroupReader.__init__(self, iso7816, maxSize)
 
@@ -645,6 +650,7 @@ class SFIDataGroupReader(DataGroupReader):
     Implement the superClass dataGroupReader.
     Implement the reading using ShortFileIdentifier
     """
+
     def __init__(self, iso7816, maxSize=0xE0):
         DataGroupReader.__init__(self, iso7816, maxSize)
 
@@ -669,6 +675,7 @@ class DataGroupDump(object):
     """
     Save the passport, a specific dataGroup or some data to the disk.
     """
+
     def __init__(self, path, ext=""):
         """
         @param path: The path where the dump will be stored.

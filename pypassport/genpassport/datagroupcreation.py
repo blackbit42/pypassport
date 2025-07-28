@@ -10,6 +10,7 @@ class DataGroupFileCreation(DataGroupFile):
     """
     The purpose of this class is to create a fake dataGroup.
     """
+
     def __init__(self, aid):
         """
         @param aid: The dataGroup tag

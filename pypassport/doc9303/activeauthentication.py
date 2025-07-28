@@ -38,6 +38,7 @@ class ActiveAuthentication(Logger):
     This class implement the Active Authentication protocol.
     The main method is I{executeAA} that return True is the verification is ok or False.
     """
+
     def __init__(self, iso7816, openssl=None):
         """
         @param iso7816: a valid iso7816 object

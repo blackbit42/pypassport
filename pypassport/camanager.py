@@ -27,6 +27,7 @@ class CAManager(object):
     This object is used for the certificate validation.
     It encapsulates the certificates directory and perform the certificate name conversion in its hash.0 format.
     """
+
     def __init__(self, dir):
         """
         @param dir: The directory with the root certificates

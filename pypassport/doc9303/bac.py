@@ -35,6 +35,7 @@ from pypassport.iso7816 import Iso7816
 class BACException(Exception):
     def __init__(self, *params):
         Exception.__init__(self, *params)
+
     def __getitem__(self, i):
         return self.args[i]
 
@@ -240,6 +241,7 @@ class BAC(Logger):
             # kseed += hex(int(binToHexRep(kifd)[i],16) ^ int(binToHexRep(response_kicc)[i],16))[2:]
         # return hexRepToBin(kseed)
         return kseed
+
     def mrz_information(self, mrz):
         """
         Take an MRZ object and construct the MRZ information out of the MRZ extracted informations:

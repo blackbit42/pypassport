@@ -24,6 +24,7 @@ from pypassport.logger import Logger
 class Iso7816Exception(Exception):
     def __init__(self, *params):
         Exception.__init__(self, *params)
+
     def __getitem__(self, i):
         return self.args[i]
 
