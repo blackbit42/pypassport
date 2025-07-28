@@ -259,7 +259,7 @@ class CA(Logger):
         altsep = os.altsep
         if not altsep:
             altsep = os.path.sep
-        return  """# pour signer un certificat CA intermediaire
+        return """# pour signer un certificat CA intermediaire
 [ ca ]
 default_ca     = CA_default           # The default ca section
 
