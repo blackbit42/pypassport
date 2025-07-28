@@ -225,7 +225,7 @@ class CA(Logger):
         self._openssl._toDisk(self._configFile, self._getConfigFile(self._loc))
 
     def _testinit(self):
-        if not ((self.csca != None) and (self.cscaKey != None)):
+        if not ((self.csca is not None) and (self.cscaKey is not None)):
             raise OpenSSLException("The root CSCA Certificate is not set.")
 
     def printCrl(self, crl):

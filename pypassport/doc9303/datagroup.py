@@ -722,7 +722,7 @@ class DataGroupDump(object):
         @param name: The file name
         @type name: A string
         """
-        if data == None:
+        if data is None:
             return
         f = open(self._path + name, "wb")
         f.write(data)

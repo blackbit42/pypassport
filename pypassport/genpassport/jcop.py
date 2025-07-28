@@ -19,7 +19,7 @@ class GPlatform(object):
         @param applet: The applet location
         """
 
-        if (applet == None) or (applet == ""):
+        if (applet is None) or (applet == ""):
             raise Exception("applet parameter unset")
 
         cmd = """mode_211

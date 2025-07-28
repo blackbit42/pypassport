@@ -363,7 +363,7 @@ class ReaderManager(Singleton):
         cpt = 0
         wait = 0.5
 
-        if driver == None and readerNum == None:
+        if driver is None and readerNum is None:
             r = self._autoDetect()
             while not r and cpt < timeout:
                 r = self._autoDetect()

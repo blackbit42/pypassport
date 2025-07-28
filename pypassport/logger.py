@@ -29,7 +29,7 @@ class Logger(object):
         self._listeners.remove(listener)
 
     def log(self, msg, name=None):
-        if name != None:
+        if name is not None:
             n = name
         else: n = self._name
 

@@ -202,7 +202,7 @@ class ActiveAuthentication(Logger):
             raise ActiveAuthenticationException("Active Authentication not supported: ", msg)
 
     def _asn1Parse(self):
-        if self._dg15 != None:
+        if self._dg15 is not None:
             certType = SubjectPublicKeyInfo()
             return decoder.decode(self._dg15.body, asn1Spec=certType)[0]
         return ""

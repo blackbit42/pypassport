@@ -217,7 +217,7 @@ class EPassport(dict, logger.Logger):
         @raise bacException: If an error occur during the process
         @raise EPassportException: If the mrz is not initialized.
         """
-        if self._mrz == None:
+        if self._mrz is None:
             raise EPassportException("The object must be initialized with the ePassport MRZ")
 
         (KSenc, KSmac, ssc) = self._bac.authenticationAndEstablishmentOfSessionKeys(self._mrz)
@@ -236,7 +236,7 @@ class EPassport(dict, logger.Logger):
         """
         res = ""
         try:
-            if dg15 == None:
+            if dg15 is None:
                 dg15 = self["DG15"]
             res = self._aa.executeAA(dg15)
             return res
@@ -288,7 +288,7 @@ class EPassport(dict, logger.Logger):
         res = None
         try:
             sod = self.readSod()
-            if dgs == None:
+            if dgs is None:
                 dgs = self.readDataGroups()
             res = self._pa.executePA(sod, dgs)
             return res

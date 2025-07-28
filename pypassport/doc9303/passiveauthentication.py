@@ -76,7 +76,7 @@ class PassiveAuthentication(Logger):
         @raise openSSLException: See the openssl documentation
         """
 
-        if CSCADirectory == None:
+        if CSCADirectory is None:
             raise PassiveAuthenticationException("CSCADirectory is not set")
 
         if type(sodObj) != type(datagroup.SOD(None)):
@@ -86,7 +86,7 @@ class PassiveAuthentication(Logger):
             raise PassiveAuthenticationException("CSCADirectory must be a CAManager object")
 
         CDS = self.getCertificate(sodObj)
-        if CDS == None:
+        if CDS is None:
             # No certificate
             raise PassiveAuthenticationException("The certificate could not be retrieved")
 
@@ -116,14 +116,14 @@ class PassiveAuthentication(Logger):
 #        f.write(sodObj.body)
 #        f.close()
 
-        if self._data == None:
+        if self._data is None:
             self._data = self.getSODContent(sodObj)
 
 #        f = open("/home/jf/CA/sod_content", "wb")
 #        f.write(self._data)
 #        f.close()
 
-        if self._content == None:
+        if self._content is None:
             self._content = self._readDGfromLDS(self._data)
 
         hashes = self._calculateHashes(dgs)
@@ -145,7 +145,7 @@ class PassiveAuthentication(Logger):
         if type(sodObj) != type(datagroup.SOD(None)):
             raise PassiveAuthenticationException("sodObj must be a sod object")
 
-        if sodObj.body == None:
+        if sodObj.body is None:
             raise PassiveAuthenticationException("sodObj object is not initialized")
 
         return self._openSSL.getPkcs7SignatureContent(sodObj.body)
