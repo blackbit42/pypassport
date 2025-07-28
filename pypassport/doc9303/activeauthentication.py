@@ -33,14 +33,14 @@ class ActiveAuthenticationException(Exception):
         Exception.__init__(self, *params)
 
 class ActiveAuthentication(Logger):
-    """  
+    """
     This class implement the Active Authentication protocol.
     The main method is I{executeAA} that return True is the verification is ok or False.
     """
     def __init__(self, iso7816, openssl=None):
         """
         @param iso7816: a valid iso7816 object
-        @type iso7816: doc9303  
+        @type iso7816: doc9303
         """
         Logger.__init__(self, "AA")
         self._iso7816 = iso7816
@@ -48,7 +48,7 @@ class ActiveAuthentication(Logger):
             self._openssl = OpenSSL()
         else:
             self._openssl = openssl
-        self._openssl.register(self.log)    
+        self._openssl.register(self.log)
         self.RND_IFD = None
         self.F = None
         self.T = None
@@ -60,16 +60,16 @@ class ActiveAuthentication(Logger):
 
         self._dg15 = None
 
-    def executeAA(self, dg15): 
+    def executeAA(self, dg15):
         """
         Perform the Active Authentication protocol.
         Work only with RSA, modulus length of 1024 and with SHA1.
         
         @param dg15: A initialized dataGroup15 object
-        @type dg15: dataGroup15 
+        @type dg15: dataGroup15
         @return: True if the authentication succeed, else False.
         @rtype: Boolean
-        @raise ActiveAuthenticationException: If the Active Authentication is not supported (The DG15 is not found or the hash algo is not supported). 
+        @raise ActiveAuthenticationException: If the Active Authentication is not supported (The DG15 is not found or the hash algo is not supported).
         @raise ActiveAuthenticationException: If the parameter is not set or invalid.
         @raise ActiveAuthenticationException: If OpenSSL is not installed.
         @raise ActiveAuthenticationException: If the public key cannot be recovered from the DG15.
@@ -107,7 +107,7 @@ class ActiveAuthentication(Logger):
         return self._iso7816.internalAuthentication(rnd_ifd)
 
     def getPubKey(self, dg15):
-        """  
+        """
         Retrieve the public key in PEM format from the dataGroup15
         
         @return: A PEM reprensation of the public key

@@ -26,7 +26,7 @@ CertFormat = ["PEM", "DER"]
 class CAManager(object):
     """
     This object is used for the certificate validation.
-    It encapsulates the certificates directory and perform the certificate name conversion in its hash.0 format. 
+    It encapsulates the certificates directory and perform the certificate name conversion in its hash.0 format.
     """
     def __init__(self, dir):
         """
@@ -36,7 +36,7 @@ class CAManager(object):
         self._dir = dir
 
     def toHashes(self):
-        """ 
+        """
         For each certificate, create  a new certificate named with the hash value of the issuer followed with .0
         By this way, the corresponding CSCA certificate of the DS certificate can be found easily by openSSL.
         """
@@ -49,7 +49,7 @@ class CAManager(object):
                 self._toPEM(file, format, hashName, self.dir + os.path.sep)
 
     def _getHash(self, file):
-        """ 
+        """
         Calculate the hash of the specified certificate.
         
         @param file: The url of the certificate
@@ -58,7 +58,7 @@ class CAManager(object):
         data = None
         format = None
         for format in CertFormat:
-            #TODO: Deplacer le code openssl dans OpenSSL 
+            #TODO: Deplacer le code openssl dans OpenSSL
             a = "openssl x509 -hash -in "+ file +" -inform "+format + " -noout"
             r = os.popen(a, "rb")
             data = r.read().strip()
@@ -71,7 +71,7 @@ class CAManager(object):
         return (data, format)
 
     def _toPEM(self, certif, format, name, path):
-        """ 
+        """
         Convert the certificate into the PEM format.
         If the certificate is already in PEM, do nothing.
         
@@ -97,7 +97,7 @@ class CAManager(object):
         return data
 
     def _getDir(self):
-        """  
+        """
         Return the url of the directory where the certificates are stored.
         """
         return self._dir

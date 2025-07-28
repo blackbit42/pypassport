@@ -31,7 +31,7 @@ class Ciphering(Logger):
     def protect(self, apdu):
         raise Exception("Should be implemented")
 
-    def unprotect(self, apdu): 
+    def unprotect(self, apdu):
         raise Exception("Should be implemented")
 
 class SecureMessagingException(Exception):
@@ -41,7 +41,7 @@ class SecureMessagingException(Exception):
         return self.args[i]
 
 class SecureMessaging(Ciphering):
-    """ 
+    """
     This class implement the secure messaging protocol.
     The class is a new layer that comes between the reader and the iso7816.
     It gives a new transmit method that takes an APDU object formed by the iso7816 layer,
@@ -49,7 +49,7 @@ class SecureMessaging(Ciphering):
     """
     def __init__(self, ksenc, ksmac, ssc):
         Ciphering.__init__(self)
-        self._ksenc = ksenc 
+        self._ksenc = ksenc
         self._ksmac = ksmac
         self._ssc = ssc
 
@@ -89,18 +89,18 @@ class SecureMessaging(Ciphering):
         self.log("\tCompute MAC over N with KSmac")
         self.log("\t\tCC: " + binToHexRep(CC))
 
-        do8e = self._buildD08E(CC) 
-        size = str(len(do87) + len(do97) + len(do8e)) 
+        do8e = self._buildD08E(CC)
+        size = str(len(do87) + len(do97) + len(do8e))
         protectedAPDU = cmdHeader[:4] + intToBin(size) + do87 + do97 + do8e + hexToBin(0x00)
         self.log("Construct and send protected APDU")
         self.log("\tProtectedAPDU: " + binToHexRep(protectedAPDU))
 
-        return CommandAPDU(binToHexRep(protectedAPDU[0]), 
-                    binToHexRep(protectedAPDU[1]), 
-                    binToHexRep(protectedAPDU[2]), 
-                    binToHexRep(protectedAPDU[3]), 
-                    binToHexRep(protectedAPDU[4]), 
-                    binToHexRep(protectedAPDU[5:-1]), 
+        return CommandAPDU(binToHexRep(protectedAPDU[0]),
+                    binToHexRep(protectedAPDU[1]),
+                    binToHexRep(protectedAPDU[2]),
+                    binToHexRep(protectedAPDU[3]),
+                    binToHexRep(protectedAPDU[4]),
+                    binToHexRep(protectedAPDU[5:-1]),
                     binToHexRep(protectedAPDU[-1]))
 
 
@@ -150,7 +150,7 @@ class SecureMessaging(Ciphering):
             #SM error, return the error code
             return ResponseAPDU([], sw1, sw2)
 
-        self.log(rapdu[offset])    
+        self.log(rapdu[offset])
         #DO'8E'
         #Mandatory if DO'87' and/or DO'99' is present
         if rapdu[offset] == 0x8E:
@@ -186,7 +186,7 @@ class SecureMessaging(Ciphering):
             if not res:
                 raise SecureMessagingException("Invalid checksum for the rapdu : " + str(binToHex(rapdu)))
 
-        elif needCC:         
+        elif needCC:
             raise SecureMessagingException("Mandatory id DO'87' and/or DO'99' is present")
 
         data = []
@@ -215,7 +215,7 @@ class SecureMessaging(Ciphering):
 
     def _padAndEncryptData(self, apdu):
         """ Pad the data, encrypt data with KSenc and build DO'87"""
-        tdes= DES3.new(self._ksenc, DES.MODE_CBC, b'\0'*8) 
+        tdes= DES3.new(self._ksenc, DES.MODE_CBC, b'\0'*8)
         paddedData = pad( hexRepToBin(apdu.getData()))
         enc = tdes.encrypt( paddedData )
         self.log("Pad data")
@@ -227,7 +227,7 @@ class SecureMessaging(Ciphering):
     def _incSSC(self):
         out = binToHex(self._ssc) + 1
         res = hexToBin(out)
-        return res 
+        return res
 
     def _buildD08E(self, mac):
         res = hexListToBin([0x8E, len(mac)]) + mac

@@ -60,7 +60,7 @@ class OpenSSL(Logger):
         """
         try:
             self._toDisk("certif.cer", certif)
-            data = self._execute("verify -CApath "+trustedCertif+" certif.cer")       
+            data = self._execute("verify -CApath "+trustedCertif+" certif.cer")
             data = str.replace(data, "certif.cer: ", "")
         finally:
             self._remFromDisk("certif.cer")
@@ -70,7 +70,7 @@ class OpenSSL(Logger):
         raise OpenSSLException(data.strip())
 
     def retrievePkcs7Certificate(self, derFile):
-        """ 
+        """
         Retrieve the certificate from the binary string, and returns it
         into a human readable format.
         @param derFile: The certificate in der format
@@ -83,8 +83,8 @@ class OpenSSL(Logger):
             self._remFromDisk("data.der")
 
     def retrieveRsaPubKey(self, derFile):
-        """ 
-        Transform the rsa public key in der format to pem format" 
+        """
+        Transform the rsa public key in der format to pem format"
         @param derFile: A rsa public key in der format
         @return: The rsa public key in pem formar
         """
@@ -96,7 +96,7 @@ class OpenSSL(Logger):
             self._remFromDisk("pubK")
 
     def retrieveSignedData(self, pubK, signature):
-        """ 
+        """
         Retrieve the signed data from the signature
         @param pubK: A RSA public key in der format
         @param signature: The signature to verify with the pubKey
@@ -149,7 +149,7 @@ class OpenSSL(Logger):
 
 
     def genRSAprKey(self, size):
-        """ 
+        """
         Return an RSA private key of the specified size in PEM format.
         """
         return self._execute("genrsa " + str(size))
@@ -224,7 +224,7 @@ class OpenSSL(Logger):
             self._remFromDisk("csca.key")
 
     def genCRL(self, csca, cscaKey):
-        """ 
+        """
         @param csca: The root certificate
         @param cscaKey: The CA private key
         """
@@ -241,7 +241,7 @@ class OpenSSL(Logger):
             self._remFromDisk("csca.key")
 
     def revokeX509(self, cert, csca, cscaKey):
-        """ 
+        """
         @param csca: The root certificate
         @param cscaKey: The CA private key
         """
@@ -260,7 +260,7 @@ class OpenSSL(Logger):
 
 
     def toPKCS12(self, certif, prK, pwd):
-        """  
+        """
         Return a RSA key pair under the PKCS#12 format.
         PKCS#12: used to store private keys with accompanying public key certificates, protected with a password-based symmetric key
         """
@@ -268,7 +268,7 @@ class OpenSSL(Logger):
             self._toDisk("certif", certif)
             self._toDisk("prK", prK)
             return self._execute("pkcs12 -export -in certif -inkey prK -passout pass:" + pwd)
-        finally: 
+        finally:
             self._remFromDisk("certif")
             self._remFromDisk("prK")
 
@@ -280,7 +280,7 @@ class OpenSSL(Logger):
             self._remFromDisk("pem")
 
     def prRSAToDERPb(self, prKey):
-        """ 
+        """
         Retrieve the corresponding DER encoded public key fron the given a RSA private key
         """
         try:
@@ -290,7 +290,7 @@ class OpenSSL(Logger):
             self._remFromDisk("dg15")
 
     def RSAKeyToText(self, key):
-        """ 
+        """
         COnvert a key to its text format
         """
         try:

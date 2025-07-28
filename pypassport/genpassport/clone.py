@@ -25,7 +25,7 @@ r=None
 
 APPLET = False
 READER_NUM = 2
-APPLET_PATH = "D:\\download\\epassport_emulator_v1.02\\epassport.cap" 
+APPLET_PATH = "D:\\download\\epassport_emulator_v1.02\\epassport.cap"
 MRZ = "EG491433<0BEL8305099M1208157<<<<<<<<<<<<<<04"
 DUMP_DIR = "../testData"
 
@@ -49,7 +49,7 @@ if APPLET:
     jc.install(APPLET_PATH)
 
 
-input("Dumps upload: Put the JCOP on the reader, and press a key") 
+input("Dumps upload: Put the JCOP on the reader, and press a key")
 r = reader.ReaderManager().waitForCard()
 epc = epassportcreation.EPassportCreator(None, None, r)
 epc.setEPassport(ep)

@@ -85,12 +85,12 @@ class DistinguishedName(object):
 
 class CA(Logger):
     def __init__(self, caLoc=os.path.expanduser('~'), csca=None, cscaKey=None, opensslLocation=""):
-        """ 
+        """
         Initiate the CA infrastructure.
-        @caLoc: The location where the openssl config files will be stored 
+        @caLoc: The location where the openssl config files will be stored
         @param csca: An existing CSCA Certificate in PEM
         @param cscaKey: The private key of the CSCA in PEM
-        @param opensslLocation: The openssl executable location 
+        @param opensslLocation: The openssl executable location
         """
         Logger.__init__(self, "CA")
 
@@ -109,7 +109,7 @@ class CA(Logger):
         self._openssl.register(self._traceOpenSSl)
 
     def createCSCA(self, size=1024, days=720, dn=DistinguishedName(C="BE", O="Gouv", CN="CSCA-BELGIUM")):
-        """ 
+        """
         Create a Country Signing Certificate Authority.
         Return a couple with the x509 as first item and the private key as second item
         
@@ -124,7 +124,7 @@ class CA(Logger):
         @return: (x509, privateKey) both in PEM
         """
         self._cscaKey = self._openssl.genRSAprKey(size)
-        self._csca = self._genRootHelper(self.cscaKey, days, dn) 
+        self._csca = self._genRootHelper(self.cscaKey, days, dn)
         return (self.csca, self.cscaKey)
 
     def _genRootHelper(self, cscaKey, days, dn):
@@ -137,7 +137,7 @@ class CA(Logger):
 
 
     def createDS(self, size=1024, days=365, dn=DistinguishedName(C="BE", O="Gouv", CN="Document-Signer-BELGIUM")):
-        """ 
+        """
         Create a Document Signer Certificate.
         Return a couple with the x509 as first item and the private key as second item
         
@@ -154,7 +154,7 @@ class CA(Logger):
         self._testinit()
         dsKey = self._openssl.genRSAprKey(size)
         dsReq = self._openssl.genX509Req(dsKey, dn)
-        ds = self._signX509Helper(dsReq, days)    
+        ds = self._signX509Helper(dsReq, days)
 
         return (ds, dsKey)
 
@@ -167,7 +167,7 @@ class CA(Logger):
             return self._signX509Helper(dsReq, days)
 
     def revoke(self, x509):
-        """   
+        """
         Revoke the certificate.
         Return the CRL in PEM.
         

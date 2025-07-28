@@ -106,7 +106,7 @@ class DataGroup(TLVParser, DataGroupFile):
         return self
 
     def _parseDataElementPresenceMap(self, depm):
-        """ 
+        """
         Convert concatenated bin tags into a list of string tag.
         
         >>> from pypassport.doc9303.datagroup import DataGroup, DataGroupFile
@@ -120,7 +120,7 @@ class DataGroup(TLVParser, DataGroupFile):
         ['5F0E', '5F11', '5F42', '5F12', '5F13']
         
         @param depm: The data element presence map
-        @type depm: A binary string 
+        @type depm: A binary string
         @return: A list with the tags found in the data element presence map.
         """
         byteNb = self._byteNb
@@ -140,7 +140,7 @@ class DataGroup(TLVParser, DataGroupFile):
         return tags
 
 class DataGroup1(DataGroup):
-    """  
+    """
     Implement the DataGroup1 parsing
     """
 
@@ -157,7 +157,7 @@ class DataGroup1(DataGroup):
         elif docType == "TD2":
             self._parseTd2(data)
         elif docType == "TD3":
-            self._parseTd3(data)            
+            self._parseTd3(data)
 
         return self
 
@@ -194,18 +194,18 @@ class DataGroup1(DataGroup):
         self["5F2C"] = data[45:48]
         #opt data
         self["53"].append(data[48:59])
-        #comp check 
+        #comp check
         self["5F07"] = data[59:60]
         #name of holder
         self["5B"] = data[60:]
 
 
     def _parseTd2(self, data):
-        # document code 2bytes TAG 5F03 
+        # document code 2bytes TAG 5F03
         self["5F03"] = data[0:2]
         # issuing state 3bytes TAG 5F28
         self["5F28"] = data[2:5]
-        #name of holder 31bytes 
+        #name of holder 31bytes
         self["5B"] = data[5:36]
         # Doc no 9bytes TAG 5A
         self["5A"] = data[36:45]
@@ -226,10 +226,10 @@ class DataGroup1(DataGroup):
         # Optional Data plus filler 14bytes TAG 53
         self["53"] = data[64:71]
         # composite check digit 1byte TAG 5F07
-        self["5F07"] = data[71:72]        
+        self["5F07"] = data[71:72]
 
     def _parseTd3(self, data):
-        # document code 2bytes TAG 5F03 
+        # document code 2bytes TAG 5F03
         self["5F03"] = data[0:2]
         # issuing state 3bytes TAG 5F28
         self["5F28"] = data[2:5]
@@ -265,7 +265,7 @@ class DataGroup1(DataGroup):
         if length == 0x48:
             return "TD2"
         if length == 0x58:
-            return "TD3"   
+            return "TD3"
         return None
 
 class DataGroup2(DataGroup):
@@ -334,11 +334,11 @@ class DataGroup5(DataGroup):
             1. '02': The number of instances
             2. '5F40' or '5F43' : A list of displayed portrait or A list of displayed signature"
                 The value is a list of list
-        ex: 
+        ex:
             - {'02': [2], '5F40' : [[0x..,0x..,0x..], [0x..,0x..,0x..]]}
             - {'02': [1], '5F43' : [[0x..,0x..,0x..]]}
         
-        Each values of the dictionnary are in a list of hexadecimal/decimal values. 
+        Each values of the dictionnary are in a list of hexadecimal/decimal values.
         """
 
         self._byteNb = 0
@@ -400,7 +400,7 @@ class DataGroup11(DataGroup):
 class DataGroup12(DataGroup):
 
     def __init__(self, dgFile):
-        DataGroup.__init__(self, dgFile) 
+        DataGroup.__init__(self, dgFile)
 
     def parse(self):
         super(DataGroup12, self).parse()
@@ -439,7 +439,7 @@ class DataGroup15(DataGroup):
 class DataGroup16(DataGroup):
 
     def __init__(self, dgFile):
-        DataGroup.__init__(self, dgFile)   
+        DataGroup.__init__(self, dgFile)
 
     def parse(self):
          #Read the number of templates
@@ -455,14 +455,14 @@ class DataGroup16(DataGroup):
          return self
 
 class Com(DataGroup):
-    """ 
+    """
     Implement the parsing of the com file
     """
     def __init__(self, dgFile):
         DataGroup.__init__(self, dgFile)
 
 class SOD(DataGroup):
-    """ 
+    """
     Implement the sod parsing
     """
     def __init__(self, dgFile):
@@ -472,7 +472,7 @@ class SOD(DataGroup):
         return self
 
 class CardAccess(DataGroup):
-    """ 
+    """
     Implement the CardAccess parsing
     """
     def __init__(self, dgFile):
@@ -510,12 +510,12 @@ class Events(object):
             listenerFct(msg)
 
 class DataGroupReader(Logger):
-    """   
+    """
     Read a specific dataGroup from the passport.
     This is the superclass defining the interface for the classes implementing the reading.
     """
     def __init__(self, iso7816, maxSize = 0xE0):
-        """ 
+        """
         @param iso7816: The layer sending iso7816 apdu to the reader.
         @type iso7816: A iso7816 object
         @param maxSize: The maximum buffer size accepted by the reader.
@@ -533,21 +533,21 @@ class DataGroupReader(Logger):
 
 
     def readDG(self, dg):
-        """  
+        """
         Read the specified dataGroup and return the file in two parts:
         
         A dataGroup::
-            6C 40 
-                  5C   06     5F195F265F1A    
-                  5F19 18     UNITED STATES OF AMERICA        
+            6C 40
+                  5C   06     5F195F265F1A
+                  5F19 18     UNITED STATES OF AMERICA
                   5F26 08     20020531
                   5F1A 0F     SMITH<<BRENDA<P
             
             1. The header::
                 6C 40
             2. The body ::
-                5C   06     5F195F265F1A    
-                5F19 18     UNITED STATES OF AMERICA        
+                5C   06     5F195F265F1A
+                5F19 18     UNITED STATES OF AMERICA
                 5F26 08     20020531
                 5F1A 0F     SMITH<<BRENDA<P
 
@@ -569,7 +569,7 @@ class DataGroupReader(Logger):
         header = self._iso7816.readBinary(self.offset, 4)
         (self._bodySize, self.offset) = asn1Length(header[1:])
         self.offset += 1
-        self.log("Body Size: " + str(self._bodySize) + " Offset " + str(self.offset))        
+        self.log("Body Size: " + str(self._bodySize) + " Offset " + str(self.offset))
         if(converter.toTAG(dg) != binToHexRep(header[0])):
             raise Exception("Wrong AID: " + binToHexRep(header[0]) + " instead of " +  converter.toTAG(dg))
 
@@ -584,7 +584,7 @@ class DataGroupReader(Logger):
             l = len(tmp)
             toRead -= l
             self.offset += l
-            self.log("Read: " + str(l) + " Expected: " + str(self._maxSize))        
+            self.log("Read: " + str(l) + " Expected: " + str(self._maxSize))
 
 
         if self.stop:
@@ -596,7 +596,7 @@ class DataGroupReader(Logger):
         l = len(tmp)
         self.offset += l
         body += tmp
-        self.log("Read: " + str(l) + " Expected: " + str(toRead))        
+        self.log("Read: " + str(l) + " Expected: " + str(toRead))
 
         if self._bodySize != len(body):
             raise Exception("The file is not entirely read: expected: " + str(self._bodySize) + " read: " + str(len(body)))
@@ -616,9 +616,9 @@ class DataGroupReader(Logger):
     offset = property(_getOffset, _setOffset)
 
 class FSDataGroupReader(DataGroupReader):
-    """ 
+    """
     Implement the superClass dataGroupReader.
-    Implement the reading using FS 
+    Implement the reading using FS
     """
     def __init__(self, iso7816, maxSize = 0xE0):
         DataGroupReader.__init__(self, iso7816, maxSize)
@@ -628,7 +628,7 @@ class FSDataGroupReader(DataGroupReader):
 
 
 class SFIDataGroupReader(DataGroupReader):
-    """ 
+    """
     Implement the superClass dataGroupReader.
     Implement the reading using ShortFileIdentifier
     """
@@ -651,11 +651,11 @@ class DataGroupReaderFactory(Singleton):
         return self.reader[reader](iso7816)
 
 class DataGroupDump(object):
-    """ 
+    """
     Save the passport, a specific dataGroup or some data to the disk.
     """
     def __init__(self, path, ext=""):
-        """  
+        """
         @param path: The path where the dump will be stored.
         @param ext: File extension
         @type path: A string
@@ -669,7 +669,7 @@ class DataGroupDump(object):
             raise Exception(path + " is not a valid directory")
 
     def dump(self, ep, format=converter.types.FID):
-        """  
+        """
         Save the dataGroup binaries on the HDD.
         The name format is specified by the format parameter.
         
@@ -682,7 +682,7 @@ class DataGroupDump(object):
             self.dumpDG(ep[tag], format)
 
     def dumpDG(self, dg, format=converter.types.FID):
-        """  
+        """
         Save the specified dataGroup on the HDD.
         
         @param dg: A filled dataGroup object
@@ -695,7 +695,7 @@ class DataGroupDump(object):
         f.close()
 
     def dumpData(self, data, name):
-        """  
+        """
         Save some data on the HDD. The data can be the binary of a picture for example.
         It will be saved under the name passed as parameter.
         

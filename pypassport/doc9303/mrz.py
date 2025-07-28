@@ -22,7 +22,7 @@ class MRZException(Exception):
 
 class MRZ(object):
 
-    """   
+    """
     This class implement the mrz check digit test.
     The class is used when the mrz is encoded by the user, to verify the mrz validity.
     The method I{checkMRZ} must be called before any further use of this class because
@@ -36,7 +36,7 @@ class MRZ(object):
         self._mrz = mrz
         self._weighting = [7, 3, 1]
         self._weight = {'0': 0, '1': 1, '2': 2, '3': 3, '4': 4, '5': 5, '6': 6, '7': 7, '8': 8, '9': 9, '<': 0,
-          'A': 10, 'B': 11, 'C': 12, 'D': 13, 'E': 14, 'F': 15, 'G': 16, 'H': 17, 'I': 18, 'J': 19, 'K': 20, 'L': 21, 'M': 22, 
+          'A': 10, 'B': 11, 'C': 12, 'D': 13, 'E': 14, 'F': 15, 'G': 16, 'H': 17, 'I': 18, 'J': 19, 'K': 20, 'L': 21, 'M': 22,
           'N': 23, 'O': 24, 'P': 25, 'Q': 26, 'R': 27, 'S': 28, 'T': 29, 'U': 30, 'V': 31, 'W': 32, 'X': 33, 'Y': 34, 'Z': 35};
 
         self._docNumber = None
@@ -60,14 +60,14 @@ class MRZ(object):
         return self._checked
 
     def checkMRZ(self):
-        """ 
+        """
         The method verify the check digits of the encoded MRZ.
         It handle two kind of MRZ: TD1 and TD2.
         The method retrieves the fields used by the bac protocol, so this method
-        must be called after the mrz object initialization. 
+        must be called after the mrz object initialization.
         
         @return: True or False
-        @rtype: A boolean       
+        @rtype: A boolean
         """
         mrz = self._mrz
         if len(mrz) == 60:
@@ -101,7 +101,7 @@ class MRZ(object):
         self._dateOfExpiryCD = mrz2[14]
 
         fields = [
-                     (self._docNumber, self._docNumberCD), 
+                     (self._docNumber, self._docNumberCD),
                      (self._dateOfBirth, self._dateOfBirthCD),
                      (self._dateOfExpiry, self._dateOfExpiryCD),
                      (mrz1[5:30] + mrz2[0:7] + mrz2[8:15] + mrz2[18:29] , mrz2[29])
@@ -149,14 +149,14 @@ class MRZ(object):
         try:
             for (field, cd) in data:
                 res = self._calculCheckDigit(field)
-                if str(res) != str(cd): 
+                if str(res) != str(cd):
                     return False
             return True
         except KeyError:
             return False
 
     def _calculCheckDigit(self, value):
-        """ Create check digit for a value of the MRZ 
+        """ Create check digit for a value of the MRZ
         
             @param value: initial value
             @type value: String
@@ -174,9 +174,9 @@ class MRZ(object):
         return str(res%10)
 
     def buildMRZ(self, type, issuer, name, firstname, nat, sex, num, birth, exp):
-        """ Build MRZ using the informations given by dates and passport number 
+        """ Build MRZ using the informations given by dates and passport number
         
-            @note: sex and nat field are not necessary to BAC and are then 
+            @note: sex and nat field are not necessary to BAC and are then
                    replaced by '<' characters
                    
             @attention: this method build a 44 characters MRZ based on TD2 specs
@@ -185,7 +185,7 @@ class MRZ(object):
                         initial check digit il replaced by a '<' character
         """
         type = self._transformField(type, 2)
-        issuer = self._transformField(issuer, 3) 
+        issuer = self._transformField(issuer, 3)
         name_firstName = self._transformField(name + "<<" + firstname, 39)
         line1 = self._transformField(type + issuer + name_firstName, 44)
 
@@ -216,7 +216,7 @@ class MRZ(object):
         compositeCD = self._calculCheckDigit(num+numCD+birth+birthCD+exp+expCD+optional+optionalCD)
         line2 = data + compositeCD
 
-        return line1 + line2 
+        return line1 + line2
 
     def _transformField(self, field, size):
         if len(field) > size:

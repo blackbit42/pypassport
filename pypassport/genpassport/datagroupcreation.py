@@ -6,11 +6,11 @@ from pypassport.derobjectidentifier import *
 from pypassport.asn1 import *
 
 class DataGroupFileCreation(DataGroupFile):
-    """  
+    """
     The purpose of this class is to create a fake dataGroup.
     """
     def __init__(self, aid):
-        """  
+        """
         @param aid: The dataGroup tag
         @type aid: A string
         """
@@ -18,13 +18,13 @@ class DataGroupFileCreation(DataGroupFile):
         self.tag = aid
 
     def addDataObject(self, tag, value):
-        """ 
+        """
         Insert a new tag, value couple inside the dataGroup.
         
         @param tag: A tag in hexRep format
         @type tag: A string
         @param value: The value associated to the tag
-        @type value: A string       
+        @type value: A string
         """
         length = binToHexRep(toAsn1Length(len(value)))
         tmp = hexRepToBin(tag) + hexRepToBin(length) + value

@@ -53,7 +53,7 @@ ISO19794_5_HAIRCOLOUR= {'00': 'Unspecified',
                         '08': 'Green',
                         '09': 'Blue',
                         'ff': 'Other'
-                       }    
+                       }
 
 ISO19794_5_FEATURE= {0x01: 'Specified',
                      0x02: 'Glasses',
@@ -65,7 +65,7 @@ ISO19794_5_FEATURE= {0x01: 'Specified',
                      0x80: 'Left Eyepatch',
                      0x100: 'Right Eyepatch',
                      0x200: 'Dark Glasses',
-                     0x400: 'Distorted'                     
+                     0x400: 'Distorted'
                     }
 
 ISO19794_5_EXPRESSION= {'0000': 'Unspecified',
@@ -123,7 +123,7 @@ class ISO19794_5:
             @type data: binary data
             
             @return: tuple composed of header size and decoded header
-            @rtype: tuple(int, dict)        
+            @rtype: tuple(int, dict)
         """
 
         offset = 0
@@ -171,7 +171,7 @@ class ISO19794_5:
         try:
             result['HairColour'] = ISO19794_5_HAIRCOLOUR[tag]
         except KeyError:
-            result['HairColour'] = int(tag, 16)        
+            result['HairColour'] = int(tag, 16)
 
         tag = data[offset:offset+6]
         offset += 6
@@ -182,7 +182,7 @@ class ISO19794_5:
         for key, value in list(ISO19794_5_FEATURE.items()):
             if and_(mask, key):
                 features[key] = value
-        result['Features'] = features        
+        result['Features'] = features
 
         tag = data[offset:offset+4]
         offset += 4
@@ -231,14 +231,14 @@ class ISO19794_5:
         try:
             result['FaceImageType'] = ISO19794_5_IMG_TYPE[tag]
         except KeyError:
-            result['FaceImageType'] = int(tag, 16)             
+            result['FaceImageType'] = int(tag, 16)
 
         tag = data[offset:offset+2]
         offset += 2
         try:
             result['ImageDataType'] = ISO19794_5_IMG_DTYPE[tag]
         except KeyError:
-            result['ImageDataType'] = int(tag, 16)             
+            result['ImageDataType'] = int(tag, 16)
 
         tag = data[offset:offset+4]
         offset += 4
@@ -253,14 +253,14 @@ class ISO19794_5:
         try:
             result['ImageColourSpace'] = ISO19794_5_IMG_CSPACE[tag]
         except KeyError:
-            result['ImageColourSpace'] = int(tag, 16)            
+            result['ImageColourSpace'] = int(tag, 16)
 
         tag = data[offset:offset+2]
         offset += 2
         try:
             result['ImageSourceType'] = ISO19794_5_IMG_SOURCE[tag]
         except KeyError:
-            result['ImageSourceType'] = int(tag, 16)              
+            result['ImageSourceType'] = int(tag, 16)
 
         tag = data[offset:offset+4]
         offset += 4
@@ -283,7 +283,7 @@ class ISO19794_5:
             @param imageWidth: Width of the image in pixels
             @type imageWidth: int
             @param imageSize: size of the image in bytes
-            @type imageSize: int        
+            @type imageSize: int
         """
 
         IMAGETYPE = {'JPEG': "00",

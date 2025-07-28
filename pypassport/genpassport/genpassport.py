@@ -44,8 +44,8 @@ def trace(name, str):
 
 #Set the Country Signing CA information
 CSCA = pki.DistinguishedName(
-    C="BE", 
-    O="UCL", 
+    C="BE",
+    O="UCL",
     CN="CSCA-HOUZARD"
 )
 CSCA_KEY_SIZE = 1024
@@ -53,8 +53,8 @@ CSCA_VALIDITY_PERIOD = 720
 
 #Set the Document Signer Certificate information
 DS = pki.DistinguishedName(
-    C="BE", 
-    O="UCL", 
+    C="BE",
+    O="UCL",
     CN="Document_Signer_ROGER"
 )
 DS_KEY_SIZE = 1024
@@ -74,10 +74,10 @@ ISSUE_DATA = "11072009"                 #6 chars
 IMAGE_PATH = "C:/jf.jpg"
 SIGNATURE_PATH = "C:/jfSignature.jpg"
 BIRTH_PLACE = "Huy"
-AUTHORITY = "MODAVE"  
+AUTHORITY = "MODAVE"
 
 o = openssl.OpenSSL()
-o.register(trace)        
+o.register(trace)
 
 if not CREATE_CERT:
     f = open(WORKING_DIR + "\\csca")
@@ -115,7 +115,7 @@ else:
 
 
 if INSTALL_APPLET:
-    print('Installing applet') 
+    print('Installing applet')
     jc = jcop.GPlatform(READER_NUM)
     jc.install(APPLET_PATH)
 
@@ -124,7 +124,7 @@ if JCOP:
     print('Drop the passport on the reader...')
     r = reader.ReaderManager().waitForCard()
 
-#Generate the fake passport, and saves it   
+#Generate the fake passport, and saves it
 epc = epassportcreation.EPassportCreator(ds, dsKey, r)
 epc.register(trace)
 epc.create(ISSUER, NAME, SURNAME, NATIONALITY, SEX, PASSPORT_NUM, BIRTH_DATE, EXPIRY_DATE, IMAGE_PATH, SIGNATURE_PATH, BIRTH_PLACE, AUTHORITY, ISSUE_DATA)

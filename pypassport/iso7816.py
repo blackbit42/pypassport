@@ -25,7 +25,7 @@ class Iso7816Exception(Exception):
     def __init__(self, *params):
         Exception.__init__(self, *params)
     def __getitem__(self, i):
-        return self.args[i]       
+        return self.args[i]
 
 class Iso7816(Logger):
 
@@ -97,7 +97,7 @@ class Iso7816(Logger):
                 0x6E: {0x00: 'Class not supported'},
                 0x6F: {0x00: 'No precise diagnosis'},
                 0x90: {0x00: 'Success'} #No further qualification
-     }     
+     }
 
     def __init__(self, reader):
         Logger.__init__(self, "ISO7816")
@@ -113,7 +113,7 @@ class Iso7816(Logger):
         @return: The result field of the responseAPDU object
         
         The P1 and P2 fields are checked after each transmit.
-        If they don't mean succes, the appropriate error string is retrieved 
+        If they don't mean succes, the appropriate error string is retrieved
         from the Error dictionary and an APDUException is raised.
         The Iso7816Exception is composed of three fields: ('error message', p1, p2)
         
@@ -149,14 +149,14 @@ class Iso7816(Logger):
             else:
                 raise Iso7816Exception(msg, res.sw1, res.sw2)
         except KeyError as k:
-            raise Iso7816Exception("Unknown error", res.sw1, res.sw2)  
+            raise Iso7816Exception("Unknown error", res.sw1, res.sw2)
 
     def setCiphering(self, c=False):
-        self._ciphering = c 
+        self._ciphering = c
 
     def selectFile(self, p1, p2, file="", cla="00", ins="A4"):
         lc = hexToHexRep(int(len(file)/2))
-        toSend = apdu.CommandAPDU(cla, ins, p1, p2, lc, file, "")   
+        toSend = apdu.CommandAPDU(cla, ins, p1, p2, lc, file, "")
         return self.transmit(toSend, "Select File")
 
     def readBinary(self, offset, nbOfByte):
@@ -167,7 +167,7 @@ class Iso7816(Logger):
     def updateBinary(self, offset, data, cla="00", ins="D6"):
         os = "%04x" % int(offset)
         data = binToHexRep(data)
-        lc = hexToHexRep(len(data)/2) 
+        lc = hexToHexRep(len(data)/2)
         toSend = apdu.CommandAPDU(cla, ins, os[0:2], os[2:4], lc, data, "")
         return self.transmit(toSend, "Update Binary")
 
@@ -177,7 +177,7 @@ class Iso7816(Logger):
 
     def internalAuthentication(self, rnd_ifd):
         data = binToHexRep(rnd_ifd)
-        lc = hexToHexRep(int(len(data)/2)) 
+        lc = hexToHexRep(int(len(data)/2))
         toSend = apdu.CommandAPDU("00", "88", "00", "00", lc, data, "00")
         res = self.transmit(toSend, "Internal Authentication")
         return res
@@ -189,6 +189,6 @@ class Iso7816(Logger):
 
 #    def mutualAuthentication(self, data):
 #        data = binToHexRep(data)
-#        lc = hexToHexRep(len(data)/2) 
+#        lc = hexToHexRep(len(data)/2)
 #        toSend = apdu.CommandAPDU("00", "82", "00", "00", lc, data, "28")
 #        return self.transmit(toSend, "Mutual Authentication")

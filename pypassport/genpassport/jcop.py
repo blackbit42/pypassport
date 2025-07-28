@@ -40,7 +40,7 @@ class GPlatform(object):
         except Exception as msg:
             pass
         finally:
-            self._ec.remFromDisk("setPassport.gpshell")    
+            self._ec.remFromDisk("setPassport.gpshell")
             if res:
                 if res.find("read_executable_load_file_parameters()") > -1:
                     raise Exception("Applet not found")
@@ -50,7 +50,7 @@ class GPlatform(object):
 class JavaCardWritter(Logger):
 
     def __init__(self, reader, maxSize = 0xDF):
-        """ 
+        """
         @param reader: A Reader
         @type Reader
         @param maxSize: The maximum buffer size accepted by the reader.

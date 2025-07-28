@@ -70,7 +70,7 @@ class FingerPrint(object):
         if self._doc._isSecureMessaging:
             res["bac"] = True
 
-        #Check if there is a certificate            
+        #Check if there is a certificate
         certif = self._doc.getCertificate()
         if certif:
             res["DSCertificate"] = self._doc.getCertificate()

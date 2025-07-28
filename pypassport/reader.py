@@ -45,7 +45,7 @@ class Reader(Logger):
         Logger.__init__(self, "READER")
 
     def connect(self, readerNum=None):
-        """ 
+        """
         If there is some reader connected to the computer, we have to specify to which one we want to connect.
         
         @param readerNum: The reader number.
@@ -54,7 +54,7 @@ class Reader(Logger):
         raise Exception("Should be implemented")
 
     def transmit(self, APDU):
-        """ 
+        """
         The method send the apdu to the reader and return the ICC answer
         
         @param APDU: The apdu to transmit to the reader
@@ -64,7 +64,7 @@ class Reader(Logger):
         raise Exception("Should be implemented")
 
     def disconnect(self):
-        """ 
+        """
         To release the reader.
         """
         raise Exception("Should be implemented")
@@ -88,7 +88,7 @@ class DumpReader(Reader):
         if os.path.isdir(str(path)):
             self.readerNum = path + os.sep
             return True
-        return False 
+        return False
 
     def transmit(self, apdu):
         if apdu.ins == "A4":
@@ -138,16 +138,16 @@ class PcscReader(Reader):
         except:
             if sys.platform == 'darwin':
                 msg =  "The smart card service/daemon is not started.\n"
-                msg += "Please insert a reader and restart the application." 
+                msg += "Please insert a reader and restart the application."
             elif sys.platform == 'win32':
                 msg =  "The smart card service is not started.\n"
                 msg += "Please execute the following command in your os shell: \n"
                 msg += "Windows: net start scardsvr"
-            else: 
+            else:
                 msg =  "The smart card daemon is not started.\n"
                 msg += "Please execute the following command in your os shell: \n"
                 msg += "Linux: sudo /etc/init.d/pcscd start"
-            raise ReaderException(msg)        
+            raise ReaderException(msg)
 
     def connect(self, rn):
         if rn in range(len(self.getReaderList())):
@@ -187,7 +187,7 @@ class apduWrapper(object):
 
 class Acr122(PcscReader):
 
-    Control = {     "AntennaPowerOff" :  [0x01, 0x00], 
+    Control = {     "AntennaPowerOff" :  [0x01, 0x00],
                     "AntennaPowerOn" :   [0x01, 0x01],
                     "ResetTimer" :       [0x05, 0x00, 0x00, 0x00]
               }
@@ -239,7 +239,7 @@ class Acr122(PcscReader):
         wrappedApdu = Acr122.Pseudo_APDU["DirectTransmit"] + [len(Acr122.PN532_Cmd[PN532_Cmd]) + len(hexListAPDU)] + Acr122.PN532_Cmd[PN532_Cmd] + hexListAPDU
 
         res = self._pcsc_connection.transmit(wrappedApdu)
-        # Check if there is data to read 
+        # Check if there is data to read
         try:
             # Error Handling
             if res[1] == 0x61:
@@ -317,7 +317,7 @@ class ReaderManager(Singleton):
             return False
 
     def _autoDetect(self):
-        """   
+        """
         Pool every connected reader with every driver available by the factory.
         When a couple (driver, num reader) can select the AID, we have a good reader!
         Return a couple (reader object, reader number, reader name)
@@ -334,12 +334,12 @@ class ReaderManager(Singleton):
                 except ReaderException as msg:
                     r.disconnect()
 
-        return None  
+        return None
 
     def waitForCard(self, timeout=15, driver=None, readerNum=None):
 
-        """  
-        Wait until a card is put on a reader. 
+        """
+        Wait until a card is put on a reader.
         After I{timeout} seconds, the loop is break and an TimeOutException is raised
         If I{driver} and I{readerNum} are let to none, the wait for loop will pool on every reader with every driver until a match is found.
         If I{driver} and I{readerNum} are both set, the loop  will pool on the specified reader with the specified driver.
@@ -348,7 +348,7 @@ class ReaderManager(Singleton):
         @param timeout: The timeout in second the loop wait for a card before being interrupted.
         @type timeout: Integer
         @param driver: The driver to use during the pooling
-        @type driver: A class inheriting from Reader 
+        @type driver: A class inheriting from Reader
         @param readerNum: The reader to pool on
         @type readerNum: Integer
         

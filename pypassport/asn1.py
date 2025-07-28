@@ -21,7 +21,7 @@ from pyasn1.type.univ import *
 from pyasn1.type.namedtype import *
 from pyasn1.type.namedval import *
 from pyasn1.type.constraint import *
-from pyasn1.codec.der import encoder 
+from pyasn1.codec.der import encoder
 
 class asn1Exception(Exception):
     def __init__(self, *params):
@@ -55,7 +55,7 @@ def asn1Length(data):
     raise asn1Exception("Cannot decode the asn1 length from this field: " + binToHexRep(data))
 
 def toAsn1Length(data):
-    """  
+    """
     Take an hexa value and return the value encoded in the asn.1 format.
     
     >>> binToHexRep(toAsn1Length(34))
@@ -81,11 +81,11 @@ def toAsn1Length(data):
     raise asn1Exception("The value is too big, must be <= FFFF")
 
 
-class AlgorithmIdentifier(Sequence): 
-    componentType = NamedTypes( 
-        NamedType('algorithm', ObjectIdentifier()), 
-        OptionalNamedType('parameters', Null()) 
-        ) 
+class AlgorithmIdentifier(Sequence):
+    componentType = NamedTypes(
+        NamedType('algorithm', ObjectIdentifier()),
+        OptionalNamedType('parameters', Null())
+        )
 
 ub_DataGroups = Integer(16)
 
@@ -123,23 +123,23 @@ class DataGroupNumber(Integer):
 
 
 class DataGroupHash(Sequence):
-    componentType=NamedTypes( 
-        NamedType('dataGroupNumber', Integer()), 
-        NamedType('dataGroupHashValue', OctetString()) 
+    componentType=NamedTypes(
+        NamedType('dataGroupNumber', Integer()),
+        NamedType('dataGroupHashValue', OctetString())
         )
 
 class DataGroupHashValues(SequenceOf):
-    componentType = DataGroupHash()    
+    componentType = DataGroupHash()
     subtypeSpec = ValueSizeConstraint(2, ub_DataGroups)
 
 class LDSSecurityObject(Sequence):
-    componentType=NamedTypes( 
+    componentType=NamedTypes(
         NamedType('version', LDSSecurityObjectVersion()),
-        NamedType('hashAlgorithm', DigestAlgorithmIdentifier), 
-        NamedType('dataGroupHashValues', DataGroupHashValues()) 
+        NamedType('hashAlgorithm', DigestAlgorithmIdentifier),
+        NamedType('dataGroupHashValues', DataGroupHashValues())
     )
 
 class SubjectPublicKeyInfo(Sequence):
-    componentType = NamedTypes( NamedType('algorithm', AlgorithmIdentifier()), 
+    componentType = NamedTypes( NamedType('algorithm', AlgorithmIdentifier()),
                                           NamedType('subjectPublicKey', BitString())
                                           )

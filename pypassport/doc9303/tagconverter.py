@@ -169,7 +169,7 @@ tagToName = {
              "5B" : "Name of Holder",   # version 2008
              "5A" : "Document Number",
 
-#            }        
+#            }
 
 # DOC9303-2 pg III-40
 #tagRFUtoName = {
@@ -178,14 +178,14 @@ tagToName = {
              "5F46" : "Port of entry/exit",
              "5F47" : "Entry/Exit indicator",
              "5F48" : "Length of stay",
-             "5F49" : "Category (classification)",                          
+             "5F49" : "Category (classification)",
              "5F4A" : "Inspector reference",
              "5F4B" : "Entry/Exit indicator",
-             "71" : "Template for Electronic Visas", 
+             "71" : "Template for Electronic Visas",
              "72" : "Template for Border Crossing Schemes",
              "73" : "Template for Travel Record Data Group",
 
-# DataGroup             
+# DataGroup
              "60" : "Index",
              "61" : "MRZ",
              "75" : "Face",
@@ -203,5 +203,5 @@ tagToName = {
              "6E" : "Reserved for Future Use",
              "6F" : "Active Authentication Public Key Info",
              "70" : "Person to Notify",
-             "77" : "Security Object"             
-            }     
+             "77" : "Security Object"
+            }

@@ -29,7 +29,7 @@ def binToHexRep(data):
     if(type(data) == int):
         return ('%02x' % data).upper()
 
-    for x in range(len(data)):         
+    for x in range(len(data)):
             if(type(data[x]) == int):
                 string += '%02x' % data[x]
             else:
@@ -89,7 +89,7 @@ def listToHexRep(list):
         out.append('%02X' % (item))
     return out.upper()
 
-#hexList to something    
+#hexList to something
 
 def hexListToBin(data):
     """[0xAA, 0xBB] -> '\xaa\xbb'"""
@@ -105,7 +105,7 @@ def hexListToHexRep(data):
     """[0xAA, 0xBB] -> 'AABB4"""
     s= ''
     for d in data:
-        x = int(d)	
+        x = int(d)
         s += '%02X' % x
     return s.upper()
 
@@ -140,4 +140,4 @@ def rawbytes(s):
             b = (num & 0xFF0000) >> 16
             H = num & 0xFFFF
             outlist.append(struct.pack('>bH', b, H))
-    return b''.join(outlist)  
+    return b''.join(outlist)

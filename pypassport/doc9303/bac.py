@@ -38,7 +38,7 @@ class BACException(Exception):
 
 class BAC(Logger):
 
-    """  
+    """
     This class perform the Basic Acces Control.
     The main method is I{authenticationAndEstablishmentOfSessionKeys}, it will execute the whole protocol and return the set of keys.
     """
@@ -47,7 +47,7 @@ class BAC(Logger):
     KMAC= b'\0\0\0\2'
 
     def __init__(self, iso7816):
-        """  
+        """
         @param iso7816: A valid iso7816 object connected to a reader.
         @type iso7816: A iso7816 object
         """
@@ -68,7 +68,7 @@ class BAC(Logger):
             
         @param mrz: The machine readable zone of the passport
         @type mrz: an MRZ object
-        @return: A set composed of (KSenc, KSmac, ssc)   
+        @return: A set composed of (KSenc, KSmac, ssc)
         
         @raise MRZException: I{The mrz length is invalid}: The mrz parameter is not valid.
         @raise BACException: I{Wrong parameter, mrz must be an MRZ object}: The parameter is invalid.
@@ -97,7 +97,7 @@ class BAC(Logger):
 
     def _mutualAuthentication(self, cmd_data):
         data = binToHexRep(cmd_data)
-        lc = hexToHexRep(len(data)/2) 
+        lc = hexToHexRep(len(data)/2)
         toSend = apdu.CommandAPDU("00", "82", "00", "00", lc, data, "28")
 
         return self._iso7816.transmit(toSend, "Mutual Authentication")
@@ -128,7 +128,7 @@ class BAC(Logger):
         generate the Kseed and compute the kenc and Kmac keys from the Kseed.
         
         @param mrz: The machine readable zone of the passport.
-        @type mrz: an MRZ object  
+        @type mrz: an MRZ object
         @return: A set of two 8 bytes encryption keys (Kenc, Kmac)
         """
         self.log("Read the mrz")
@@ -143,7 +143,7 @@ class BAC(Logger):
         self._ksenc = kenc
         self._ksmac = kmac
 
-        return (kenc, kmac) 
+        return (kenc, kmac)
 
 
     def authentication(self, rnd_icc, rnd_ifd=None, kifd=None):
@@ -158,7 +158,7 @@ class BAC(Logger):
             
         @param rnd_icc: The challenge received from the ICC.
         @type rnd_icc: A 8 bytes binary string
-        @return: The APDU binary data for the mutual authenticate command   
+        @return: The APDU binary data for the mutual authenticate command
         """
         if(type(rnd_icc) == str):
             rnd_icc = rawbytes(rnd_icc)
@@ -178,7 +178,7 @@ class BAC(Logger):
 
         s = rnd_ifd + self._rnd_icc + kifd
 
-        self.log("Concatenate RND.IFD, RND.ICC and Kifd")       
+        self.log("Concatenate RND.IFD, RND.ICC and Kifd")
         self.log("\tS: " + binToHexRep(s))
 
         tdes= DES3.new(self._ksenc, DES.MODE_CBC, b'\0'*8)
@@ -203,12 +203,12 @@ class BAC(Logger):
 
     def sessionKeys(self, data):
         """
-        Calculate the session keys (KSenc, KSmac) and the SSC from the data 
+        Calculate the session keys (KSenc, KSmac) and the SSC from the data
         received by the mutual authenticate command.
         
         @param data: the data received from the mutual authenticate command send to the chip.
         @type data: a binary string
-        @return: A set of two 16 bytes keys (KSenc, KSmac) and the SSC 
+        @return: A set of two 16 bytes keys (KSenc, KSmac) and the SSC
         """
         self.log("Decrypt and verify received data and compare received RND.IFD with generated RND.IFD " + binToHexRep(self._ksmac))
         # this does not work, encryption with cards ksmac
@@ -231,7 +231,7 @@ class BAC(Logger):
         ssc = self._rnd_icc[-4:] + self._rnd_ifd[-4:]
         self.log("Calculate Send Sequence Counter")
         self.log("\tSSC: " + binToHexRep(ssc))
-        return (KSenc, KSmac, ssc)   
+        return (KSenc, KSmac, ssc)
 
     def _xor(self, kifd, response_kicc):
         kseed = b""
@@ -269,7 +269,7 @@ class BAC(Logger):
     def _genKseed(self, kmrz):
         """
         Calculate the kseed from the kmrz:
-            - Calculate a SHA-1 hash of the kmrz 
+            - Calculate a SHA-1 hash of the kmrz
             - Take the most significant 16 bytes to form the Kseed.
         
         @param kmrz: The MRZ information
@@ -290,7 +290,7 @@ class BAC(Logger):
     def keyDerivation(self, kseed, c):
         """
         Key derivation from the kseed:
-            - Concatenate Kseed and c (c=0 for KENC or c=1 for KMAC) 
+            - Concatenate Kseed and c (c=0 for KENC or c=1 for KMAC)
             - Calculate the hash of the concatenation of kseed and c (h = (sha1(kseed + c)))
             - Adjust the parity bits
             - return the key (The first 8 bytes are Ka and the next 8 bytes are Kb)

@@ -1,4 +1,4 @@
-from .datagroupcreation import * 
+from .datagroupcreation import *
 from pypassport.genpassport.jcop import *
 from pypassport.doc9303 import converter
 from pypassport import iso7816
@@ -6,7 +6,7 @@ from pypassport import iso7816
 class EPassportCreator(Logger):
 
     def __init__(self, ds, dsKey, reader=None):
-        """  
+        """
         @param ds: The Document Sgner certificate in PEM
         @param dsKey: The associated ds private key
         """
@@ -49,7 +49,7 @@ class EPassportCreator(Logger):
             dgd.dumpDG(dg, type)
 
     def toJCOP(self):
-        """ 
+        """
         Write the forged passport into a JCOP (with the JMRTD applet installed).
         @param reader: The reader object connected to the JCOP.
         @passport: If not specified, write the passport forger with the previous call of the forge method.
@@ -67,8 +67,8 @@ class EPassportCreator(Logger):
             self._jcopW.writeDG(dg)
             if dg.tag == '61':
                 self._jcopW.setKseed(dg)
-                mrz = dg["5F1F"][44:] 
-        return mrz     
+                mrz = dg["5F1F"][44:]
+        return mrz
 
     def create(self, issuer, name, firstname, nat, sex, passportID, birthDate, expiryDate, imgPath, signPath=None, birthplace=None, authority=None, issueDate=None):
         self._forged = []

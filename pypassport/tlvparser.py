@@ -31,7 +31,7 @@ class TLVParser(dict):
     def _getTag(self):
         raise Exception("Should be implemented")
 
-    def _getLength(self):     
+    def _getLength(self):
         (length, offset) = asn1Length(self._data[self._byteNb:])
         self._byteNb += offset
         return length
