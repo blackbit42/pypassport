@@ -41,7 +41,7 @@ def ConvertJp2(input):
     local = ""
     if (sys.platform != "win32") and os.path.isfile('geojasper'):
         local = "./"
-    a=os.popen(local+"geojasper -f tmp.jp2 -F tmp.jpg")
+    a = os.popen(local+"geojasper -f tmp.jp2 -F tmp.jpg")
     a.close()
 
     try:

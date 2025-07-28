@@ -28,7 +28,7 @@ def pad(toPad):
 
 
 def unpad(tounpad):
-    i=-1
+    i = -1
     while tounpad[i] == 0:
         i -= 1
 

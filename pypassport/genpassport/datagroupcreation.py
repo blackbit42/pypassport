@@ -187,13 +187,13 @@ class SODCreation(Creation):
 
         keys = list(hashes.keys())
         keys.sort()
-        cpt=0
+        cpt = 0
         for hashNb in keys:
             dgh = DataGroupHash()
             dgh.setComponentByName('dataGroupNumber', Integer(hashNb))
             dgh.setComponentByName('dataGroupHashValue', OctetString(hashes[hashNb]))
             dghv.setComponentByPosition(cpt, dgh)
-            cpt+=1
+            cpt += 1
 
         lds.setComponentByName('dataGroupHashValues', dghv)
 

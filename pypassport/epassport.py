@@ -470,7 +470,7 @@ class EPassport(dict, logger.Logger):
         dg2 = self["DG2"]
         tmp = []
         try:
-            cpt=1
+            cpt = 1
             for A in dg2:
                 self.log("DG2 " + A)
                 if A == "A" + str(cpt):
@@ -519,12 +519,12 @@ class EPassport(dict, logger.Logger):
         dgd = datagroup.DataGroupDump(directory, extension)
         dgd.dump(self, format)
 
-        cpt=0
+        cpt = 0
         for sig in self.getSignatures():
             dgd.dumpData(sig, "signature" + str(cpt) + ".jpg")
             cpt += 1
 
-        cpt=0
+        cpt = 0
         for face in self.getFaces():
             dgd.dumpData(face, "face" + str(cpt) + ".jpg")
             cpt += 1

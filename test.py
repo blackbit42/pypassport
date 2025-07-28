@@ -40,7 +40,7 @@ def trace(name, msg):
 
 sep = os.path.sep
 Sim = False
-r=None
+r = None
 if not Sim:
     r = reader.ReaderManager().waitForCard()
 

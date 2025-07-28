@@ -25,7 +25,7 @@ def binToHex(val):
 
 def binToHexRep(data):
     """'\xaa\xbb' --> 'aabb'"""
-    string= ''
+    string = ''
 
     if(type(data) == int):
         return ('%02x' % data).upper()
@@ -57,8 +57,8 @@ def hexToHexRep(data):
 
 def hexToHexList(string):
     # translate string of 2 char HEX to int list
-    n= 0
-    out= []
+    n = 0
+    out = []
     while n < len(string):
         out.append(int(string[n:n+2], 16))
         n += 2
@@ -69,8 +69,8 @@ def hexToHexList(string):
 
 def hexRepToBin(string):
     """'AABB' --> \xaa\xbb'"""
-    output= b''
-    x= 0
+    output = b''
+    x = 0
     while x < len(string):
             output += struct.pack('B', int(string[x:x + 2], 16))
             x += 2
@@ -79,8 +79,8 @@ def hexRepToBin(string):
 
 def hexRepToList(string):
     """'AABBCC' --> [170, 187, 204]"""
-    n= 0
-    out= []
+    n = 0
+    out = []
     while n < len(string):
         out.append(int(string[n:n+2], 16))
         n += 2
@@ -93,7 +93,7 @@ def hexRepToHex(string):
 
 def listToHexRep(list):
     """[170, 187, 204] --> 'AABBCC'"""
-    out= []
+    out = []
     for item in list:
         out.append('%02X' % (item))
     return out.upper()
@@ -115,7 +115,7 @@ def hexListToHex(data):
 
 def hexListToHexRep(data):
     """[0xAA, 0xBB] -> 'AABB4"""
-    s= ''
+    s = ''
     for d in data:
         x = int(d)
         s += '%02X' % x

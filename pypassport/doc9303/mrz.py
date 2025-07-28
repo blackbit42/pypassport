@@ -166,8 +166,8 @@ class MRZ(object):
 
             @note: Code fragment from the pyPassport.mrz.MRZ class
         """
-        cpt=0
-        res=0
+        cpt = 0
+        res = 0
         for x in value:
             tmp = self._weight[str(x)] * self._weighting[cpt%3]
             res += tmp
@@ -200,7 +200,7 @@ class MRZ(object):
 
         if len(num) <= 9:
             optional = ""
-            num = num + "<" * (9 -len(num))
+            num = num + "<" * (9 - len(num))
             numCD = self._calculCheckDigit(num)
         else:
             optional = num[9:]

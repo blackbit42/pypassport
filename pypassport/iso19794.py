@@ -22,16 +22,16 @@
 from operator import and_
 from pypassport.hexfunctions import *
 
-FAC= '46414300'
+FAC = '46414300'
 
 # ISO 19794_5 (Biometric identifiers)
-ISO19794_5_GENDER= {'00': 'Unspecified',
+ISO19794_5_GENDER = {'00': 'Unspecified',
                     '01': 'Male',
                     '02': 'Female',
                     '03': 'Unknown'
                    }
 
-ISO19794_5_EYECOLOUR= {'00': 'Unspecified',
+ISO19794_5_EYECOLOUR = {'00': 'Unspecified',
                        '01': 'Black',
                        '02': 'Blue',
                        '03': 'Brown',
@@ -42,7 +42,7 @@ ISO19794_5_EYECOLOUR= {'00': 'Unspecified',
                        '08': 'Other'
                       }
 
-ISO19794_5_HAIRCOLOUR= {'00': 'Unspecified',
+ISO19794_5_HAIRCOLOUR = {'00': 'Unspecified',
                         '01': 'Bald',
                         '02': 'Black',
                         '03': 'Blonde',
@@ -55,7 +55,7 @@ ISO19794_5_HAIRCOLOUR= {'00': 'Unspecified',
                         'ff': 'Other'
                        }
 
-ISO19794_5_FEATURE= {0x01: 'Specified',
+ISO19794_5_FEATURE = {0x01: 'Specified',
                      0x02: 'Glasses',
                      0x04: 'Moustache',
                      0x08: 'Beard',
@@ -68,7 +68,7 @@ ISO19794_5_FEATURE= {0x01: 'Specified',
                      0x400: 'Distorted'
                     }
 
-ISO19794_5_EXPRESSION= {'0000': 'Unspecified',
+ISO19794_5_EXPRESSION = {'0000': 'Unspecified',
                         '0001': 'Neutral',
                         '0002': 'Smile Closed',
                         '0003': 'Smile Open',
@@ -78,29 +78,29 @@ ISO19794_5_EXPRESSION= {'0000': 'Unspecified',
                         '0007': 'Frowning'
                        }
 
-ISO19794_5_IMG_TYPE= {'00': 'Unspecified (Front)',
+ISO19794_5_IMG_TYPE = {'00': 'Unspecified (Front)',
                       '01': 'Basic',
                       '02': 'Full Front',
                       '03': 'Token Front',
                       '04': 'Other'
                       }
 
-ISO19794_5_IMG_DTYPE= {'00': 'JPEG',
+ISO19794_5_IMG_DTYPE = {'00': 'JPEG',
                        '01': 'JPEG 2000'
                       }
 
-ISO19794_5_IMG_FTYPE= {'00': 'JPG',
+ISO19794_5_IMG_FTYPE = {'00': 'JPG',
                        '01': 'JP2'
                       }
 
-ISO19794_5_IMG_CSPACE= {'00': 'Unspecified',
+ISO19794_5_IMG_CSPACE = {'00': 'Unspecified',
                         '01': 'RGB24',
                         '02': 'YUV422',
                         '03': 'GREY8BIT',
                         '04': 'Other'
                        }
 
-ISO19794_5_IMG_SOURCE= {'00': 'Unspecified',
+ISO19794_5_IMG_SOURCE = {'00': 'Unspecified',
                         '01': 'Static Unspecified',
                         '02': 'Static Digital',
                         '03': 'Static Scan',
@@ -110,7 +110,7 @@ ISO19794_5_IMG_SOURCE= {'00': 'Unspecified',
                         '07': 'Unknown'
                        }
 
-ISO19794_5_IMG_QUALITY= {'0000': 'Unspecified'}
+ISO19794_5_IMG_QUALITY = {'0000': 'Unspecified'}
 
 
 class ISO19794_5:
@@ -299,7 +299,7 @@ class ISO19794_5:
         numberOfImage = "0001"
 
         ImageBlockLength = intToHexRep(imageSize + 32, 8) # no feature point
-        numberOfFeaturePoint= "0000"
+        numberOfFeaturePoint = "0000"
         gender = "00"
         eyeColour = "00"
         hairColour = "00"
@@ -317,5 +317,5 @@ class ISO19794_5:
         quality = "0000"
 
         return hexRepToBin(header+version+recordLength+numberOfImage+ImageBlockLength+numberOfFeaturePoint+gender\
-                           +eyeColour+hairColour+featureMask+expression+poseAngle+poseAngleUncertainty\
-                           +imageFaceType+imageDataType+width+height+colourSpace+sourceType+deviceType+quality)
+                           + eyeColour+hairColour+featureMask+expression+poseAngle+poseAngleUncertainty\
+                           + imageFaceType+imageDataType+width+height+colourSpace+sourceType+deviceType+quality)

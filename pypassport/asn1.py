@@ -128,7 +128,7 @@ class DataGroupNumber(Integer):
 
 
 class DataGroupHash(Sequence):
-    componentType=NamedTypes(
+    componentType = NamedTypes(
         NamedType('dataGroupNumber', Integer()),
         NamedType('dataGroupHashValue', OctetString())
         )
@@ -140,7 +140,7 @@ class DataGroupHashValues(SequenceOf):
 
 
 class LDSSecurityObject(Sequence):
-    componentType=NamedTypes(
+    componentType = NamedTypes(
         NamedType('version', LDSSecurityObjectVersion()),
         NamedType('hashAlgorithm', DigestAlgorithmIdentifier),
         NamedType('dataGroupHashValues', DataGroupHashValues())

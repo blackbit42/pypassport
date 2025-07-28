@@ -140,4 +140,4 @@ def _getPosition(data):
             return _Table[l].index(str(data))
         except ValueError:
             pass
-    raise KeyError("Invalid Data Group: "+ str(data))
+    raise KeyError("Invalid Data Group: " + str(data))

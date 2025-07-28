@@ -21,7 +21,7 @@ from pypassport.doc9303 import converter
 from pypassport.genpassport import epassportcreation, jcop
 
 Sim = True
-r=None
+r = None
 
 APPLET = False
 READER_NUM = 2

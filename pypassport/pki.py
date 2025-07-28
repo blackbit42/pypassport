@@ -196,7 +196,7 @@ class CA(Logger):
         return self._openssl.crlToDER(crl)
 
     def _errorHandler(self, msg):
-        if msg.find('newcerts')> 0:
+        if msg.find('newcerts') > 0:
             os.makedirs(os.path.join(self._loc, 'newcerts'))
             self.log("mkdir ca/newcerts")
         elif msg.find('ca/index.txt') > 0:
@@ -258,10 +258,10 @@ class CA(Logger):
 default_ca     = CA_default           # The default ca section
 
 [ CA_default ]
-database       =     """+ os.path.join(self._loc, "index.txt").replace(os.path.sep, altsep) +"""       # database index file.
-new_certs_dir  =     """+ os.path.join(self._loc, "newcerts").replace(os.path.sep, altsep) +"""       # default place for new certs.
-crlnumber      =     """+ os.path.join(self._loc, "crlnumber").replace(os.path.sep, altsep) +"""
-serial         =     """+ os.path.join(self._loc, "serial").replace(os.path.sep, altsep) +"""          # The current serial number
+database       =     """ + os.path.join(self._loc, "index.txt").replace(os.path.sep, altsep) + """       # database index file.
+new_certs_dir  =     """ + os.path.join(self._loc, "newcerts").replace(os.path.sep, altsep) + """       # default place for new certs.
+crlnumber      =     """ + os.path.join(self._loc, "crlnumber").replace(os.path.sep, altsep) + """
+serial         =     """ + os.path.join(self._loc, "serial").replace(os.path.sep, altsep) + """          # The current serial number
 default_md     = sha1      # which md to use.
 
 default_days    = 365

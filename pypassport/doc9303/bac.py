@@ -45,8 +45,8 @@ class BAC(Logger):
     The main method is I{authenticationAndEstablishmentOfSessionKeys}, it will execute the whole protocol and return the set of keys.
     """
 
-    KENC= b'\0\0\0\1'
-    KMAC= b'\0\0\0\2'
+    KENC = b'\0\0\0\1'
+    KMAC = b'\0\0\0\2'
 
     def __init__(self, iso7816):
         """
@@ -183,9 +183,9 @@ class BAC(Logger):
         self.log("Concatenate RND.IFD, RND.ICC and Kifd")
         self.log("\tS: " + binToHexRep(s))
 
-        tdes= DES3.new(self._ksenc, DES.MODE_CBC, b'\0'*8)
+        tdes = DES3.new(self._ksenc, DES.MODE_CBC, b'\0'*8)
 
-        eifd= tdes.encrypt(s)
+        eifd = tdes.encrypt(s)
         self.log("Encrypt S with TDES key Kenc as calculated in Appendix 5.2")
         self.log("\tEifd: " + binToHexRep(eifd))
 
@@ -217,7 +217,7 @@ class BAC(Logger):
         # mac(self._ksmac, data[0:32]) != data[32:]:
         #    raise Exception("The MAC value is not correct")
 
-        tdes= DES3.new(self._ksenc, DES.MODE_CBC, b'\0'*8)
+        tdes = DES3.new(self._ksenc, DES.MODE_CBC, b'\0'*8)
         response = tdes.decrypt(data[0:32])
         response_kicc = response[16:32]
         Kseed = self._xor(self._kifd, response_kicc)
@@ -280,7 +280,7 @@ class BAC(Logger):
         """
 
         self.log("Calculate the SHA-1 hash of MRZ_information")
-        kseedhash= sha1(rawbytes(kmrz))
+        kseedhash = sha1(rawbytes(kmrz))
         kseed = kseedhash.digest()
         self.log("\tHsha1(MRZ_information): " + binToHexRep(kseed))
 
@@ -331,13 +331,13 @@ class BAC(Logger):
         return Ka+Kb
 
     def DESParity(self, data):
-        adjusted= b''
+        adjusted = b''
         for x in range(len(data)):
             f = data[x]
             if(type(f) == str):
                 f = ord(f)
-            y= f & 0xfe
-            parity= 0
+            y = f & 0xfe
+            parity = 0
             for z in range(8):
                 parity += y >>  z & 1
             adjusted += (y + (not parity % 2)).to_bytes(1, 'big')
