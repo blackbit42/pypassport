@@ -90,10 +90,10 @@ class MRZ(object):
             self._docNumber = mrz1[5:14]
             self._docNumberCD = mrz1[14]
 
-        print("DOB " + mrz2[0:6] )
-        print("DOBCD " + mrz2[6] )
-        print("Exp" + mrz2[8:14] )
-        print("Exp" + mrz2[14] )
+        print("DOB " + mrz2[0:6])
+        print("DOBCD " + mrz2[6])
+        print("Exp" + mrz2[8:14])
+        print("Exp" + mrz2[14])
 
         self._dateOfBirth = mrz2[0:6]
         self._dateOfBirthCD = mrz2[6]

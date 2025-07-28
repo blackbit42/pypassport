@@ -201,7 +201,7 @@ class SecureMessaging(Ciphering):
 
     def _maskClassAndPad(self, apdu):
         self.log("Mask class byte and pad command header")
-        res = pad(hexRepToBin("0C" + apdu.getIns() + apdu.getP1() + apdu.getP2() ))
+        res = pad(hexRepToBin("0C" + apdu.getIns() + apdu.getP1() + apdu.getP2()))
         self.log("\tCmdHeader: " + binToHexRep(res))
         return res
 
@@ -216,7 +216,7 @@ class SecureMessaging(Ciphering):
         """ Pad the data, encrypt data with KSenc and build DO'87"""
         tdes = DES3.new(self._ksenc, DES.MODE_CBC, b'\0'*8)
         paddedData = pad(hexRepToBin(apdu.getData()))
-        enc = tdes.encrypt(paddedData )
+        enc = tdes.encrypt(paddedData)
         self.log("Pad data")
         self.log("\tData: " + binToHexRep(paddedData))
         self.log("Encrypt data with KSenc")
