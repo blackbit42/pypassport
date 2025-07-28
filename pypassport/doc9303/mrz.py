@@ -104,7 +104,7 @@ class MRZ(object):
                      (self._docNumber, self._docNumberCD),
                      (self._dateOfBirth, self._dateOfBirthCD),
                      (self._dateOfExpiry, self._dateOfExpiryCD),
-                     (mrz1[5:30] + mrz2[0:7] + mrz2[8:15] + mrz2[18:29] , mrz2[29])
+                     (mrz1[5:30] + mrz2[0:7] + mrz2[8:15] + mrz2[18:29], mrz2[29])
                      ]
 
 
