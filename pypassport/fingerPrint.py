@@ -23,7 +23,7 @@ from pypassport.hexfunctions import binToHexRep
 from pypassport.doc9303.converter import toDG
 
 
-class FingerPrint(object):
+class FingerPrint():
 
     def __init__(self, epassport):
         self._doc = epassport

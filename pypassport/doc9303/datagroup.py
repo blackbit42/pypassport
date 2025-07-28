@@ -32,7 +32,7 @@ class DataGroupException(Exception):
         Exception.__init__(self, *params)
 
 
-class DataGroupFile(object):
+class DataGroupFile():
 
     def __init__(self):
         self.__tag = ""
@@ -509,7 +509,7 @@ class DataGroupFactory(Singleton, Logger):
         return dg
 
 
-class Events(object):
+class Events():
     def __init__(self):
         self._listeners = []
 
@@ -670,7 +670,7 @@ class DataGroupReaderFactory(Singleton):
         return self.reader[reader](iso7816)
 
 
-class DataGroupDump(object):
+class DataGroupDump():
     """
     Save the passport, a specific dataGroup or some data to the disk.
     """

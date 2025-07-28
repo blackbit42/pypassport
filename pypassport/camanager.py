@@ -22,7 +22,7 @@ import os.path
 CertFormat = ["PEM", "DER"]
 
 
-class CAManager(object):
+class CAManager():
     """
     This object is used for the certificate validation.
     It encapsulates the certificates directory and perform the certificate name conversion in its hash.0 format.

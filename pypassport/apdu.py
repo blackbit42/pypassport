@@ -19,7 +19,7 @@
 from pypassport.hexfunctions import binToHexRep, hexListToBin, hexRepToBin, hexRepToList, hexToHexRep
 
 
-class CommandAPDU(object):
+class CommandAPDU():
     def __init__(self, cla, ins, p1, p2, lc="", data="", le=""):
         self.cla = cla
         self.ins = ins
@@ -120,7 +120,7 @@ class CommandAPDU(object):
     le = property(getLe, setLe, delLe, "Le's Docstring")
 
 
-class ResponseAPDU(object):
+class ResponseAPDU():
     def __init__(self, res, sw1, sw2):
         self.__res = res
         self.__sw1 = sw1

@@ -16,7 +16,7 @@
 # License along with pyPassport.
 # If not, see <http://www.gnu.org/licenses/>.
 
-class types(object):
+class types():
     DG = "DG"
     EF = "EF"
     SEF = "SEF"

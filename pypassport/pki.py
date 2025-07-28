@@ -5,7 +5,7 @@ from pypassport.logger import Logger
 from pypassport.openssl import OpenSSL, OpenSSLException
 
 
-class DistinguishedName(object):
+class DistinguishedName():
     def __init__(self, C="", ST="", L="", O="", OU="", CN="", emailAddress="", serialNumber=""):
         self.__C = C
         self.__ST = ST

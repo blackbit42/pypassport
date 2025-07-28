@@ -16,7 +16,7 @@
 # License along with pyPassport.
 # If not, see <http://www.gnu.org/licenses/>.
 
-class Logger(object):
+class Logger():
     def __init__(self, name):
         self._listeners = []
         self._name = name

@@ -16,7 +16,7 @@
 # License along with pyPassport.
 # If not, see <http://www.gnu.org/licenses/>.
 
-class Singleton(object):
+class Singleton():
 
     _instance = None
 

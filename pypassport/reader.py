@@ -182,7 +182,7 @@ class PcscReader(Reader):
         return self.sc.System.readers()
 
 
-class apduWrapper(object):
+class apduWrapper():
     def __init__(self, data):
         self._apdu = data
 

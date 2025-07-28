@@ -7,7 +7,7 @@ class ExternalCallException(Exception):
         Exception.__init__(self, *params)
 
 
-class ExternalCall(object):
+class ExternalCall():
 
     def toDisk(self, name, data=None):
         f = open(name, "wb")

@@ -6,7 +6,7 @@ from pypassport.hexfunctions import binToHexRep
 from pypassport.logger import Logger
 
 
-class GPlatform(object):
+class GPlatform():
     def __init__(self, readerNum):
         self._ec = ExternalCall()
         self._readerNum = readerNum

@@ -21,7 +21,7 @@ class MRZException(Exception):
         Exception.__init__(self, *params)
 
 
-class MRZ(object):
+class MRZ():
 
     """
     This class implement the mrz check digit test.
