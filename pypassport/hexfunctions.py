@@ -30,11 +30,11 @@ def binToHexRep(data):
     """'\xaa\xbb' --> 'aabb'"""
     string = ''
 
-    if (isinstance(data, int)):
+    if isinstance(data, int):
         return ('%02x' % data).upper()
 
     for x in range(len(data)):
-        if (isinstance(data[x], int)):
+        if isinstance(data[x], int):
             string += '%02x' % data[x]
         else:
             string += '%02x' % ord(data[x])
@@ -145,7 +145,7 @@ def rawbytes(s):
     """Convert a string to raw bytes without encoding"""
     outlist = []
     for cp in s:
-        if (isinstance(cp, int)):
+        if isinstance(cp, int):
             num = cp
         else:
             num = ord(cp)

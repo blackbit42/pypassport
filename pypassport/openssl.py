@@ -326,7 +326,7 @@ class OpenSSL(Logger):
         if ((not out) and err and not empty):
             raise OpenSSLException(err)
 
-        if (err):
+        if err:
             self.log(err)
 
         return out

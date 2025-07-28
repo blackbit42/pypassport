@@ -247,7 +247,7 @@ class PassiveAuthentication(Logger):
 
         for dg in hashes:
             try:
-                res[converter.toDG(dg)] = (hashes[dg] == self._content["dataGroupHashValues"][converter.toOther(dg)])
+                res[converter.toDG(dg)] = hashes[dg] == self._content["dataGroupHashValues"][converter.toOther(dg)]
             except KeyError:
                 res[converter.toDG(dg)] = None
 
