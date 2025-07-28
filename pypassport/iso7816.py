@@ -28,7 +28,7 @@ class Iso7816Exception(Exception):
         return self.args[i]       
 
 class Iso7816(Logger):
-    
+
     Errors = {
                 0x61:'SW2 indicates the number of response bytes still available',
                 0x62:{0x00:'No information given',\
@@ -98,7 +98,7 @@ class Iso7816(Logger):
                 0x6F:{0x00:'No precise diagnosis'},
                 0x90:{0x00:'Success'} #No further qualification
      }     
-       
+
     def __init__(self, reader):
         Logger.__init__(self, "ISO7816")
         self._reader = reader
@@ -128,65 +128,65 @@ class Iso7816(Logger):
         """
         try:
             self.log(logMsg)
-            
+
             self.log(str(toSend))
             if self._ciphering:
                 toSend = self._ciphering.protect(toSend)
                 self.log("[SM] " + str(toSend))
-            
+
             res = self._reader.transmit(toSend)
-            
+
             if self._ciphering:
                 self.log("[SM] " + str(res))
                 res = self._ciphering.unprotect(res)
-                
+
             msg = Iso7816.Errors[res.sw1][res.sw2]
-            
+
             self.log(str(res)+" // " + msg)
-            
+
             if msg == "Success":
                 return res.res
             else:
                 raise Iso7816Exception(msg, res.sw1, res.sw2)
         except KeyError as k:
             raise Iso7816Exception("Unknown error", res.sw1, res.sw2)  
-        
+
     def setCiphering(self, c=False):
         self._ciphering = c 
-            
+
     def selectFile(self, p1, p2, file="", cla="00", ins="A4"):
         lc = hexToHexRep(int(len(file)/2))
         toSend = apdu.CommandAPDU(cla, ins, p1, p2, lc, file, "")   
         return self.transmit(toSend, "Select File")
-    
+
     def readBinary(self, offset, nbOfByte):
         os = "%04x" % int(offset)
         toSend = apdu.CommandAPDU("00", "B0", os[0:2], os[2:4], "", "", hexToHexRep(nbOfByte))
         return self.transmit(toSend, "Read Binary")
-    
+
     def updateBinary(self, offset, data, cla="00", ins="D6"):
         os = "%04x" % int(offset)
         data = binToHexRep(data)
         lc = hexToHexRep(len(data)/2) 
         toSend = apdu.CommandAPDU(cla, ins, os[0:2], os[2:4], lc, data, "")
         return self.transmit(toSend, "Update Binary")
-        
+
     def getChallenge(self):
         toSend = apdu.CommandAPDU("00", "84", "00", "00", "", "", "08")
         return self.transmit(toSend, "Get Challenge")
-    
+
     def internalAuthentication(self, rnd_ifd):
         data = binToHexRep(rnd_ifd)
         lc = hexToHexRep(int(len(data)/2)) 
         toSend = apdu.CommandAPDU("00", "88", "00", "00", lc, data, "00")
         res = self.transmit(toSend, "Internal Authentication")
         return res
-        
+
     def reset(self):
         self.setCiphering()
         self._reader.disconnect()
         self._reader.connect(self._reader.readerNum)
-    
+
 #    def mutualAuthentication(self, data):
 #        data = binToHexRep(data)
 #        lc = hexToHexRep(len(data)/2) 

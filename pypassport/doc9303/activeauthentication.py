@@ -31,7 +31,7 @@ from pypassport.doc9303 import datagroup
 class ActiveAuthenticationException(Exception):
     def __init__(self, *params):
         Exception.__init__(self, *params)
-        
+
 class ActiveAuthentication(Logger):
     """  
     This class implement the Active Authentication protocol.
@@ -57,9 +57,9 @@ class ActiveAuthentication(Logger):
         self.D_ = None
         self.M1 = None
         self.M_ = None
-        
+
         self._dg15 = None
-        
+
     def executeAA(self, dg15): 
         """
         Perform the Active Authentication protocol.
@@ -76,36 +76,36 @@ class ActiveAuthentication(Logger):
         @raise ActiveAuthenticationException: If the DG15 is invalid and the signature cannot be verified.
         """
         self._dg15 = dg15
-        
+
         self.RND_IFD = self._genRandom(8)
         self.signature = self._getSignature(self.RND_IFD)
         self.F = self._decryptSignature(dg15.body, self.signature)
-        
+
         (hash, hashSize, offset) = self._getHashAlgo(self.F)
         self.D = self._extractDigest(self.F, hashSize, offset)
         self.M1 = self._extractM1(self.F, hashSize, offset)
-        
+
         self.M_ = self.M1 + self.RND_IFD
-        
+
         self.log("Concatenate M1 with known M2")
         self.log("\tM*: " + binToHexRep(self.M_))
-        
+
         self.D_ = self._hash(hash, self.M_)
 
         self.log("Compare D and D*")
         self.log("\t" + str(self.D == self.D_))
-        
+
         return self.D == self.D_
-    
+
     def _genRandom(self, size):
         rnd_ifd = os.urandom(size)
         self.log("Generate an 8 byte random")
         self.log("\tRND.IFD: " + binToHexRep(rnd_ifd))
         return rnd_ifd
-        
+
     def _getSignature(self, rnd_ifd):
         return self._iso7816.internalAuthentication(rnd_ifd)
-        
+
     def getPubKey(self, dg15):
         """  
         Retrieve the public key in PEM format from the dataGroup15
@@ -115,33 +115,33 @@ class ActiveAuthentication(Logger):
         @raise ActiveAuthenticationException: I{The parameter type is not valid, must be a dataGroup15 object}: The parameter dg15 is not set or invalid.
         @raise ActiveAuthenticationException: I{The public key could not be recovered from the DG15}: Is open SSL installed?
         """
-        
+
         if type(dg15) != type(datagroup.DataGroup15(None)):
             raise ActiveAuthenticationException("The parameter type is not valid, must be a dataGroup15 object")
-        
+
         return self._openssl.retrieveRsaPubKey(dg15.body)
-        
+
     def _decryptSignature(self, pubK, signature):
 
         data = self._openssl.retrieveSignedData(pubK, signature)
         self.log("Decrypt the signature with the public key")
         self.log("\tF: " + binToHexRep(data))
-        
+
         return data
-        
+
     def _hash(self, hash, data):
         digest = hash(data).digest()
-        
+
         self.log("Calculate digest of M*")
         self.log("\tD*: " + binToHexRep(digest))
-        
+
         return digest
-        
+
     def _getHashAlgo(self, sig):
         hash = None
         offset = None
         hashSize = None
-        
+
         if sig[-1] == 0xBC:
             self.T = sig[-1]
             hash = sha1
@@ -152,35 +152,35 @@ class ActiveAuthentication(Logger):
             offset = -2
         else:
             raise ActiveAuthenticationException("Unknow hash algorithm")
-        
+
         self.log("Determine hash algorithm by trailer T*")
         self.log("\tT: " + binToHexRep(self.T))
-                
+
         #Find out the hash size
         hashSize = len(hash(b"test").digest())
-    
+
         return (hash, hashSize, offset)
-    
+
     def _extractDigest(self, sig, hashSize, offset):
         digest = sig[offset - hashSize:offset]
-        
+
         self.log("Extract digest:")
         self.log("\tD: " + binToHexRep(digest))
-        
+
         return digest
-    
+
     def _extractM1(self, sig, hashSize, offset):
         M1 = sig[1:offset - hashSize]
-        
+
         self.log("Extract M1:")
         self.log("\tM1: " + binToHexRep(M1))
-        
+
         return M1
-    
+
     def __str__(self):
         spec = self._asn1Parse()
         return spec.prettyPrint()
-    
+
     def algorithm(self, dg15):
         """
         Return the algorithm name used to store the signature

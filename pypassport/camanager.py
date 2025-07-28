@@ -22,7 +22,7 @@ import shutil
 from pypassport.logger import Logger
 
 CertFormat = ["PEM", "DER"]
-    
+
 class CAManager(object):
     """
     This object is used for the certificate validation.
@@ -34,7 +34,7 @@ class CAManager(object):
         @type dir: A string
         """
         self._dir = dir
-    
+
     def toHashes(self):
         """ 
         For each certificate, create  a new certificate named with the hash value of the issuer followed with .0
@@ -42,7 +42,7 @@ class CAManager(object):
         """
         for fileName in os.listdir(self.dir):
             file = self.dir + os.path.sep + fileName
-            
+
             if not fileName.endswith(".0") and fileName.endswith(".cer"):
                 (hash, format) = self._getHash(file)
                 hashName = hash + os.path.extsep + "0"
@@ -65,11 +65,11 @@ class CAManager(object):
             r.close()
             f = format
             if data: break
-            
+
         if not data:
             raise Exception("The certificate format is unknow for file: " + str(file) + "\nor OpenSSL is not set")
         return (data, format)
-    
+
     def _toPEM(self, certif, format, name, path):
         """ 
         Convert the certificate into the PEM format.
@@ -88,18 +88,18 @@ class CAManager(object):
         """
 #        if format == "PEM": return certif
 #        if format != "DER": raise Exception("Bad certificate format")
-        
+
         a = "openssl x509 -in " + certif + " -inform " + format + " -outform PEM " + " -out " + path + name
         r = os.popen(a, "rb")
         data = r.read().strip()
         r.close()
-        
+
         return data
-    
+
     def _getDir(self):
         """  
         Return the url of the directory where the certificates are stored.
         """
         return self._dir
-    
+
     dir = property(_getDir)

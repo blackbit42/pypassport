@@ -37,7 +37,7 @@ else:
     r.format = converter.types.GRT
     r.ext = ".bin"
     r.connect(DUMP_DIR)
-    
+
 
 ep = epassport.EPassport(r, MRZ)
 ep.readPassport()
@@ -47,7 +47,7 @@ if APPLET:
     input("Applet upload: Put the JCOP on the reader, and press a key")
     jc = jcop.GPlatform(READER_NUM)
     jc.install(APPLET_PATH)
-    
+
 
 input("Dumps upload: Put the JCOP on the reader, and press a key") 
 r = reader.ReaderManager().waitForCard()

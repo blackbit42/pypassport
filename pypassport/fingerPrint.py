@@ -24,7 +24,7 @@ from pypassport.doc9303.converter import *
 from pypassport.apdu import CommandAPDU
 
 class FingerPrint(object):
-    
+
     def __init__(self, epassport):
         self._doc = epassport
         self._comm = self._doc.getCommunicationLayer()
@@ -41,10 +41,10 @@ class FingerPrint(object):
 
     def setCertInfo(self, value):
         self._certInfo = value
-        
+
     def analyse(self):
         res = {}
-        
+
         res["activeAuthWithoutBac"] = False
         res["bac"] = False
         res["DSCertificate"] = False
@@ -56,81 +56,81 @@ class FingerPrint(object):
         res["UID"] = None
         res["DGs"] = {}
         res["ReadingTime"] = None
-        
+
         try:
             res["UID"] = self.getUID()
         except Exception as msg:
             #TODO: Handle error ? Reader don't accept command?
             pass
-        
+
         res["activeAuthWithoutBac"] = self.checkInternalAuth()
-                
+
         #Check if the secure-messaging is set.
         sod = self._doc["SecurityData"]
         if self._doc._isSecureMessaging:
             res["bac"] = True
-        
+
         #Check if there is a certificate            
         certif = self._doc.getCertificate()
         if certif:
             res["DSCertificate"] = self._doc.getCertificate()
-            
+
             f = open("tmp.cer", "w")
             f.write(certif)
             f.close()
-            
+
             f = os.popen("openssl x509 -in tmp.cer -noout -serial")
             res["certSerialNumber"] = f.read().strip()
             f.close()
-            
+
             f = os.popen("openssl x509 -in tmp.cer -noout -fingerprint")
             res["certFingerPrint"] = f.read().strip()
             f.close()
-            
+
             os.remove("tmp.cer")
-            
+
         #Check if there is a pubKey and the AA
         try:
             if self._doc.getPublicKey():
                 res["pubKey"] = self._doc.getPublicKey()
             if self._doc.doActiveAuthentication():
                 res["activeAuth"] = True
-            
+
         except Exception:
             pass
-        
+
         if not res["bac"]:
             res["generation"] = 1
-            
+
         if res["activeAuth"]:
             if res["activeAuthWithoutBac"]:
                 res["generation"] = 3
             else:
                 res["generation"] = 2
-            
+
             try:
                 self._doc["DG7"]
             except:
                 res["generation"] = 4
-                
+
         res["DGs"] = self.calculateDGSize()
-        
+
         res["ReadingTime"] = self.calculateReadingTime()
-        
+
         return res
-    
+
     def getUID(self):
         r = self._doc._iso7816
         return binToHexRep(r.getUID())
-        
-    
+
+
     def calculateDGSize(self):
         data = {}
         for x in self._doc:
             data[toDG(x)] = len(self._doc[x].file)
-            
+
         return data
-            
+
     def checkInternalAuth(self):
         rnd_ifd = os.urandom(8)
         try:
@@ -139,12 +139,12 @@ class FingerPrint(object):
         except Exception as msg:
             print(msg)
             return False
-        
+
     def calculateReadingTime(self):
         for x in list(self._doc.keys()):
             self._doc.__delitem__(x)
-            
+
         start = time.time()
         self._doc.readPassport()
         return time.time() - start
-        
+

@@ -41,7 +41,7 @@ _Table = {
          types.ORDER : ["00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18"],
          types.GRT : ["EF_COM", "Datagroup1", "Datagroup2", "Datagroup3", "Datagroup4", "Datagroup5", "Datagroup6", "Datagroup7", "Datagroup8", "Datagroup9", "Datagroup10", "Datagroup11", "Datagroup12", "Datagroup13", "Datagroup14", "Datagroup15", "Datagroup16", "EF_SOD", "EF_CARDACCESS"]
          }
-    
+
 def toDG(data):
     """ 
     Transform the data value to its DG representation
@@ -117,13 +117,13 @@ def to(table, data):
     Return the element value from the specified list at the found possition
     """
     return _Table[table][_getPosition(data)]
-        
+
 def _getPosition(data):
     """ 
     Look for the corresponding data value in every list of the _Table dictionnary.
     If The data value is found, it's position is returned.
     """
-    
+
     for l in _Table:
         try:
             return _Table[l].index(str(data))

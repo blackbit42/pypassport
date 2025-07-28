@@ -78,7 +78,7 @@ AUTHORITY = "MODAVE"
 
 o = openssl.OpenSSL()
 o.register(trace)        
-       
+
 if not CREATE_CERT:
     f = open(WORKING_DIR + "\\csca")
     csca = f.read()
@@ -92,13 +92,13 @@ if not CREATE_CERT:
     f = open(WORKING_DIR + "\\dsKey")
     dsKey = f.read()
     f.close()
-    
+
     ca = pki.CA(csca=csca, cscaKey=cscaKey)
     ca.register(trace)
 else:
     ca = pki.CA()
     ca.register(trace)
-    
+
     dgd = datagroup.DataGroupDump(WORKING_DIR)
     #Generate the CSCA Certificate and its private key in PEM
     (csca, cscaKey) = ca.createCSCA(CSCA_KEY_SIZE, CSCA_VALIDITY_PERIOD, CSCA)
@@ -112,18 +112,18 @@ else:
     #Generate the CRL in DER
     crl = ca.getCrl()
     dgd.dumpData(crl, "csca.crl")
-    
-    
+
+
 if INSTALL_APPLET:
     print('Installing applet') 
     jc = jcop.GPlatform(READER_NUM)
     jc.install(APPLET_PATH)
-        
+
 r = None
 if JCOP:
     print('Drop the passport on the reader...')
     r = reader.ReaderManager().waitForCard()
-    
+
 #Generate the fake passport, and saves it   
 epc = epassportcreation.EPassportCreator(ds, dsKey, r)
 epc.register(trace)
@@ -132,7 +132,7 @@ epc.create(ISSUER, NAME, SURNAME, NATIONALITY, SEX, PASSPORT_NUM, BIRTH_DATE, EX
 
 if DUMP:
     epc.toDisk("GRT", ".bin", WORKING_DIR)
-    
+
 if JCOP:
     print('Writting...')
     print("MRZ: " + epc.toJCOP())

@@ -42,7 +42,7 @@ Sim = False
 r=None
 if not Sim:
     r = reader.ReaderManager().waitForCard()
-    
+
 else:
     r = reader.ReaderManager().create("DumpReader")
     r.connect("C:\\tmp")

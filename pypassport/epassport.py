@@ -152,41 +152,41 @@ class EPassport(dict, logger.Logger):
         @type mrz: An MRZ object 
         """
         logger.Logger.__init__(self, "EPassport")
-        
+
         if epMrz:
             self._mrz = mrz.MRZ(epMrz)
             if self._mrz.checkMRZ() == False:
                 raise EPassportException("Invalid MRZ")
         else: self._mrz = None
-        
+
         self._iso7816 = iso7816.Iso7816(reader)
         self._iso7816.register(self._logFct)
-        
+
         self._dgReader = datagroup.DataGroupReaderFactory().create(self._iso7816)
         self._dgReader.register(self._logFct)
-        
+
         self._bac = bac.BAC(self._iso7816)
         self._bac.register(self._logFct)
-        
+
         self._openSSL = openssl.OpenSSL()
         self._openSSL.register(self._logFct)
-        
+
         self._aa = activeauthentication.ActiveAuthentication(self._iso7816, self._openSSL)
         self._aa.register(self._logFct)
-        
+
         self._pa = passiveauthentication.PassiveAuthentication(self._openSSL)
         self._pa.register(self._logFct)
-        
+
         self._CSCADirectory = None
         self._selectPassportApp()
-        
+
 
     def _getOpenSslDirectory(self):
         return self._openSSL.location
 
     def _setOpenSslDirectory(self, value):
         self._openSSL.location = value
-        
+
     def getCSCADirectory(self):
         return self._CSCADirectory
 
@@ -195,20 +195,20 @@ class EPassport(dict, logger.Logger):
         if hash:
             self.log("Document Signer Certificate hash creation")
             self._CSCADirectory.toHashes()
-        
+
     def getCommunicationLayer(self):
         return self._iso7816
-    
+
     def _isSecureMessaging(self):
         return self._iso7816._ciphering
-    
+
     def _selectPassportApp(self):
         """
         Select the passport application
         """
         self.log("Select Passport Application")
         return self._iso7816.selectFile("04", "0C", "A0000002471001")
-    
+
     def doBasicAccessControl(self):
         """
         Execute the basic acces control protocol and set up the secure messaging.
@@ -219,12 +219,12 @@ class EPassport(dict, logger.Logger):
         """
         if self._mrz == None:
             raise EPassportException("The object must be initialized with the ePassport MRZ")
-        
+
         (KSenc, KSmac, ssc) = self._bac.authenticationAndEstablishmentOfSessionKeys(self._mrz)
         sm = securemessaging.SecureMessaging(KSenc, KSmac, ssc) 
         sm.register(self._logFct)
         return self._iso7816.setCiphering(sm)
-               
+
     def doActiveAuthentication(self, dg15=None):
         """
         Execute the active authentication protocol.
@@ -251,7 +251,7 @@ class EPassport(dict, logger.Logger):
             raise activeauthentication.ActiveAuthenticationException(msg)
         finally:
             self.log("Active Authentication: " + str(res))
-    
+
     def doVerifySODCertificate(self):
         """  
         Execute the first part of the passive authentication: The verification of the certificate validity.
@@ -276,7 +276,7 @@ class EPassport(dict, logger.Logger):
             raise openssl.OpenSSLException(msg)
         finally:
             self.log("Document Signer Certificate verification: " + str(res))
-        
+
     def doVerifyDGIntegrity(self, dgs=None):
         """  
         Execute the second part of the passive authentication: The verification of the dataGroups integrity.
@@ -305,8 +305,8 @@ class EPassport(dict, logger.Logger):
         	res = msg
         finally:
             self.log("Data Groups integrity verification: " + str(res))
-            
-    
+
+
     def readSod(self):
         """
         Read the security object file of the passport.
@@ -314,7 +314,7 @@ class EPassport(dict, logger.Logger):
         @return: A sod object.
         """
         return self["SecurityData"]
-    
+
     def readCom(self):
         """
         Read the common file of the passport.
@@ -325,7 +325,7 @@ class EPassport(dict, logger.Logger):
         for tag in self["Common"]["5C"]:
             list.append(converter.toDG(tag))
         return list
-            
+
     def readDataGroups(self):
         """
         Read the datagroups present in the passport. (DG1..DG15)
@@ -337,7 +337,7 @@ class EPassport(dict, logger.Logger):
         for dg in self["Common"]["5C"]:
             list.append(self[dg])
         return list
-            
+
     def readPassport(self):
         """
         Read every files of the passport (COM, DG1..DG15, SOD)
@@ -348,9 +348,9 @@ class EPassport(dict, logger.Logger):
         self.readCom()
         self.readDataGroups()
         self.readSod()
-        
+
         return self
-        
+
     #Dict overwriting
     def __getitem__(self, tag):
         """
@@ -388,7 +388,7 @@ class EPassport(dict, logger.Logger):
                         self.log("Security status not satisfied, while secure messaging. Will reset connection")
                         self.reset()
                         raise exc
-                        
+
                     self.log("Enabling Secure Messaging")
                     self.doBasicAccessControl()
                     return self._getDG(tag)
@@ -401,7 +401,7 @@ class EPassport(dict, logger.Logger):
                 traceback.print_exc()
         else:
             return super(EPassport, self).__getitem__(tag)
-    
+
     def _getDG(self, tag):
         """ 
         Read the dataGroup file specified by the parameter 'tag', then try to parse it.
@@ -427,11 +427,11 @@ class EPassport(dict, logger.Logger):
         except IOError as msg:
             self.log("Reading error: " + str(msg))
             raise datagroup.DataGroupException(msg)
-        
-    
+
+
     def stopReading(self):
         self._dgReader.stop = True
-    
+
     def __iter__(self):
         """ 
         Implementation of the object iterator method.
@@ -439,7 +439,7 @@ class EPassport(dict, logger.Logger):
         """
         self.readPassport()
         return super(EPassport, self).__iter__()
-        
+
     def getSignatures(self):
         """
         Return a list with the signatures contained in the DG7 in binary format.
@@ -449,16 +449,16 @@ class EPassport(dict, logger.Logger):
         tmp = []
         try:
             dg7 = self["DG7"]
-            
+
             for tag in ["5F43"]:
                 if tag in dg7:
                     for x in dg7[tag]:
                         tmp.append(x)
-                        
+
         except Exception:
             pass
         return tmp
-            
+
     def getFaces(self):
         """
         Return a list with the images contained in the DG2 in binary format.
@@ -478,9 +478,9 @@ class EPassport(dict, logger.Logger):
                             tmp.append(dg2[A][tag])
         except:
             pass
-                
+
         return tmp    
-    
+
     def getCertificate(self):
         """  
         Extract the Document Signer certificate from the SOD
@@ -491,7 +491,7 @@ class EPassport(dict, logger.Logger):
             return self._pa.getCertificate(self.readSod())
         except Exception:
             return None
-    
+
     def getPublicKey(self):
         """  
         Extract the Active Auth public key from the DG15
@@ -502,7 +502,7 @@ class EPassport(dict, logger.Logger):
             return self._aa.getPubKey(self["DG15"])
         except Exception:
             return None
-        
+
     def dump(self, directory=os.path.expanduser('~'), format=converter.types.GRT, extension = ".bin"):
         """ 
         Dump the ePassport content on disk as well ass the faces ans signatures in jpeg,
@@ -516,30 +516,30 @@ class EPassport(dict, logger.Logger):
         """
         dgd = datagroup.DataGroupDump(directory, extension)
         dgd.dump(self, format)
-        
+
         cpt=0
         for sig in self.getSignatures():
             dgd.dumpData(sig, "signature" + str(cpt) + ".jpg")
             cpt += 1
-            
+
         cpt=0
         for face in self.getFaces():
             dgd.dumpData(face, "face" + str(cpt) + ".jpg")
             cpt += 1
-        
+
         dgd.dumpData(self.getPublicKey(), "DG15PubKey.pk")
         dgd.dumpData(self.getCertificate(), "DocumentSigner.cer")
-      
+
     def reset(self):
         self._iso7816.reset()
-        
+
     def _logFct(self, name, msg):
         self.log(msg, name)
-        
+
     CSCADirectory = property(getCSCADirectory, setCSCADirectory)
     isSecureMessaging = property(_isSecureMessaging)
     openSsl = property(_getOpenSslDirectory, _setOpenSslDirectory, None, None)
-    
+
 if __name__ == "__main__":
     import doctest
     doctest.testmod()

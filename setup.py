@@ -25,7 +25,7 @@ setup(
     author_email='jhouzard@gmail.com & folkenda@gmail.com',
     url='http://code.google.com/p/pypassport/downloads/list',
     packages = find_packages(),
-    
+
 
     # Project uses reStructuredText, so ensure that the docutils get
     # installed or upgraded on the target machine

@@ -77,7 +77,7 @@ def toAsn1Length(data):
         return b"\x81" + hexRepToBin( "%02x" % data)
     if data >= binToHex(b"\x01\x00") and data <= binToHex(b"\xFF\xFF"):
         return b"\x82" + hexRepToBin("%04x" % data)
-    
+
     raise asn1Exception("The value is too big, must be <= FFFF")
 
 
@@ -100,7 +100,7 @@ class LDSSecurityObjectVersion(Integer):
     namedValues = NamedValues(
         ('V0', 0)
         )
- 
+
 class DataGroupNumber(Integer):
     namedValues = NamedValues(
         ('dataGroup1', 1),
@@ -120,8 +120,8 @@ class DataGroupNumber(Integer):
         ('dataGroup15', 15),
         ('dataGroup16', 16)
         )
-    
-       
+
+
 class DataGroupHash(Sequence):
     componentType=NamedTypes( 
         NamedType('dataGroupNumber', Integer()), 
@@ -138,7 +138,7 @@ class LDSSecurityObject(Sequence):
         NamedType('hashAlgorithm', DigestAlgorithmIdentifier), 
         NamedType('dataGroupHashValues', DataGroupHashValues()) 
     )
-    
+
 class SubjectPublicKeyInfo(Sequence):
     componentType = NamedTypes( NamedType('algorithm', AlgorithmIdentifier()), 
                                           NamedType('subjectPublicKey', BitString())

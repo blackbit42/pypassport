@@ -25,10 +25,10 @@ def binToHex(val):
 def binToHexRep(data):
     """'\xaa\xbb' --> 'aabb'"""
     string= ''
-    
+
     if(type(data) == int):
         return ('%02x' % data).upper()
-    
+
     for x in range(len(data)):         
             if(type(data[x]) == int):
                 string += '%02x' % data[x]
@@ -120,7 +120,7 @@ def intToHexRep(data, size=2):
 
 def intToHexList(data):
     return binToHexList(intToBin(data))
-    
+
 import struct
 
 def rawbytes(s):

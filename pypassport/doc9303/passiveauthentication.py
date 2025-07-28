@@ -36,14 +36,14 @@ class PassiveAuthenticationException(Exception):
         Exception.__init__(self, *params)
 
 class PassiveAuthentication(Logger):
-    
+
     """ 
     This class implement the passive authentication protocol.
     The two main methods are I{verifySODandCDS} and I{executePA}. The first verify the SOD and the CDS and retrieve the relevant dataGroups
     from the LDS, that's why this method must be called before I{executePA} that uses these exctracted informations to calculate the hashes. 
     Even if the Certificate validation failed, it does not mean that the data could not been retrieved from the LDS. 
     """
-    
+
     def __init__(self, openssl=None):
         Logger.__init__(self, "PA")
         self._content = None
@@ -52,7 +52,7 @@ class PassiveAuthentication(Logger):
             self._openSSL = OpenSSL()
         else:
             self._openSSL = openssl
-        
+
     def verifySODandCDS(self, sodObj, CSCADirectory):
         """ 
         Execute the first part of the Passive Authentication protocol.
@@ -76,27 +76,27 @@ class PassiveAuthentication(Logger):
         @raise PassiveAuthenticationException: I{CSCADirectory is not set}
         @raise openSSLException: See the openssl documentation
         """
-        
+
         if CSCADirectory == None:
             raise PassiveAuthenticationException("CSCADirectory is not set") 
-        
+
         if type(sodObj) != type(datagroup.SOD(None)):
             raise PassiveAuthenticationException("sodObj must be a sod object")
-        
+
         if type(CSCADirectory) != type(CAManager("")):
             raise PassiveAuthenticationException("CSCADirectory must be a CAManager object")
-        
+
         CDS = self.getCertificate(sodObj)
         if CDS == None:
             #No certificate
             raise PassiveAuthenticationException("The certificate could not be retrieved")
-        
+
         self._data = self.getSODContent(sodObj)
-        
+
         self._content = self._readDGfromLDS(self._data)
-        
+
         return self.verifyDSC(CDS, CSCADirectory.dir)
-        
+
     def executePA(self, sodObj, dgs):
         """
         Execute the second part of the Passive Authentication protocol
@@ -112,25 +112,25 @@ class PassiveAuthentication(Logger):
         @raise PassiveAuthenticationException: I{sodObj object is not initialized}: the sodobj parameter is a sod object, but is not initialized.
         @raise openSSLException: See the openssl documentation
         """
-        
+
 #        f = open("/home/jf/CA/sod", "wb")
 #        f.write(sodObj.body)
 #        f.close()
-        
+
         if self._data == None:
             self._data = self.getSODContent(sodObj)
-            
+
 #        f = open("/home/jf/CA/sod_content", "wb")
 #        f.write(self._data)
 #        f.close()
-        
+
         if self._content == None:
             self._content = self._readDGfromLDS(self._data)
-            
+
         hashes = self._calculateHashes(dgs)
         return self._compareHashes(hashes)
-        
-    
+
+
     def getSODContent(self, sodObj):
         """
         Verify SOD by using Document Signer Public Key (KPuDS))
@@ -143,16 +143,16 @@ class PassiveAuthentication(Logger):
         @raise openSSLException: See the openssl documentation
         """
         self.log("Verify SOD by using Document Signer Public Key (KPuDS))")
-        
+
         if type(sodObj) != type(datagroup.SOD(None)):
             raise PassiveAuthenticationException("sodObj must be a sod object")
-        
+
         if sodObj.body == None:
             raise PassiveAuthenticationException("sodObj object is not initialized")
-        
+
         return self._openSSL.getPkcs7SignatureContent(sodObj.body)
 
-    
+
     def verifyDSC(self, CDS, CSCADirectory):
         """ 
         Verify CDS by using the Country Signing CA Public Key (KPuCSCA).
@@ -166,17 +166,17 @@ class PassiveAuthentication(Logger):
         @raise PassiveAuthenticationException: I{The CA is not set}: The CSCADirectory parameter must be a non-empty string.
         @raise openSSLException: See the openssl documentation
         """
-        
+
         self.log("Verify CDS by using the Country Signing CA Public Key (KPuCSCA). ")
-        
+
         if not CDS and type(CDS) == type(""):
             raise PassiveAuthenticationException("The CDS is not set")
-        
+
         if not CSCADirectory and type(CSCADirectory) == type(""):
             raise PassiveAuthenticationException("The CA is not set")
-        
+
         return self._openSSL.verifyX509Certificate(CDS, CSCADirectory)
-        
+
     def getCertificate(self, sodObj):
         """  
         Retrieve de DocumentSiner certificate out of the SOD.
@@ -187,12 +187,12 @@ class PassiveAuthentication(Logger):
         """
         if type(sodObj) != type(datagroup.SOD(None)):
             raise PassiveAuthenticationException("sodObj must be a sod object")
-        
+
         if sodObj.body is None:
             raise PassiveAuthenticationException("sodObj object is not initialized")
-        
+
         return self._openSSL.retrievePkcs7Certificate(sodObj.body)               
-        
+
     def _readDGfromLDS(self, data):
         """
         Read the relevant Data Groups from the LDS
@@ -202,23 +202,23 @@ class PassiveAuthentication(Logger):
         @return: A dictionnary with the parsed data of the signature (version, hashAlgorithm and dataGrouphashValues)
         """
         self.log("Read the relevant Data Groups from the LDS")
-        
+
         content = {}
         hash = {}
-        
+
         certType = LDSSecurityObject()
         cert = decoder.decode(data, asn1Spec = certType)[0]
-        
+
         content['version'] = cert.getComponentByName('version').prettyPrint()
         content['hashAlgorithm'] = cert.getComponentByName('hashAlgorithm').getComponentByName('algorithm').prettyPrint()
-        
+
         for h in cert.getComponentByName('dataGroupHashValues'):
             hash[h.getComponentByName('dataGroupNumber').prettyPrint()] = h.getComponentByName('dataGroupHashValue')
-        
+
         content['dataGroupHashValues'] = hash
-        
+
         return content
-        
+
     def _calculateHashes(self, dgs):
         """
         Calculate the hashes of the relevant Data Groups, theses presents in the signature.
@@ -234,9 +234,9 @@ class PassiveAuthentication(Logger):
         for dg in dgs:
             res = hashAlgo(dg.file)
             hashes[converter.toDG(dg.tag)] = res.digest()
-            
+
         return hashes
-    
+
     def _compareHashes(self, hashes):
         """
         Compare the calculated hashes with the corresponding hashes present in the SOD.
@@ -246,9 +246,9 @@ class PassiveAuthentication(Logger):
         @return: A dictionnary indexed with the DG name (DG1..DG15) and with the result of the hash comparison (True or False, None if the DG is not present in the SOD)
         """
         self.log("Compare the calculated hashes with the corresponding hash values in the SOD")
-        
+
         res = {}
-        
+
         for dg in hashes:
             try:
                 res[converter.toDG(dg)] = (hashes[dg] == self._content["dataGroupHashValues"][converter.toOther(dg)])
@@ -265,22 +265,22 @@ class PassiveAuthentication(Logger):
         if self._content is None:
             raise PassiveAuthenticationException("The object is not set. Call init first.")
         return self._getAlgoByOID(self._content['hashAlgorithm'])
-    
+
     def _getAlgoByOID(self, oid):
         try:
             algo = OID[oid]
             return eval(algo)
         except KeyError:
             raise OIDException("No such algorithm for OID " + str(oid))
-        
+
     def __str__(self):
         res =  "version: " + self._content["version"] + "\n"
         res += "hashAlgorithm: " + self._content["hashAlgorithm"] + "\n"
         res += "dataGroupHashValues: " + "\n"
-        
+
         for dghv in list(self._content["dataGroupHashValues"].keys()):
             res += "dataGroupNumber: " + dghv + "\n"
             res += "dataGroupHashValue: " + binToHexRep(self._content["dataGroupHashValues"][dghv]) + "\n"
 
         return res
-    
+
