@@ -79,10 +79,10 @@ class PassiveAuthentication(Logger):
         if CSCADirectory is None:
             raise PassiveAuthenticationException("CSCADirectory is not set")
 
-        if type(sodObj) != type(datagroup.SOD(None)):
+        if not isinstance(sodObj, type(datagroup.SOD(None))):
             raise PassiveAuthenticationException("sodObj must be a sod object")
 
-        if type(CSCADirectory) != type(CAManager("")):
+        if not isinstance(CSCADirectory, type(CAManager(""))):
             raise PassiveAuthenticationException("CSCADirectory must be a CAManager object")
 
         CDS = self.getCertificate(sodObj)
@@ -142,7 +142,7 @@ class PassiveAuthentication(Logger):
         """
         self.log("Verify SOD by using Document Signer Public Key (KPuDS))")
 
-        if type(sodObj) != type(datagroup.SOD(None)):
+        if not isinstance(sodObj, type(datagroup.SOD(None))):
             raise PassiveAuthenticationException("sodObj must be a sod object")
 
         if sodObj.body is None:
@@ -166,10 +166,10 @@ class PassiveAuthentication(Logger):
 
         self.log("Verify CDS by using the Country Signing CA Public Key (KPuCSCA). ")
 
-        if not CDS and type(CDS) == type(""):
+        if not CDS and isinstance(CDS, type("")):
             raise PassiveAuthenticationException("The CDS is not set")
 
-        if not CSCADirectory and type(CSCADirectory) == type(""):
+        if not CSCADirectory and isinstance(CSCADirectory, type("")):
             raise PassiveAuthenticationException("The CA is not set")
 
         return self._openSSL.verifyX509Certificate(CDS, CSCADirectory)
@@ -182,7 +182,7 @@ class PassiveAuthentication(Logger):
         @raise PassiveAuthenticationException: I{sodObj object is not initialized}: the sodobj parameter is a sod object, but is not initialized.
         @raise openSSLException: See the openssl documentation
         """
-        if type(sodObj) != type(datagroup.SOD(None)):
+        if not isinstance(sodObj, type(datagroup.SOD(None))):
             raise PassiveAuthenticationException("sodObj must be a sod object")
 
         if sodObj.body is None:

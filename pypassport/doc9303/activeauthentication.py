@@ -117,7 +117,7 @@ class ActiveAuthentication(Logger):
         @raise ActiveAuthenticationException: I{The public key could not be recovered from the DG15}: Is open SSL installed?
         """
 
-        if type(dg15) != type(datagroup.DataGroup15(None)):
+        if not isinstance(dg15, type(datagroup.DataGroup15(None))):
             raise ActiveAuthenticationException("The parameter type is not valid, must be a dataGroup15 object")
 
         return self._openssl.retrieveRsaPubKey(dg15.body)
@@ -189,7 +189,7 @@ class ActiveAuthentication(Logger):
         @raise ActiveAuthenticationException: I{Unsupported algorithm}: The algorithm does not exist in the OID enumeration.
         @raise ActiveAuthenticationException: I{The parameter type is not valid, must be a dataGroup15 object}: The parameter dg15 is not set or invalid.
         """
-        if type(dg15) != type(datagroup.DataGroup15(None)):
+        if not isinstance(dg15, type(datagroup.DataGroup15(None))):
             raise ActiveAuthenticationException("The parameter type is not valid, must be a dataGroup15 object")
         algo = ""
         try:

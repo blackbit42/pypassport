@@ -78,13 +78,13 @@ class BAC(Logger):
         @raise BACException: I{The sublayer iso7816 is not available}: Check the object init parameter, it takes an iso7816 object
         """
 
-        if type(mrz) != type(MRZ(None)):
+        if not isinstance(mrz, type(MRZ(None))):
             raise BACException("Wrong parameter, mrz must be an MRZ object")
 
         if not mrz.checked:
             mrz.checkMRZ()
 
-        if type(self._iso7816) != type(Iso7816(None)):
+        if not isinstance(self._iso7816, type(Iso7816(None))):
             raise BACException("The sublayer iso7816 is not available")
 
         try:
@@ -161,7 +161,7 @@ class BAC(Logger):
         @type rnd_icc: A 8 bytes binary string
         @return: The APDU binary data for the mutual authenticate command
         """
-        if (type(rnd_icc) == str):
+        if (isinstance(rnd_icc, str)):
             rnd_icc = rawbytes(rnd_icc)
         self._rnd_icc = rnd_icc
         self.log("Request an 8 byte random number from the MRTD's chip")
@@ -250,7 +250,7 @@ class BAC(Logger):
         @type mrz: MRZ object
         @return: the mrz information used for the key derivation
         """
-        if type(mrz) != MRZ:
+        if not isinstance(mrz, MRZ):
             raise BACException("Bad parameter, must be an MRZ object (" + str(type(mrz)) + ")")
 
         kmrz = mrz.docNumber[0] + mrz.docNumber[1] + \
@@ -331,7 +331,7 @@ class BAC(Logger):
         adjusted = b''
         for x in range(len(data)):
             f = data[x]
-            if (type(f) == str):
+            if (isinstance(f, str)):
                 f = ord(f)
             y = f & 0xfe
             parity = 0

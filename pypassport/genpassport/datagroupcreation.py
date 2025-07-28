@@ -185,8 +185,7 @@ class SODCreation(Creation):
 
         dghv = DataGroupHashValues()
 
-        keys = list(hashes.keys())
-        keys.sort()
+        keys = sorted(hashes.keys())
         cpt = 0
         for hashNb in keys:
             dgh = DataGroupHash()
