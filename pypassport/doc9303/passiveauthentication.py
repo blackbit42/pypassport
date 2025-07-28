@@ -132,7 +132,6 @@ class PassiveAuthentication(Logger):
         hashes = self._calculateHashes(dgs)
         return self._compareHashes(hashes)
 
-
     def getSODContent(self, sodObj):
         """
         Verify SOD by using Document Signer Public Key (KPuDS))
@@ -153,7 +152,6 @@ class PassiveAuthentication(Logger):
             raise PassiveAuthenticationException("sodObj object is not initialized")
 
         return self._openSSL.getPkcs7SignatureContent(sodObj.body)
-
 
     def verifyDSC(self, CDS, CSCADirectory):
         """

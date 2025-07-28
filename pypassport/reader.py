@@ -344,7 +344,6 @@ class ReaderManager(Singleton):
         return None
 
     def waitForCard(self, timeout=15, driver=None, readerNum=None):
-
         """
         Wait until a card is put on a reader.
         After I{timeout} seconds, the loop is break and an TimeOutException is raised

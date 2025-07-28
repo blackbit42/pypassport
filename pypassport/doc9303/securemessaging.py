@@ -82,11 +82,9 @@ class SecureMessaging(Ciphering):
         self.log("\tIncrement SSC with 1")
         self.log("\t\tSSC: " + binToHexRep(self._ssc))
 
-
         N = pad(self._ssc + M)
         self.log("\tConcateate SSC and M and add padding")
         self.log("\t\tN: " + binToHexRep(N))
-
 
         CC = mac(self._ksmac, N)
         self.log("\tCompute MAC over N with KSmac")
@@ -105,7 +103,6 @@ class SecureMessaging(Ciphering):
                            binToHexRep(protectedAPDU[4]),
                            binToHexRep(protectedAPDU[5:-1]),
                            binToHexRep(protectedAPDU[-1]))
-
 
     def unprotect(self, rapdu):
         """

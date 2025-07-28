@@ -182,7 +182,6 @@ class EPassport(dict, logger.Logger):
         self._CSCADirectory = None
         self._selectPassportApp()
 
-
     def _getOpenSslDirectory(self):
         return self._openSSL.location
 
@@ -308,7 +307,6 @@ class EPassport(dict, logger.Logger):
         finally:
             self.log("Data Groups integrity verification: " + str(res))
 
-
     def readSod(self):
         """
         Read the security object file of the passport.
@@ -429,7 +427,6 @@ class EPassport(dict, logger.Logger):
         except IOError as msg:
             self.log("Reading error: " + str(msg))
             raise datagroup.DataGroupException(msg)
-
 
     def stopReading(self):
         self._dgReader.stop = True

@@ -33,82 +33,62 @@ class CommandAPDU(object):
     def getCla(self):
         return self.__cla
 
-
     def setCla(self, value):
         self.__cla = value
-
 
     def delCla(self):
         del self.__cla
 
-
     def getIns(self):
         return self.__ins
-
 
     def setIns(self, value):
         self.__ins = value
 
-
     def delIns(self):
         del self.__ins
-
 
     def getP1(self):
         return self.__p1
 
-
     def setP1(self, value):
         self.__p1 = value
-
 
     def delP1(self):
         del self.__p1
 
-
     def getP2(self):
         return self.__p2
-
 
     def setP2(self, value):
         self.__p2 = value
 
-
     def delP2(self):
         del self.__p2
-
 
     def getLc(self):
         return self.__lc
 
-
     def setLc(self, value):
         self.__lc = value
-
 
     def delLc(self):
         del self.__lc
 
-
     def getData(self):
         return self.__data
-
 
     def setData(self, value):
         self.__data = value
 
-
     def delData(self):
         del self.__data
-
 
     def getLe(self):
         return self.__le
 
-
     def setLe(self, value):
         self.__le = value
-
 
     def delLe(self):
         del self.__le

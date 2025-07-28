@@ -37,7 +37,6 @@ class OpenSSL(Logger):
     def _getOpensslLocation(self):
         return self._opensslLocation
 
-
     def _setOpensslLocation(self, value):
         self._opensslLocation = value
 
@@ -148,15 +147,11 @@ class OpenSSL(Logger):
             self._remFromDisk("ds.cer")
             self._remFromDisk("signed")
 
-
-
     def genRSAprKey(self, size):
         """
         Return an RSA private key of the specified size in PEM format.
         """
         return self._execute("genrsa " + str(size))
-
-
 
     def genRootX509(self, cscaKey, validity="",  distinguishedName=None):
         """
@@ -259,7 +254,6 @@ class OpenSSL(Logger):
             self._remFromDisk("toRevoke")
             self._remFromDisk("csca.pem")
             self._remFromDisk("csca.key")
-
 
     def toPKCS12(self, certif, prK, pwd):
         """

@@ -95,7 +95,6 @@ class MRZ(object):
         print( "Exp" + mrz2[8:14] )
         print( "Exp" + mrz2[14] )
 
-
         self._dateOfBirth = mrz2[0:6]
         self._dateOfBirthCD = mrz2[6]
         self._dateOfExpiry = mrz2[8:14]
@@ -107,8 +106,6 @@ class MRZ(object):
                      (self._dateOfExpiry, self._dateOfExpiryCD),
                      (mrz1[5:30] + mrz2[0:7] + mrz2[8:15] + mrz2[18:29], mrz2[29])
                      ]
-
-
 
         return self._checkDigits(fields)
 
@@ -141,7 +138,6 @@ class MRZ(object):
                   (self._dateOfExpiry, self._dateOfExpiryCD),
                   (mrz[0:10] + mrz[13:20] + mrz[21:-1], mrz[-1])
                    ]
-
 
         return self._checkDigits(fields)
 

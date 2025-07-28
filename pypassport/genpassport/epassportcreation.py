@@ -33,7 +33,6 @@ class EPassportCreator(Logger):
         # Forge a Common file without DG15
         self._forged.append(ComCreation().create(self._forged))
 
-
     def toDisk(self, type=converter.types.GRT, ext="", path="."):
         """
         Write the data groups on disk.

@@ -62,7 +62,6 @@ class DistinguishedName(object):
     def setSerialNumber(self, value):
         self.__serialNumber = value
 
-
     def getSubject(self):
         subj = ""
         if self.C: subj += "/C="+self.C
@@ -136,7 +135,6 @@ class CA(Logger):
             msg = str(msg)
             self._errorHandler(msg)
             return self._openssl.genRootX509(cscaKey, days, dn)
-
 
     def createDS(self, size=1024, days=365, dn=DistinguishedName(C="BE", O="Gouv", CN="Document-Signer-BELGIUM")):
         """

@@ -124,7 +124,6 @@ class FingerPrint(object):
         r = self._doc._iso7816
         return binToHexRep(r.getUID())
 
-
     def calculateDGSize(self):
         data = {}
         for x in self._doc:

@@ -74,7 +74,6 @@ class DataGroupFile(object):
     def _getStop(self):
         return self.__stop
 
-
     header = property(_getHeader, _setHeader, None, None)
     body = property(_getBody, _setBody, None, None)
     file = property(_getFile)
@@ -202,7 +201,6 @@ class DataGroup1(DataGroup):
         self["5F07"] = data[59:60]
         # name of holder
         self["5B"] = data[60:]
-
 
     def _parseTd2(self, data):
         # document code 2bytes TAG 5F03
@@ -353,7 +351,6 @@ class DataGroup5(DataGroup):
         tag = self._getTag()
         self[tag] = self._getValue()
         nbInstance = binToHex(self[tag])
-
 
         data = []
 
@@ -555,7 +552,6 @@ class DataGroupReader(Logger):
         self._maxSize = maxSize
         self.processed = Events()
 
-
     def readDG(self, dg):
         """
         Read the specified dataGroup and return the file in two parts:
@@ -609,7 +605,6 @@ class DataGroupReader(Logger):
             toRead -= l
             self.offset += l
             self.log("Read: " + str(l) + " Expected: " + str(self._maxSize))
-
 
         if self.stop:
             self.log('reading aborded')

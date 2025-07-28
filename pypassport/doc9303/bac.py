@@ -147,7 +147,6 @@ class BAC(Logger):
 
         return (kenc, kmac)
 
-
     def authentication(self, rnd_icc, rnd_ifd=None, kifd=None):
         """
         Construct the command data for the mutual authentication.
@@ -175,8 +174,6 @@ class BAC(Logger):
         self.log("Generate an 8 byte random and a 16 byte random")
         self.log("\tRND.IFD: " + binToHexRep(rnd_ifd))
         self.log("\tRND.Kifd: " + binToHexRep(kifd))
-
-
 
         s = rnd_ifd + self._rnd_icc + kifd
 

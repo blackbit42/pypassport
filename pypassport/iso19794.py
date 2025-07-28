@@ -151,7 +151,6 @@ class ISO19794_5:
         offset += 8
         result['FaceImageBlockLength'] = int(tag, 16)
 
-
         tag = data[offset:offset+4]
         offset += 4
         result['NumberOfFeaturePoint'] = int(tag, 16)
