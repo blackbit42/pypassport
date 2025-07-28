@@ -16,6 +16,7 @@
 # License along with pyPassport.
 # If not, see <http://www.gnu.org/licenses/>.
 
+import time
 from pypassport import epassport, reader
 import os
 
@@ -53,7 +54,6 @@ ep = epassport.EPassport(r, MRZ_oli)
 ep.register(trace)
 ep.setCSCADirectory(os.getcwd() + sep + "data" + sep + "cert", False)
 
-import time
 
 start = time.time()
 ep.readPassport()

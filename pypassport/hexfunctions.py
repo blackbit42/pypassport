@@ -18,6 +18,7 @@
 
 # binary to something
 
+import struct
 def binToHex(val):
     """'\xaa\xbb' --> 4307"""
     return int(binToHexRep(val), 16)
@@ -137,7 +138,6 @@ def intToHexList(data):
     return binToHexList(intToBin(data))
 
 
-import struct
 
 
 def rawbytes(s):
