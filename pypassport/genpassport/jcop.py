@@ -38,7 +38,7 @@ class GPlatform(object):
         try:
             res = self._ec.execute("gpshell setPassport.gpshell")
             self.log(res)
-        except Exception as msg:
+        except Exception:
             pass
         finally:
             self._ec.remFromDisk("setPassport.gpshell")

@@ -149,7 +149,7 @@ class Iso7816(Logger):
                 return res.res
             else:
                 raise Iso7816Exception(msg, res.sw1, res.sw2)
-        except KeyError as k:
+        except KeyError:
             raise Iso7816Exception("Unknown error", res.sw1, res.sw2)
 
     def setCiphering(self, c=False):

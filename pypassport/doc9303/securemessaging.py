@@ -111,7 +111,6 @@ class SecureMessaging(Ciphering):
         do87 = b""
         do87Data = None
         do99 = b""
-        do8e = b""
         offset = 0
 
         # Check for a SM error
@@ -155,7 +154,6 @@ class SecureMessaging(Ciphering):
         if rapdu[offset] == 0x8E:
             ccLength = binToHex(rapdu[offset+1])
             CC = rapdu[offset+2:offset+2+ccLength]
-            do8e = rapdu[offset:offset+2+ccLength]
 
             # CheckCC
 

@@ -116,7 +116,6 @@ class MRZ(object):
             # Document number is bigger than 9 caracters
             tmp = mrz[24:35].strip("<")
             self._docNumber = mrz[0:9] + tmp[:-1]
-            cd = tmp[-1]
         else:
             self._docNumber = mrz[0:9]
             self._docNumberCD = mrz[9]

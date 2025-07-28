@@ -58,14 +58,13 @@ class FingerPrint(object):
 
         try:
             res["UID"] = self.getUID()
-        except Exception as msg:
+        except Exception:
             # TODO: Handle error ? Reader don't accept command?
             pass
 
         res["activeAuthWithoutBac"] = self.checkInternalAuth()
 
         # Check if the secure-messaging is set.
-        sod = self._doc["SecurityData"]
         if self._doc._isSecureMessaging:
             res["bac"] = True
 

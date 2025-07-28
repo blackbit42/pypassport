@@ -62,7 +62,6 @@ class CAManager(object):
             r = os.popen(a, "rb")
             data = r.read().strip()
             r.close()
-            f = format
             if data:
                 break
 

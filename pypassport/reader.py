@@ -160,7 +160,7 @@ class PcscReader(Reader):
                 # self.sc.scard.SCARD_PCI_T0
                 self._pcsc_connection.connect()
                 return True
-            except self.sc.Exceptions.NoCardException as msg:
+            except self.sc.Exceptions.NoCardException:
                 return False
         raise ReaderException("The reader number is invalid")
 
@@ -230,11 +230,11 @@ class Acr122(PcscReader):
 
     def connect(self, rn=None):
         if super(Acr122, self).connect(rn):
-            res = self.transmit(apduWrapper(Acr122.Control["AntennaPowerOff"]), "Control")
-            res = self.transmit(apduWrapper(Acr122.Control["AntennaPowerOn"]), "Control")
-            res = self.transmit(apduWrapper(Acr122.Control["ResetTimer"]), "Control")
-            res = self.transmit(apduWrapper(Acr122.Polling["ISO14443A"]), "Polling")
-            res = self.transmit(apduWrapper(Acr122.Speed["424 kbps"]), "Speed")
+            self.transmit(apduWrapper(Acr122.Control["AntennaPowerOff"]), "Control")
+            self.transmit(apduWrapper(Acr122.Control["AntennaPowerOn"]), "Control")
+            self.transmit(apduWrapper(Acr122.Control["ResetTimer"]), "Control")
+            self.transmit(apduWrapper(Acr122.Polling["ISO14443A"]), "Polling")
+            self.transmit(apduWrapper(Acr122.Speed["424 kbps"]), "Speed")
             return True
 
     def transmit(self, APDU, PN532_Cmd="InDataExchange"):
@@ -337,7 +337,7 @@ class ReaderManager(Singleton):
                         res = r.transmit(CommandAPDU("00", "A4", "04", "0C", "07", "A0000002471001"))
                         if res.sw1 == 0x90 and res.sw2 == 0x00:
                             return r
-                except ReaderException as msg:
+                except ReaderException:
                     r.disconnect()
 
         return None

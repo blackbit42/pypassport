@@ -334,7 +334,7 @@ class OpenSSL(Logger):
         cmd = "version"
         try:
             return self._execute(cmd)
-        except OpenSSLException as msg:
+        except OpenSSLException:
             return False
 
     def printCrl(self, crl):

@@ -277,7 +277,6 @@ class DataGroup2(DataGroup):
 
         # 7f61
         tag = self._getTag()
-        length = self._getLength()
 
         # 02
         tag = self._getTag()
@@ -455,12 +454,10 @@ class DataGroup16(DataGroup):
     def parse(self):
          # Read the number of templates
          self._tagOffset = 0
-         tag = self._getTag()
          nbInstance = binToHex(self._getValue())
 
          for i in range(nbInstance):
              # Read each Template Element
-             tag = self._getTag()
              self[i] = self._parseTemplate(self._getValue())
 
          return self

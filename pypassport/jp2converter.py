@@ -48,7 +48,7 @@ def ConvertJp2(input):
         f = open("tmp.jpg", "rb")
         input = f.read()
         f.close()
-    except IOError as msg:
+    except IOError:
         pass
     finally:
         try:

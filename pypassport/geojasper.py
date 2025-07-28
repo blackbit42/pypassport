@@ -55,7 +55,7 @@ class GeoJasper(Logger):
         cmd = "--version"
         try:
             return self._execute(cmd)
-        except GeoJasperException as msg:
+        except GeoJasperException:
             return False
 
     def convert(self, inFile, outFile="tmp.jpg"):
