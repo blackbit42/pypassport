@@ -23,6 +23,7 @@ from pypassport.logger import Logger
 
 CertFormat = ["PEM", "DER"]
 
+
 class CAManager(object):
     """
     This object is used for the certificate validation.

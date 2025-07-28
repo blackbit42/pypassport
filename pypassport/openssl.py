@@ -21,9 +21,11 @@ import subprocess
 from pypassport import hexfunctions
 from pypassport.logger import Logger
 
+
 class OpenSSLException(Exception):
     def __init__(self, *params):
         Exception.__init__(self, *params)
+
 
 class OpenSSL(Logger):
 

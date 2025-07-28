@@ -21,9 +21,11 @@ from string import replace
 import subprocess
 from pypassport.logger import Logger
 
+
 class GeoJasperException(Exception):
     def __init__(self, *params):
         Exception.__init__(self, *params)
+
 
 class GeoJasper(Logger):
 

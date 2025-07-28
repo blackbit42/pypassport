@@ -1,8 +1,10 @@
 import subprocess, os
 
+
 class ExternalCallException(Exception):
     def __init__(self, *params):
         Exception.__init__(self, *params)
+
 
 class ExternalCall(object):
 

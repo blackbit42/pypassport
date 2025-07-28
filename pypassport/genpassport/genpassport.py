@@ -38,6 +38,7 @@ APPLET_PATH = "D:\\download\\epassport_emulator_v1.02\\epassport.cap"
 #Set the reader number for the JCOP applet set up
 READER_NUM = 2
 
+
 def trace(name, str):
     if TRACE:
         print(name + "> " + str)

@@ -32,9 +32,11 @@ if sys.platform == 'win32':
     res = f.read()
     f.close()
 
+
 class ReaderException(Exception):
     def __init__(self, *params):
         Exception.__init__(self, *params)
+
 
 class Reader(Logger):
 
@@ -125,6 +127,7 @@ class DumpReader(Reader):
     def getReaderList(self):
         return ["Simulator"]
 
+
 class PcscReader(Reader):
     def __init__(self):
         Reader.__init__(self)
@@ -178,12 +181,14 @@ class PcscReader(Reader):
     def getReaderList(self):
         return self.sc.System.readers()
 
+
 class apduWrapper(object):
     def __init__(self, data):
         self._apdu = data
 
     def getHexListAPDU(self):
         return self._apdu
+
 
 class Acr122(PcscReader):
 
@@ -274,9 +279,11 @@ class Acr122(PcscReader):
         # otherwise 2 byte of header
         return data[2:-2], data[-2], data [-1]
 
+
 class TimeOutException(Exception):
     def __init__(self, *params):
         Exception.__init__(self, *params)
+
 
 class ReaderManager(Singleton):
     """

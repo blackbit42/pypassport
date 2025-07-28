@@ -31,9 +31,11 @@ from hashlib import *
 import os, sys
 #import Image
 
+
 class DataGroupException(Exception):
     def __init__(self, *params):
         Exception.__init__(self, *params)
+
 
 class DataGroupFile(object):
 
@@ -77,6 +79,7 @@ class DataGroupFile(object):
     body = property(_getBody, _setBody, None, None)
     file = property(_getFile)
     tag = property(_getTag, _setTag)
+
 
 class DataGroup(TLVParser, DataGroupFile):
     def __init__(self, dgf=None):
@@ -138,6 +141,7 @@ class DataGroup(TLVParser, DataGroupFile):
         self._data = data
 
         return tags
+
 
 class DataGroup1(DataGroup):
     """
@@ -268,6 +272,7 @@ class DataGroup1(DataGroup):
             return "TD3"
         return None
 
+
 class DataGroup2(DataGroup):
 
     def __init__(self, dgFile):
@@ -313,15 +318,18 @@ class DataGroup2(DataGroup):
 
         return self
 
+
 class DataGroup3(DataGroup2):
 
     def __init__(self, dgFile):
         DataGroup2.__init__(self, dgFile)
 
+
 class DataGroup4(DataGroup2):
 
     def __init__(self, dgFile):
         DataGroup2.__init__(self, dgFile)
+
 
 class DataGroup5(DataGroup):
 
@@ -357,10 +365,12 @@ class DataGroup5(DataGroup):
 
         return self
 
+
 class DataGroup6(DataGroup5):
 
     def __init__(self, dgFile):
         DataGroup5.__init__(self, dgFile)
+
 
 class DataGroup7(DataGroup5):
 
@@ -373,15 +383,18 @@ class DataGroup8(DataGroup5):
     def __init__(self, dgFile):
         DataGroup5.__init__(self, dgFile)
 
+
 class DataGroup9(DataGroup5):
 
     def __init__(self, dgFile):
         DataGroup5.__init__(self, dgFile)
 
+
 class DataGroup10(DataGroup5):
 
     def __init__(self, dgFile):
         DataGroup5.__init__(self, dgFile)
+
 
 class DataGroup11(DataGroup):
 
@@ -396,6 +409,7 @@ class DataGroup11(DataGroup):
                 self["5F2B"] = binToHexRep(self["5F2B"])
 
         return self
+
 
 class DataGroup12(DataGroup):
 
@@ -415,10 +429,12 @@ class DataGroup12(DataGroup):
 
         return self
 
+
 class DataGroup13(DataGroup):
 
     def __init__(self, dgFile):
         DataGroup.__init__(self, dgFile)
+
 
 class DataGroup14(DataGroup):
 
@@ -428,6 +444,7 @@ class DataGroup14(DataGroup):
     def parse(self):
         return self
 
+
 class DataGroup15(DataGroup):
 
     def __init__(self, dgFile):
@@ -435,6 +452,7 @@ class DataGroup15(DataGroup):
 
     def parse(self):
         return self
+
 
 class DataGroup16(DataGroup):
 
@@ -454,12 +472,14 @@ class DataGroup16(DataGroup):
 
          return self
 
+
 class Com(DataGroup):
     """
     Implement the parsing of the com file
     """
     def __init__(self, dgFile):
         DataGroup.__init__(self, dgFile)
+
 
 class SOD(DataGroup):
     """
@@ -471,6 +491,7 @@ class SOD(DataGroup):
     def parse(self):
         return self
 
+
 class CardAccess(DataGroup):
     """
     Implement the CardAccess parsing
@@ -480,6 +501,7 @@ class CardAccess(DataGroup):
 
     def parse(self):
         return self
+
 
 class DataGroupFactory(Singleton, Logger):
 
@@ -493,6 +515,7 @@ class DataGroupFactory(Singleton, Logger):
         except Exception as msg:
             self.log("Parsing failed: " + str(msg), converter.toDG(dg.tag))
         return dg
+
 
 class Events(object):
     def __init__(self):
@@ -508,6 +531,7 @@ class Events(object):
     def log(self, msg):
         for listenerFct in self._listeners:
             listenerFct(msg)
+
 
 class DataGroupReader(Logger):
     """
@@ -615,6 +639,7 @@ class DataGroupReader(Logger):
 
     offset = property(_getOffset, _setOffset)
 
+
 class FSDataGroupReader(DataGroupReader):
     """
     Implement the superClass dataGroupReader.
@@ -640,6 +665,7 @@ class SFIDataGroupReader(DataGroupReader):
         SFI = (hexRepToHex(converter.toSEF(tag)) ^ 0x80) * 256
         self._offset = SFI
 
+
 class DataGroupReaderFactory(Singleton):
 
     reader = {
@@ -649,6 +675,7 @@ class DataGroupReaderFactory(Singleton):
 
     def create(self, iso7816, reader="FS"):
         return self.reader[reader](iso7816)
+
 
 class DataGroupDump(object):
     """

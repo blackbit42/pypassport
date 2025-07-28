@@ -42,6 +42,7 @@ _Table = {
          types.GRT: ["EF_COM", "Datagroup1", "Datagroup2", "Datagroup3", "Datagroup4", "Datagroup5", "Datagroup6", "Datagroup7", "Datagroup8", "Datagroup9", "Datagroup10", "Datagroup11", "Datagroup12", "Datagroup13", "Datagroup14", "Datagroup15", "Datagroup16", "EF_SOD", "EF_CARDACCESS"]
          }
 
+
 def toDG(data):
     """
     Transform the data value to its DG representation
@@ -49,6 +50,7 @@ def toDG(data):
     an exception is raised
     """
     return to(types.DG, data)
+
 
 def toEF(data):
     """
@@ -58,6 +60,7 @@ def toEF(data):
     """
     return to(types.EF, data)
 
+
 def toSEF(data):
     """
     Transform the data value to its SEF representation
@@ -65,6 +68,7 @@ def toSEF(data):
     an exception is raised
     """
     return to(types.SEF, data)
+
 
 def toFID(data):
     """
@@ -74,6 +78,7 @@ def toFID(data):
     """
     return to(types.FID, data)
 
+
 def toTAG(data):
     """
     Transform the data value to its TAG representation
@@ -81,6 +86,7 @@ def toTAG(data):
     an exception is raised
     """
     return to(types.TAG, data)
+
 
 def toClass(data):
     """
@@ -90,6 +96,7 @@ def toClass(data):
     """
     return to(types.CLASS, data)
 
+
 def toOther(data):
     """
     Transform the data value to its OTHER representation
@@ -97,6 +104,7 @@ def toOther(data):
     an exception is raised
     """
     return to(types.OTHER, data)
+
 
 def toOrder(data):
     """
@@ -106,17 +114,20 @@ def toOrder(data):
     """
     return to(types.ORDER, data)
 
+
 def toGRT(data):
     """
     Transform the data value to its GoldenReaderTool representation
     """
     return to(types.GRT, data)
 
+
 def to(table, data):
     """
     Return the element value from the specified list at the found possition
     """
     return _Table[table][_getPosition(data)]
+
 
 def _getPosition(data):
     """

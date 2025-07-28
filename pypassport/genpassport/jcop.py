@@ -5,6 +5,7 @@ from pypassport.apdu import CommandAPDU
 from pypassport.hexfunctions import *
 from pypassport.logger import Logger
 
+
 class GPlatform(object):
     def __init__(self, readerNum):
         self._ec = ExternalCall()
@@ -46,6 +47,7 @@ class GPlatform(object):
                     raise Exception("Applet not found")
                 if res.find("card_connect() returns 0x80100069") > -1:
                     raise Exception("Invalid reader number")
+
 
 class JavaCardWritter(Logger):
 

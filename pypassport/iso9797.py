@@ -19,11 +19,13 @@
 from Crypto.Cipher import DES
 from pypassport.hexfunctions import *
 
+
 def pad(toPad):
     size = 8
     padBlock = b'\x80' +  b'\x00'*7
     left = size - (len(toPad) % size)
     return (toPad + padBlock[0:left])
+
 
 def unpad(tounpad):
     i=-1

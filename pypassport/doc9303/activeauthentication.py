@@ -28,9 +28,11 @@ from pypassport.logger import Logger
 from pypassport.openssl import OpenSSL, OpenSSLException
 from pypassport.doc9303 import datagroup
 
+
 class ActiveAuthenticationException(Exception):
     def __init__(self, *params):
         Exception.__init__(self, *params)
+
 
 class ActiveAuthentication(Logger):
     """

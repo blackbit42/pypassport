@@ -5,6 +5,7 @@ from pypassport.doc9303.datagroup import *
 from pypassport.derobjectidentifier import *
 from pypassport.asn1 import *
 
+
 class DataGroupFileCreation(DataGroupFile):
     """
     The purpose of this class is to create a fake dataGroup.
@@ -38,6 +39,7 @@ class DataGroupFileCreation(DataGroupFile):
 
     header = property(getHeader, setHeader, None, None)
 
+
 class Creation(Logger):
     def __init__(self):
         Logger.__init__("Creation")
@@ -49,6 +51,7 @@ class Creation(Logger):
         if len(date) != 6:
             raise Exception("The date length is wrong")
         return date[4:6] + date[2:4] + date[0:2]
+
 
 class ComCreation(Creation):
     def __init__(self):
@@ -66,6 +69,7 @@ class ComCreation(Creation):
 
         return Com(self._dgc).parse()
 
+
 class DataGroup1Creation(Creation):
     def __init__(self):
         self._dgc = DataGroupFileCreation(converter.toTAG("DG1"))
@@ -77,6 +81,7 @@ class DataGroup1Creation(Creation):
         self._dgc.addDataObject("5F1F", forgedMRZ)
 
         return DataGroup1(self._dgc).parse()
+
 
 class DataGroup2Creation(Creation):
     def __init__(self):
@@ -112,6 +117,7 @@ class DataGroup2Creation(Creation):
 
         return DataGroup2(self._dgc).parse()
 
+
 class DataGroup7Creation(Creation):
     def __init__(self):
         self._dgc = DataGroupFileCreation(converter.toTAG("DG7"))
@@ -124,6 +130,7 @@ class DataGroup7Creation(Creation):
 
         return DataGroup7(self._dgc).parse()
 
+
 class DataGroup11Creation(Creation):
     def __init__(self):
         self._dgc = DataGroupFileCreation(converter.toTAG("DG11"))
@@ -133,6 +140,7 @@ class DataGroup11Creation(Creation):
         self._dgc.addDataObject("5F11", birthplace)
 
         return DataGroup11(self._dgc).parse()
+
 
 class DataGroup12Creation(Creation):
     def __init__(self):
@@ -149,6 +157,7 @@ class DataGroup12Creation(Creation):
         if len(date) != 8:
             raise Exception("The date length is wrong")
         return date[4:8] + date[2:4] + date[0:2]
+
 
 class SODCreation(Creation):
     def __init__(self):

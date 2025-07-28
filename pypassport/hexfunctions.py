@@ -22,6 +22,7 @@ def binToHex(val):
     """'\xaa\xbb' --> 4307"""
     return int(binToHexRep(val), 16)
 
+
 def binToHexRep(data):
     """'\xaa\xbb' --> 'aabb'"""
     string= ''
@@ -36,19 +37,23 @@ def binToHexRep(data):
                 string += '%02x' % ord(data[x])
     return string.upper()
 
+
 def binToHexList(data):
     """'\xaa\xbb' --> [0xAA, 0xBB]"""
     return hexRepToList(binToHexRep(data))
 
 #hex to something
 
+
 def hexToBin(data):
     """511 --> '\x00\x00\x00\x00\x00\x00\x01\xff'"""
     #Si erreur, changer par %x016x%
     return hexRepToBin("%x" % data)
 
+
 def hexToHexRep(data):
     return hexListToHexRep([data])
+
 
 def hexToHexList(string):
     # translate string of 2 char HEX to int list
@@ -61,6 +66,7 @@ def hexToHexList(string):
 
 #hexRep to something
 
+
 def hexRepToBin(string):
     """'AABB' --> \xaa\xbb'"""
     output= b''
@@ -69,6 +75,7 @@ def hexRepToBin(string):
             output += struct.pack('B', int(string[x:x + 2], 16))
             x += 2
     return output
+
 
 def hexRepToList(string):
     """'AABBCC' --> [170, 187, 204]"""
@@ -79,8 +86,10 @@ def hexRepToList(string):
         n += 2
     return out
 
+
 def hexRepToHex(string):
     return binToHex(hexRepToBin(string))
+
 
 def listToHexRep(list):
     """[170, 187, 204] --> 'AABBCC'"""
@@ -91,15 +100,18 @@ def listToHexRep(list):
 
 #hexList to something
 
+
 def hexListToBin(data):
     """[0xAA, 0xBB] -> '\xaa\xbb'"""
     hexRep = hexListToHexRep(data)
     return hexRepToBin(hexRep)
 
+
 def hexListToHex(data):
     """[0xAA, 0xBB] --> 43707"""
     bin = hexListToBin(data)
     return binToHex(bin)
+
 
 def hexListToHexRep(data):
     """[0xAA, 0xBB] -> 'AABB4"""
@@ -109,19 +121,23 @@ def hexListToHexRep(data):
         s += '%02X' % x
     return s.upper()
 
+
 def intToBin(data):
     """13 -> d"""
     return hexRepToBin("%x" % int(data))
+
 
 def intToHexRep(data, size=2):
     """56 -> 38"""
     mask = "%0"+str(size)+"x"
     return (mask % data).upper()
 
+
 def intToHexList(data):
     return binToHexList(intToBin(data))
 
 import struct
+
 
 def rawbytes(s):
     return s

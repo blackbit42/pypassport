@@ -25,9 +25,11 @@ from pypassport import logger
 from pypassport import apdu
 import os, traceback
 
+
 class EPassportException(Exception):
     def __init__(self, *params):
         Exception.__init__(self, *params)
+
 
 class EPassport(dict, logger.Logger):
     """

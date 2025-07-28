@@ -18,6 +18,7 @@
 
 from pypassport.hexfunctions import *
 
+
 class CommandAPDU(object):
     def __init__(self, cla, ins, p1, p2, lc="", data="", le=""):
         self.cla = cla
@@ -137,6 +138,7 @@ class CommandAPDU(object):
     data = property(getData, setData, delData, "Data's Docstring")
 
     le = property(getLe, setLe, delLe, "Le's Docstring")
+
 
 class ResponseAPDU(object):
     def __init__(self, res, sw1, sw2):

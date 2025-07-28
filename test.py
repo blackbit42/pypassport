@@ -33,6 +33,7 @@ MRZ_n =         "7065198411GBR9703072M1206256<<<<<<<<<<<<<<02"
 ##Dir ou enregistrer les dumps
 #DIR_DUMP = "c:\\tmp"
 
+
 def trace(name, msg):
     if name == "EPassport":
         print(name + "> " + msg)

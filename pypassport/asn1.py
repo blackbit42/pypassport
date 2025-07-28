@@ -23,9 +23,11 @@ from pyasn1.type.namedval import *
 from pyasn1.type.constraint import *
 from pyasn1.codec.der import encoder
 
+
 class asn1Exception(Exception):
     def __init__(self, *params):
         Exception.__init__(self, *params)
+
 
 def asn1Length(data):
     """
@@ -53,6 +55,7 @@ def asn1Length(data):
         return (binToHex(data[1:3]), 3)
 
     raise asn1Exception("Cannot decode the asn1 length from this field: " + binToHexRep(data))
+
 
 def toAsn1Length(data):
     """
@@ -96,10 +99,12 @@ id_icao_ldsSecurityObject = ObjectIdentifier(id_icao_mrtdsecurity + (1,))
 
 DigestAlgorithmIdentifier = AlgorithmIdentifier()
 
+
 class LDSSecurityObjectVersion(Integer):
     namedValues = NamedValues(
         ('V0', 0)
         )
+
 
 class DataGroupNumber(Integer):
     namedValues = NamedValues(
@@ -128,9 +133,11 @@ class DataGroupHash(Sequence):
         NamedType('dataGroupHashValue', OctetString())
         )
 
+
 class DataGroupHashValues(SequenceOf):
     componentType = DataGroupHash()
     subtypeSpec = ValueSizeConstraint(2, ub_DataGroups)
+
 
 class LDSSecurityObject(Sequence):
     componentType=NamedTypes(
@@ -138,6 +145,7 @@ class LDSSecurityObject(Sequence):
         NamedType('hashAlgorithm', DigestAlgorithmIdentifier),
         NamedType('dataGroupHashValues', DataGroupHashValues())
     )
+
 
 class SubjectPublicKeyInfo(Sequence):
     componentType = NamedTypes( NamedType('algorithm', AlgorithmIdentifier()),

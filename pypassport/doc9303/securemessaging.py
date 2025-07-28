@@ -24,6 +24,7 @@ from pypassport.asn1 import *
 from pypassport.logger import Logger
 import struct
 
+
 class Ciphering(Logger):
     def __init__(self):
         Logger.__init__(self, "SM")
@@ -34,11 +35,13 @@ class Ciphering(Logger):
     def unprotect(self, apdu):
         raise Exception("Should be implemented")
 
+
 class SecureMessagingException(Exception):
     def __init__(self, *params):
         Exception.__init__(self, *params)
     def __getitem__(self, i):
         return self.args[i]
+
 
 class SecureMessaging(Ciphering):
     """

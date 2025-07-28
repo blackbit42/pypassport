@@ -2,6 +2,7 @@ from pypassport import epassport, reader
 import json
 import base64
 
+
 def calculateChecksum( value ):
     weighting = [7, 3, 1]
     characterWeight = {
@@ -18,6 +19,7 @@ def calculateChecksum( value ):
         counter += 1
     return str(result%10)
 
+
 def calculateMRZ( passportNumber, DOB, expiry ):
     """
     DOB and expiry are formatted as YYMMDD
@@ -29,6 +31,7 @@ def calculateMRZ( passportNumber, DOB, expiry ):
     mrzCheck = calculateChecksum( mrzNumber ).zfill(2)
     mrz =  passportNumber + passportCheck + "XXX" + DOB + DOBCheck + "X" + expiry + expiryCheck + "<<<<<<<<<<<<<<" + mrzCheck
     return mrz
+
 
 def encode_binary(obj):
     if isinstance(obj, dict):

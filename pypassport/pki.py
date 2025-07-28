@@ -2,6 +2,7 @@ from pypassport.openssl import OpenSSL, OpenSSLException
 from .logger import Logger
 import os
 
+
 class DistinguishedName(object):
     def __init__(self, C="", ST="", L="", O="", OU="", CN="", emailAddress="", serialNumber=""):
         self.__C = C
@@ -82,6 +83,7 @@ class DistinguishedName(object):
     CN = property(getCN, setCN, None, None)
     emailAddress = property(getEmailAddress, setEmailAddress, None, None)
     serialNumber = property(getSerialNumber, setSerialNumber, None, None)
+
 
 class CA(Logger):
     def __init__(self, caLoc=os.path.expanduser('~'), csca=None, cscaKey=None, opensslLocation=""):

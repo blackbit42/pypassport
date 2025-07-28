@@ -31,9 +31,11 @@ from pypassport.doc9303.datagroup import LDSSecurityObject
 from pyasn1.type import univ, namedtype, namedval, constraint
 from pyasn1.codec.der import encoder, decoder
 
+
 class PassiveAuthenticationException(Exception):
     def __init__(self, *params):
         Exception.__init__(self, *params)
+
 
 class PassiveAuthentication(Logger):
 

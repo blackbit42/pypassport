@@ -18,9 +18,11 @@
 
 import os, sys
 
+
 class jp2ConverterException(Exception):
     def __init__(self, *params):
         Exception.__init__(self, *params)
+
 
 def ConvertJp2(input):
     """

@@ -30,11 +30,13 @@ from pypassport import apdu
 from pypassport.hexfunctions import hexToHexRep, binToHexRep, rawbytes
 from pypassport.iso7816 import Iso7816
 
+
 class BACException(Exception):
     def __init__(self, *params):
         Exception.__init__(self, *params)
     def __getitem__(self, i):
         return self.args[i]
+
 
 class BAC(Logger):
 

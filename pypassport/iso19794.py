@@ -112,6 +112,7 @@ ISO19794_5_IMG_SOURCE= {'00': 'Unspecified',
 
 ISO19794_5_IMG_QUALITY= {'0000': 'Unspecified'}
 
+
 class ISO19794_5:
     """ Implement the ISO19794-5 concerning biometric Facial Pictures """
 

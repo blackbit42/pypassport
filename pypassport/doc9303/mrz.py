@@ -20,6 +20,7 @@ class MRZException(Exception):
     def __init__(self, *params):
         Exception.__init__(self, *params)
 
+
 class MRZ(object):
 
     """

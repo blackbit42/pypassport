@@ -19,9 +19,11 @@
 from pypassport.hexfunctions import *
 from pypassport.asn1 import asn1Exception, asn1Length
 
+
 class TLVParserException(Exception):
     def __init__(self, *params):
         Exception.__init__(self, *params)
+
 
 class TLVParser(dict):
     def __init__(self, data):
