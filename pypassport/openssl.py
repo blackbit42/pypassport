@@ -303,7 +303,8 @@ class OpenSSL(Logger):
 
     def _toDisk(self, name, data=None):
         f = open(name, "wb")
-        if data: f.write(data)
+        if data:
+            f.write(data)
         f.close()
 
     def _remFromDisk(self, name):

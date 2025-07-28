@@ -10,7 +10,8 @@ class ExternalCall(object):
 
     def toDisk(self, name, data=None):
         f = open(name, "wb")
-        if data: f.write(data)
+        if data:
+            f.write(data)
         f.close()
 
     def remFromDisk(self, name):

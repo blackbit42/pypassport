@@ -75,7 +75,8 @@ class MRZ(object):
             self._checked = self._checkDigitsTD1(mrz[:30], mrz[30:])
         elif len(mrz) == 44:
             self._checked = self._checkDigitsTD2(mrz)
-        else: raise MRZException("The mrz length is invalid")
+        else:
+            raise MRZException("The mrz length is invalid")
 
         return self._checked
 

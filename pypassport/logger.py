@@ -31,7 +31,8 @@ class Logger(object):
     def log(self, msg, name=None):
         if name is not None:
             n = name
-        else: n = self._name
+        else:
+            n = self._name
 
         for listenerFct in self._listeners:
             listenerFct(n, msg)

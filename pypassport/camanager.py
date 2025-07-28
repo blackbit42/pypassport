@@ -63,7 +63,8 @@ class CAManager(object):
             data = r.read().strip()
             r.close()
             f = format
-            if data: break
+            if data:
+                break
 
         if not data:
             raise Exception("The certificate format is unknow for file: " + str(file) + "\nor OpenSSL is not set")

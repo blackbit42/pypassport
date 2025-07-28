@@ -64,14 +64,22 @@ class DistinguishedName(object):
 
     def getSubject(self):
         subj = ""
-        if self.C: subj += "/C="+self.C
-        if self.ST: subj += "/ST="+self.ST
-        if self.L: subj += "/L="+self.L
-        if self.O: subj += "/O="+self.O
-        if self.OU: subj += "/OU="+self.OU
-        if self.CN: subj += "/CN="+self.CN
-        if self.emailAddress: subj += "/emailAddress="+self.emailAddress
-        if self.serialNumber: subj += "/serialNumber="+self.serialNumber
+        if self.C:
+            subj += "/C="+self.C
+        if self.ST:
+            subj += "/ST="+self.ST
+        if self.L:
+            subj += "/L="+self.L
+        if self.O:
+            subj += "/O="+self.O
+        if self.OU:
+            subj += "/OU="+self.OU
+        if self.CN:
+            subj += "/CN="+self.CN
+        if self.emailAddress:
+            subj += "/emailAddress="+self.emailAddress
+        if self.serialNumber:
+            subj += "/serialNumber="+self.serialNumber
         return '"' + subj + '"'
 
     C = property(getC, setC, None, None)

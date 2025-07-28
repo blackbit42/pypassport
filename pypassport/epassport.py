@@ -158,7 +158,8 @@ class EPassport(dict, logger.Logger):
             self._mrz = mrz.MRZ(epMrz)
             if self._mrz.checkMRZ() == False:
                 raise EPassportException("Invalid MRZ")
-        else: self._mrz = None
+        else:
+            self._mrz = None
 
         self._iso7816 = iso7816.Iso7816(reader)
         self._iso7816.register(self._logFct)

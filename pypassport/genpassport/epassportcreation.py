@@ -14,8 +14,10 @@ class EPassportCreator(Logger):
         Logger.__init__(self, "EPCreation")
         self._ds = ds
         self._dsKey = dsKey
-        if reader: self._iso7816 = iso7816.Iso7816(reader)
-        else: self._iso7816 = None
+        if reader:
+            self._iso7816 = iso7816.Iso7816(reader)
+        else:
+            self._iso7816 = None
 
         self._jcopW = JavaCardWritter(reader)
 
