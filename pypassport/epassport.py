@@ -158,7 +158,7 @@ class EPassport(dict, logger.Logger):
 
         if epMrz:
             self._mrz = mrz.MRZ(epMrz)
-            if self._mrz.checkMRZ() == False:
+            if not self._mrz.checkMRZ():
                 raise EPassportException("Invalid MRZ")
         else:
             self._mrz = None
