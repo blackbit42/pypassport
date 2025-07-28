@@ -62,17 +62,17 @@ class PassiveAuthentication(Logger):
             - Verify SOD by using Document Signer Public Key (KPuDS).
             - Verify CDS by using the Country Signing CA Public Key (KPuCSCA).
             - Read the relevant Data Groups from the LDS.
-            
+
         The I{toHash} method of the CSCADirectory object must be called before the passive authentication.
         Once the hashing processing is done, the I{toHash} method does not need to be called again.
-            
+
         @param sodObj: An initialized security data object
         @type sodObj: An sod object
         @param CSCADirectory: The object representing the CSCA directory.
         @type CSCADirectory: A CAManager object
-        
+
         @return: True if the DS Certificate is valided
-        
+
         @raise PassiveAuthenticationException: I{sodObj must be a sod object}: the sodObj parameter must be a sod object.
         @raise PassiveAuthenticationException: I{sodObj object is not initialized}: the sodobj parameter is a sod object, but is not initialized.
         @raise PassiveAuthenticationException: I{CSCADirectory is not set}
@@ -104,7 +104,7 @@ class PassiveAuthentication(Logger):
         Execute the second part of the Passive Authentication protocol
             - Calculate the hashes of the given Data Groups.
             - Compare the calculated hashes with the corresponding hash values in the SOD.
-            
+
         @param sodObj: An initialized security data object
         @type sodObj: An sod object
         @param dgs: A list of dataGroup objects to verify
@@ -136,7 +136,7 @@ class PassiveAuthentication(Logger):
     def getSODContent(self, sodObj):
         """
         Verify SOD by using Document Signer Public Key (KPuDS))
-        
+
         @param sodObj: A filled SOD object
         @type sodObj: An SOD object
         @return: The data (a binary string) if the verifucation is ok, else an PassiveAuthentication is raised.
@@ -158,7 +158,7 @@ class PassiveAuthentication(Logger):
     def verifyDSC(self, CDS, CSCADirectory):
         """
         Verify CDS by using the Country Signing CA Public Key (KPuCSCA).
-        
+
         @param CDS: The document signer certificate
         @type CDS: A string formated in PEM
         @param CSCADirectory: The complete path to the directory where the CSCA are. The certificates must first be renamed with the corresponding hash. (See the CAManager.py)
@@ -198,7 +198,7 @@ class PassiveAuthentication(Logger):
     def _readDGfromLDS(self, data):
         """
         Read the relevant Data Groups from the LDS
-        
+
         @param data: The content of the verified signature.
         @type data:  A binary string
         @return: A dictionnary with the parsed data of the signature (version, hashAlgorithm and dataGrouphashValues)
@@ -224,7 +224,7 @@ class PassiveAuthentication(Logger):
     def _calculateHashes(self, dgs):
         """
         Calculate the hashes of the relevant Data Groups, theses presents in the signature.
-        
+
         @param dgs: A list of dataGroup objects to calculate the hash values.
         @type dgs: A list.
         @return: A dictionnary indexed with DG1..DG15 with the calculated hashes of the DGs.
@@ -242,7 +242,7 @@ class PassiveAuthentication(Logger):
     def _compareHashes(self, hashes):
         """
         Compare the calculated hashes with the corresponding hashes present in the SOD.
-        
+
         @param hashes: A dictionnary of hashes to compare with the security object hashes.
         @type hashes: A dictionary
         @return: A dictionnary indexed with the DG name (DG1..DG15) and with the result of the hash comparison (True or False, None if the DG is not present in the SOD)

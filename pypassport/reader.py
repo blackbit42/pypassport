@@ -49,7 +49,7 @@ class Reader(Logger):
     def connect(self, readerNum=None):
         """
         If there is some reader connected to the computer, we have to specify to which one we want to connect.
-        
+
         @param readerNum: The reader number.
         @type readerNum: An integer.
         """
@@ -58,7 +58,7 @@ class Reader(Logger):
     def transmit(self, APDU):
         """
         The method send the apdu to the reader and return the ICC answer
-        
+
         @param APDU: The apdu to transmit to the reader
         @type APDU: A commandAPDU object
         @return: A resultAPDU object with the ICC answer.
@@ -351,16 +351,16 @@ class ReaderManager(Singleton):
         If I{driver} and I{readerNum} are let to none, the wait for loop will pool on every reader with every driver until a match is found.
         If I{driver} and I{readerNum} are both set, the loop  will pool on the specified reader with the specified driver.
         By default, the time-out is set to 15 seconds.
-        
+
         @param timeout: The timeout in second the loop wait for a card before being interrupted.
         @type timeout: Integer
         @param driver: The driver to use during the pooling
         @type driver: A class inheriting from Reader
         @param readerNum: The reader to pool on
         @type readerNum: Integer
-        
+
         @raise TimeOutException: Is the time-out expires, the exception is raised.
-        
+
         """
         cpt = 0
         wait = 0.5

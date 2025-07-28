@@ -52,7 +52,7 @@ class CAManager(object):
     def _getHash(self, file):
         """
         Calculate the hash of the specified certificate.
-        
+
         @param file: The url of the certificate
         @type file: A string
         """
@@ -75,7 +75,7 @@ class CAManager(object):
         """
         Convert the certificate into the PEM format.
         If the certificate is already in PEM, do nothing.
-        
+
         @param certif: The url of the certificate to convert in PEM
         @type certif: A string
         @param format: The format of the certificate, must be DER or PEM
@@ -84,7 +84,7 @@ class CAManager(object):
         @type name: A string
         @param path: The path where to store the certificate
         @type path: A string
-        
+
         @raise Exception: If the format parameter is not DER or PEM
         """
 #        if format == "PEM": return certif

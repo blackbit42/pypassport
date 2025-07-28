@@ -21,7 +21,7 @@ class DataGroupFileCreation(DataGroupFile):
     def addDataObject(self, tag, value):
         """
         Insert a new tag, value couple inside the dataGroup.
-        
+
         @param tag: A tag in hexRep format
         @type tag: A string
         @param value: The value associated to the tag

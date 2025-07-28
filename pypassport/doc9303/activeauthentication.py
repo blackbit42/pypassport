@@ -66,7 +66,7 @@ class ActiveAuthentication(Logger):
         """
         Perform the Active Authentication protocol.
         Work only with RSA, modulus length of 1024 and with SHA1.
-        
+
         @param dg15: A initialized dataGroup15 object
         @type dg15: dataGroup15
         @return: True if the authentication succeed, else False.
@@ -111,7 +111,7 @@ class ActiveAuthentication(Logger):
     def getPubKey(self, dg15):
         """
         Retrieve the public key in PEM format from the dataGroup15
-        
+
         @return: A PEM reprensation of the public key
         @rtype: A string
         @raise ActiveAuthenticationException: I{The parameter type is not valid, must be a dataGroup15 object}: The parameter dg15 is not set or invalid.

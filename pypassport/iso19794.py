@@ -119,10 +119,10 @@ class ISO19794_5:
     @staticmethod
     def analyse(data):
         """ Analyze the content of the CBEFF header
-        
+
             @param data: Image Block with header
             @type data: binary data
-            
+
             @return: tuple composed of header size and decoded header
             @rtype: tuple(int, dict)
         """

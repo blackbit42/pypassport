@@ -67,11 +67,11 @@ class BAC(Logger):
             - Derivation of the document basic acces keys
             - Mutual authentication
             - Derivation of the session keys
-            
+
         @param mrz: The machine readable zone of the passport
         @type mrz: an MRZ object
         @return: A set composed of (KSenc, KSmac, ssc)
-        
+
         @raise MRZException: I{The mrz length is invalid}: The mrz parameter is not valid.
         @raise BACException: I{Wrong parameter, mrz must be an MRZ object}: The parameter is invalid.
         @raise BACException: I{The mrz has not been checked}: Call the I{checkMRZ} before this method call.
@@ -107,7 +107,7 @@ class BAC(Logger):
     def _computeKeysFromKseed(self, Kseed):
         """
         This function is used during the Derivation of Document Basic Acces Keys.
-        
+
         @param Kseed: A 16 bytes random value
         @type Kseed: Binary
         @return: A set of two 8 bytes encryption keys
@@ -128,7 +128,7 @@ class BAC(Logger):
         """
         Take the MRZ object, constrct the mrz_information out of the MRZ (kmrz),
         generate the Kseed and compute the kenc and Kmac keys from the Kseed.
-        
+
         @param mrz: The machine readable zone of the passport.
         @type mrz: an MRZ object
         @return: A set of two 8 bytes encryption keys (Kenc, Kmac)
@@ -157,7 +157,7 @@ class BAC(Logger):
             - Encrypt it with TDES and the Kenc key (eifd = TDES(s, Kenc))
             - Compute the MAC over eifd with TDES and the Kmax key (mifd = mac(pad(eifd))
             - Construct the APDU data for the mutualAuthenticate command (cmd_data = eifd + mifd)
-            
+
         @param rnd_icc: The challenge received from the ICC.
         @type rnd_icc: A 8 bytes binary string
         @return: The APDU binary data for the mutual authenticate command
@@ -207,7 +207,7 @@ class BAC(Logger):
         """
         Calculate the session keys (KSenc, KSmac) and the SSC from the data
         received by the mutual authenticate command.
-        
+
         @param data: the data received from the mutual authenticate command send to the chip.
         @type data: a binary string
         @return: A set of two 16 bytes keys (KSenc, KSmac) and the SSC
@@ -248,7 +248,7 @@ class BAC(Logger):
             - The Document number + Check digit
             - The Date of Birth + CD
             - The Date of Expiry + CD
-            
+
         @param mrz: An MRZ object
         @type mrz: MRZ object
         @return: the mrz information used for the key derivation
@@ -273,7 +273,7 @@ class BAC(Logger):
         Calculate the kseed from the kmrz:
             - Calculate a SHA-1 hash of the kmrz
             - Take the most significant 16 bytes to form the Kseed.
-        
+
         @param kmrz: The MRZ information
         @type kmrz: a string
         @return: a 16 bytes string
@@ -296,7 +296,7 @@ class BAC(Logger):
             - Calculate the hash of the concatenation of kseed and c (h = (sha1(kseed + c)))
             - Adjust the parity bits
             - return the key (The first 8 bytes are Ka and the next 8 bytes are Kb)
-            
+
         @param kseed: The Kseed
         @type kseed: a 16 bytes string
         @param c: specify is it derives KENC (c=0) of KMAC (c=1)

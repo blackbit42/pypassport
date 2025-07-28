@@ -15,7 +15,7 @@ class GPlatform(object):
         """
         Set up the JCOP with the specified applet.
         JPShell must be installed and in the path
-        
+
         @param applet: The applet location
         """
 

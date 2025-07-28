@@ -35,14 +35,14 @@ class EPassport(dict, logger.Logger):
     """
     This class is the high level class that encapsulate every mechanisms needed to communication with the passport
     and to validate it.
-    
+
     This object is implemented as a dictionnary.
     When a dataGroup is read, the corresponding object is added inside the object dictionnary.
 
     Example with the DG1 file using the simulator:
     (see the dataGroups.converter for an exaustive convertion list)
-    
-    
+
+
     >>> import os
     >>> from pypassport.epassport import *
     >>> from pypassport.iso7816 import *
@@ -55,13 +55,13 @@ class EPassport(dict, logger.Logger):
     {'5F05': '7', '5F04': '4', '5F07': '0', '5F06': '2', '59': '130312', '5F03': 'P<', '5F02': '0', '5F5B': 'ROGER<<OLIVIER<VINCENT<MICHAEL<<<<<<<<<', '5F1F': 'P<BELROGER<<OLIVIER<VINCENT<MICHAEL<<<<<<<<<AB123456<4BEL9503157M1303122<<<<<<<<<<<<<<00', '53': '<<<<<<<<<<<<<<', '5F2C': 'BEL', '5F57': '950315', '5F28': 'BEL', '5F35': 'M', '5A': 'AB123456<'}
     >>> p["61"]
     {'5F05': '7', '5F04': '4', '5F07': '0', '5F06': '2', '59': '130312', '5F03': 'P<', '5F02': '0', '5F5B': 'ROGER<<OLIVIER<VINCENT<MICHAEL<<<<<<<<<', '5F1F': 'P<BELROGER<<OLIVIER<VINCENT<MICHAEL<<<<<<<<<AB123456<4BEL9503157M1303122<<<<<<<<<<<<<<00', '53': '<<<<<<<<<<<<<<', '5F2C': 'BEL', '5F57': '950315', '5F28': 'BEL', '5F35': 'M', '5A': 'AB123456<'}
-    
-    
+
+
     You can notice than the DG1 is read only during the first call.
-    
+
     The passport application is selected during the init phase,
     and the basic access control is done automatically if needed.
-    
+
     Example with the using an rfid reader:
     *Detect the reader
     *Init the EPassport class
@@ -72,14 +72,14 @@ class EPassport(dict, logger.Logger):
     *Extract the DG15 public key
     *Extract the faces from DG2
     *Extract the signature from DG7
-    
+
     (The informations are hidded)
-    
+
     We changed the MRZ informations for privacy reasons, that's why the doctest is not valid.
     Anyway it is not possible for you to test it without the real passport (you do not possess it).
     Just consider it as a trace explaining how to access a real passport.
-    
-    
+
+
     >>> from pypassport.epassport import EPassport, mrz
     >>> from pypassport.reader import pcscAutoDetect
     >>> from pypassport.openssl import OpenSSLException
@@ -134,8 +134,8 @@ class EPassport(dict, logger.Logger):
     ['\x14R\x06\x14\xd3E\x14\xfa\x87C\xff\xd9...']
     >>> p.getSignature()
     ['\x01h\xa4\xa2...\x80?\xff\xd9']
-    
-    
+
+
     """
     # TODO: property pr le buffSize de la lecture et pour choisir si FS ou SFID
     def __init__(self, reader, epMrz=None):
@@ -145,11 +145,11 @@ class EPassport(dict, logger.Logger):
             - The active authentication
             - The passive authentication
             - Reading of the various dataGroups
-        
+
         @param reader: It can be a reader or a path to dumps
         @type reader: A reader object, then it will use the specified rfid reader.
                       A string, then the simulator will read the dumps from the specified url.
-        
+
         @param mrz: An object representing the passport MRZ.
         @type mrz: An MRZ object
         """
@@ -214,7 +214,7 @@ class EPassport(dict, logger.Logger):
     def doBasicAccessControl(self):
         """
         Execute the basic acces control protocol and set up the secure messaging.
-        
+
         @return: A True if the BAC execute correctly
         @raise bacException: If an error occur during the process
         @raise EPassportException: If the mrz is not initialized.
@@ -230,7 +230,7 @@ class EPassport(dict, logger.Logger):
     def doActiveAuthentication(self, dg15=None):
         """
         Execute the active authentication protocol.
-        
+
         @return: A boolean if the test complete.
         @raise aaException: If the hash algo is not supported or if the AA is not supported.
         @raise openSSLException: See the openssl documentation
@@ -257,7 +257,7 @@ class EPassport(dict, logger.Logger):
     def doVerifySODCertificate(self):
         """
         Execute the first part of the passive authentication: The verification of the certificate validity.
-        
+
         @raise dgException: If the SOD could not be read
         @raise paException: If the object is badly configured
         @raise openSSLException: See the openssl documentation
@@ -282,7 +282,7 @@ class EPassport(dict, logger.Logger):
     def doVerifyDGIntegrity(self, dgs=None):
         """
         Execute the second part of the passive authentication: The verification of the dataGroups integrity.
-        
+
         @raise dgException: If the data groups could not be read
         @raise paException: If the object is badly configured
         @raise openSSLException: See the openssl documentation
@@ -312,7 +312,7 @@ class EPassport(dict, logger.Logger):
     def readSod(self):
         """
         Read the security object file of the passport.
-        
+
         @return: A sod object.
         """
         return self["SecurityData"]
@@ -320,7 +320,7 @@ class EPassport(dict, logger.Logger):
     def readCom(self):
         """
         Read the common file of the passport.
-        
+
         @return: A list with the data group tags present in the passport.
         """
         list = []
@@ -332,7 +332,7 @@ class EPassport(dict, logger.Logger):
         """
         Read the datagroups present in the passport. (DG1..DG15)
         The common and sod files are not read.
-        
+
         @return: A list of dataGroup objects.
         """
         list = []
@@ -343,7 +343,7 @@ class EPassport(dict, logger.Logger):
     def readPassport(self):
         """
         Read every files of the passport (COM, DG1..DG15, SOD)
-        
+
         @return: A dictionnary with every dataGroup objects present in the passport.
         """
         self.log("Reading Passport")
@@ -362,16 +362,16 @@ class EPassport(dict, logger.Logger):
 
         @raise DataGroupException: If the tag is not linked to any dataGroup, or if an error occurs during the parsing
         @raise APDUException: If an error occurs during the APDU transmit.
-            
+
         Try to read the DataGroup specified by the parameter 'tag'.
         If the DG is already read, the DG is directly returned,
         else the DG is read then returned
-        
+
         If there is a Security status not satisfied error,
         the mutual authentication is run.
         If there is no error during the mutualAuth, the APDU is resend else,
         the error is propagated: there surely is an error in the MRZ field value
-        
+
         Please refer to ICAO Doc9303 Part 1 Volume 2, p III-28 for the complete
         DataGroup <-> Tag correspondance
         or have a look to the pypassport.datagroup.converter.py file
@@ -408,14 +408,14 @@ class EPassport(dict, logger.Logger):
         """
         Read the dataGroup file specified by the parameter 'tag', then try to parse it.
         The dataGroup object is then stored in the object dictionnary.
-        
-        
+
+
         @param tag: The dataGroup identifier to read (see the dataGroups.converter for all valid representations)
         @type tag: A string
-        
+
         @return: An dataGroup object if the file is read with success.
         @rtype: An DataGroupXX object
-        
+
         @raise DataGroupException: If a wrong DataGroup is requested
         """
         try:
@@ -509,9 +509,9 @@ class EPassport(dict, logger.Logger):
         """
         Dump the ePassport content on disk as well ass the faces ans signatures in jpeg,
         the DG15 public key and the Document Signer Certificate.
-        
+
         By default, the files are stored in the user directory (~) with the Golden Reader Tool naming format
-        
+
         @param directory: The taget directory
         @param format: File naming format (see the convertion module)
         @param extension: File extension

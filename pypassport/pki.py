@@ -114,12 +114,12 @@ class CA(Logger):
         """
         Create a Country Signing Certificate Authority.
         Return a couple with the x509 as first item and the private key as second item
-        
+
         The default distinguished name for the CSCA is:
         C=BE
         O=Gouv
         CN=CSCA-BELGIUM
-        
+
         @param size: The RSA key size in bits
         @param days: The validity period of the certificate
         @param dn: The distinguised name of the certificate
@@ -142,12 +142,12 @@ class CA(Logger):
         """
         Create a Document Signer Certificate.
         Return a couple with the x509 as first item and the private key as second item
-        
+
         The default distinguished name for the DS is:
         C=BE
         O=Gouv
         CN=Document Signer BELGIUM
-        
+
         @param size: The RSA key size in bits
         @param days: The validity period of the certificate
         @param dn: The distinguised name of the certificate
@@ -172,7 +172,7 @@ class CA(Logger):
         """
         Revoke the certificate.
         Return the CRL in PEM.
-        
+
         @param x509: A x509 certificate
         @return: The CRL in PEM
         @rtype: A string

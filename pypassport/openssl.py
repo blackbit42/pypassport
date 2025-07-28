@@ -203,7 +203,7 @@ class OpenSSL(Logger):
     def signX509Req(self, csr, csca, cscaKey, validity=""):
         """
         Sign the request with the root certificate. Return a x509 certificate in PEM format
-        
+
         @param csr: The certificate request
         @param csca: The root certificate
         @param cscaKey: The CA private key

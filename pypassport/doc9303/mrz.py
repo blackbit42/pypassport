@@ -29,7 +29,7 @@ class MRZ(object):
     The method I{checkMRZ} must be called before any further use of this class because
     it will populate the fields of the class.
     When the check is done, this class is used by the BAC class to get the fields necessary for the key derivation.
-    
+
     Two type of MRZ are handled: TD1 and TD2.
     """
 
@@ -66,7 +66,7 @@ class MRZ(object):
         It handle two kind of MRZ: TD1 and TD2.
         The method retrieves the fields used by the bac protocol, so this method
         must be called after the mrz object initialization.
-        
+
         @return: True or False
         @rtype: A boolean
         """
@@ -158,12 +158,12 @@ class MRZ(object):
 
     def _calculCheckDigit(self, value):
         """ Create check digit for a value of the MRZ
-        
+
             @param value: initial value
             @type value: String
             @return: Check digit
             @rtype: String
-            
+
             @note: Code fragment from the pyPassport.mrz.MRZ class
         """
         cpt=0
@@ -176,10 +176,10 @@ class MRZ(object):
 
     def buildMRZ(self, type, issuer, name, firstname, nat, sex, num, birth, exp):
         """ Build MRZ using the informations given by dates and passport number
-        
+
             @note: sex and nat field are not necessary to BAC and are then
                    replaced by '<' characters
-                   
+
             @attention: this method build a 44 characters MRZ based on TD2 specs
             @attention: if passport number is larger than its reserved space
                         the rest il put in the optional field with the check digit

@@ -111,7 +111,7 @@ class DataGroup(TLVParser, DataGroupFile):
     def _parseDataElementPresenceMap(self, depm):
         """
         Convert concatenated bin tags into a list of string tag.
-        
+
         >>> from pypassport.doc9303.datagroup import DataGroup, DataGroupFile
         >>> from pypassport.hexfunctions import *
         >>> header = None
@@ -121,7 +121,7 @@ class DataGroup(TLVParser, DataGroupFile):
         >>> res = dg._parseDataElementPresenceMap(body[0x02:])
         >>> res
         ['5F0E', '5F11', '5F42', '5F12', '5F13']
-        
+
         @param depm: The data element presence map
         @type depm: A binary string
         @return: A list with the tags found in the data element presence map.
@@ -345,7 +345,7 @@ class DataGroup5(DataGroup):
         ex:
             - {'02': [2], '5F40' : [[0x..,0x..,0x..], [0x..,0x..,0x..]]}
             - {'02': [1], '5F43' : [[0x..,0x..,0x..]]}
-        
+
         Each values of the dictionnary are in a list of hexadecimal/decimal values.
         """
 
@@ -559,14 +559,14 @@ class DataGroupReader(Logger):
     def readDG(self, dg):
         """
         Read the specified dataGroup and return the file in two parts:
-        
+
         A dataGroup::
             6C 40
                   5C   06     5F195F265F1A
                   5F19 18     UNITED STATES OF AMERICA
                   5F26 08     20020531
                   5F1A 0F     SMITH<<BRENDA<P
-            
+
             1. The header::
                 6C 40
             2. The body ::
@@ -699,7 +699,7 @@ class DataGroupDump(object):
         """
         Save the dataGroup binaries on the HDD.
         The name format is specified by the format parameter.
-        
+
         @param ep: The EPassport object.
         @type ep: A dictionary
         @param format: Specify the file name format. (FID, TAG, SEF,...)
@@ -711,7 +711,7 @@ class DataGroupDump(object):
     def dumpDG(self, dg, format=converter.types.FID):
         """
         Save the specified dataGroup on the HDD.
-        
+
         @param dg: A filled dataGroup object
         @type dg: A dataGroup object
         @param format: Specify the file name format. (FID, TAG, SEF,...)
@@ -725,7 +725,7 @@ class DataGroupDump(object):
         """
         Save some data on the HDD. The data can be the binary of a picture for example.
         It will be saved under the name passed as parameter.
-        
+
         @param data: The binary to save on the HDD
         @type data: A binary string
         @param name: The file name

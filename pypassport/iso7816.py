@@ -113,15 +113,15 @@ class Iso7816(Logger):
         @param logMsg: A log message associated to the transmit.
         @type logMsg: A string.
         @return: The result field of the responseAPDU object
-        
+
         The P1 and P2 fields are checked after each transmit.
         If they don't mean succes, the appropriate error string is retrieved
         from the Error dictionary and an APDUException is raised.
         The Iso7816Exception is composed of three fields: ('error message', p1, p2)
-        
+
         To access these fields when the exception is raised,
         acces the APDUException object like a list::
-        
+
             try:
                 x.apduTransmit(commandAPDU(..))
             except Iso7816Exception, exc:

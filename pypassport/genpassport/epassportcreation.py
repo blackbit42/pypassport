@@ -37,7 +37,7 @@ class EPassportCreator(Logger):
     def toDisk(self, type=converter.types.GRT, ext="", path="."):
         """
         Write the data groups on disk.
-        
+
         @param type: The output file format. See convert.py for the options
         @param ext: The output extension file.
         """

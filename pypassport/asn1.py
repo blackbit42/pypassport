@@ -40,7 +40,7 @@ def asn1Length(data):
     (170, 2)
     >>> asn1Length("\x82\xaa\xbb")
     (43707, 3)
-    
+
     @param data: A length value encoded in the asn.1 format.
     @type data: A binary string.
     @return: A tuple with the decoded hexa length and the length of the asn.1 encoded value.
@@ -60,14 +60,14 @@ def asn1Length(data):
 def toAsn1Length(data):
     """
     Take an hexa value and return the value encoded in the asn.1 format.
-    
+
     >>> binToHexRep(toAsn1Length(34))
     '22'
     >>> binToHexRep(toAsn1Length(170))
     '81aa'
     >>> binToHexRep(toAsn1Length(43707))
     '82aabb'
-    
+
     @param data: The value to encode in asn.1
     @type data: An integer (hexa)
     @return: The asn.1 encoded value
