@@ -32,7 +32,7 @@ setup(
     install_requires=['setuptools', 'PyCryptodome', 'pyasn1', 'pyscard', 'Pillow'],
 
     package_data={'': ['*.py'],
-                    'pypassport': ['README', 'LICENSE'],
+                  'pypassport': ['README', 'LICENSE'],
                   },
 
     # metadata for upload to PyPI
