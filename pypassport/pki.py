@@ -307,14 +307,14 @@ subjectKeyIdentifier   = hash
 keyUsage               = critical, keyCertSign, cRLSign"""
 
 
-#from pypassport.openssl import DistinguishedName, CA
-#ca = CA()
-#ca.resetConfig()
-#dn = DistinguishedName(C="BE", O="UCL", CN="CSCA-BELGIUM")
-#(csca, cscaKey) = ca.createCSCA(size=2048, dn=dn)
-#(ds, dsKey) = ca.createDS()
-#cscaCrl = ca.getCrl()
-#dn = DistinguishedName(C="BE", O="bidon", CN="To revoke")
-#(rev, revKey) = ca.createDS(dn=dn)
-#ca.revoke(rev)
-#revCrl = ca.getCrl()
+# from pypassport.openssl import DistinguishedName, CA
+# ca = CA()
+# ca.resetConfig()
+# dn = DistinguishedName(C="BE", O="UCL", CN="CSCA-BELGIUM")
+# (csca, cscaKey) = ca.createCSCA(size=2048, dn=dn)
+# (ds, dsKey) = ca.createDS()
+# cscaCrl = ca.getCrl()
+# dn = DistinguishedName(C="BE", O="bidon", CN="To revoke")
+# (rev, revKey) = ca.createDS(dn=dn)
+# ca.revoke(rev)
+# revCrl = ca.getCrl()

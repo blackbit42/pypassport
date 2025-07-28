@@ -61,17 +61,17 @@ class FingerPrint(object):
         try:
             res["UID"] = self.getUID()
         except Exception as msg:
-            #TODO: Handle error ? Reader don't accept command?
+            # TODO: Handle error ? Reader don't accept command?
             pass
 
         res["activeAuthWithoutBac"] = self.checkInternalAuth()
 
-        #Check if the secure-messaging is set.
+        # Check if the secure-messaging is set.
         sod = self._doc["SecurityData"]
         if self._doc._isSecureMessaging:
             res["bac"] = True
 
-        #Check if there is a certificate
+        # Check if there is a certificate
         certif = self._doc.getCertificate()
         if certif:
             res["DSCertificate"] = self._doc.getCertificate()
@@ -90,7 +90,7 @@ class FingerPrint(object):
 
             os.remove("tmp.cer")
 
-        #Check if there is a pubKey and the AA
+        # Check if there is a pubKey and the AA
         try:
             if self._doc.getPublicKey():
                 res["pubKey"] = self._doc.getPublicKey()

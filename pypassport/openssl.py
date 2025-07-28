@@ -105,7 +105,7 @@ class OpenSSL(Logger):
         @return: The data contained in the signature
         """
 
-        #Verify if openSSL is installed
+        # Verify if openSSL is installed
         self._execute("version")
         data = None
         try:

@@ -36,16 +36,16 @@ def unpad(tounpad):
         return tounpad[0:i]
 
     else:
-        #Pas de padding
+        # Pas de padding
         return tounpad
 
 
 def mac(key, msg):
-        #Source: PKI for machine readable travel document offering
+        # Source: PKI for machine readable travel document offering
         #        ICC read-only access
-        #Release:1.1
-        #October 01,2004
-        #p46 of 57
+        # Release:1.1
+        # October 01,2004
+        # p46 of 57
 
 #        print 'MAC'
 #        print '---'

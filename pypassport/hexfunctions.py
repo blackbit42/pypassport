@@ -16,7 +16,7 @@
 # License along with pyPassport.
 # If not, see <http://www.gnu.org/licenses/>.
 
-#binary to something
+# binary to something
 
 def binToHex(val):
     """'\xaa\xbb' --> 4307"""
@@ -42,12 +42,12 @@ def binToHexList(data):
     """'\xaa\xbb' --> [0xAA, 0xBB]"""
     return hexRepToList(binToHexRep(data))
 
-#hex to something
+# hex to something
 
 
 def hexToBin(data):
     """511 --> '\x00\x00\x00\x00\x00\x00\x01\xff'"""
-    #Si erreur, changer par %x016x%
+    # Si erreur, changer par %x016x%
     return hexRepToBin("%x" % data)
 
 
@@ -64,7 +64,7 @@ def hexToHexList(string):
         n += 2
     return out
 
-#hexRep to something
+# hexRep to something
 
 
 def hexRepToBin(string):
@@ -98,7 +98,7 @@ def listToHexRep(list):
         out.append('%02X' % (item))
     return out.upper()
 
-#hexList to something
+# hexList to something
 
 
 def hexListToBin(data):

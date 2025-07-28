@@ -64,11 +64,11 @@ class JavaCardWritter(Logger):
 
     def writeDG(self, dg):
         file = converter.toFID(dg.tag)
-        #File selection
+        # File selection
         self._iso7816.selectFile("00", "00", file, cla="10", ins="A5")
 
         self._maxSize = 0xFA
-        #Write binary
+        # Write binary
         writed = 0
         dgLength = len(dg.file)
 

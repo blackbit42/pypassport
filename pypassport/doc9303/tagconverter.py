@@ -19,7 +19,7 @@
 # DOC9303-2 pg III-38
 
 tagToName = {
-#tagLDSToName = {
+# tagLDSToName = {
              "02": "Integer",
              "5C": "Tag list",
 
@@ -144,7 +144,7 @@ tagToName = {
 #             }
 
 # DOC9303-2 pg III-40
-#tagMRZtoName = {
+# tagMRZtoName = {
              "53": "Optional Data",
              "59": "Date of Expiry or valid Until Date",
              "02": "Document Number",
@@ -172,7 +172,7 @@ tagToName = {
 #            }
 
 # DOC9303-2 pg III-40
-#tagRFUtoName = {
+# tagRFUtoName = {
              "5F44": "Country of entry/exit",
              "5F45": "Date of entry/exit",
              "5F46": "Port of entry/exit",

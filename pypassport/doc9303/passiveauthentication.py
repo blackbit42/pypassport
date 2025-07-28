@@ -90,7 +90,7 @@ class PassiveAuthentication(Logger):
 
         CDS = self.getCertificate(sodObj)
         if CDS == None:
-            #No certificate
+            # No certificate
             raise PassiveAuthenticationException("The certificate could not be retrieved")
 
         self._data = self.getSODContent(sodObj)
@@ -231,7 +231,7 @@ class PassiveAuthentication(Logger):
         """
         self.log("Calculate the hashes of the relevant Data Groups")
         hashes = {}
-        #Find the hash function from the content dictionary
+        # Find the hash function from the content dictionary
         hashAlgo = self._getHashAlgorithm()
         for dg in dgs:
             res = hashAlgo(dg.file)

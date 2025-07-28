@@ -95,10 +95,10 @@ class DumpReader(Reader):
     def transmit(self, apdu):
         if apdu.ins == "A4":
             if apdu.data == "A0000002471001":
-                #Passport AID
+                # Passport AID
                 pass
             else:
-                #SelectFile
+                # SelectFile
                 try:
                     if self._file:
                         self._file.close()
@@ -108,7 +108,7 @@ class DumpReader(Reader):
             return ResponseAPDU("", 0x90, 0x00)
 
         elif apdu.ins == "B0":
-            #ReadBinary
+            # ReadBinary
             try:
                 offset = hexRepToHex(apdu.p1 + apdu.p2)
                 self._file.seek(offset)
@@ -117,7 +117,7 @@ class DumpReader(Reader):
             except Exception as msg:
                 return ResponseAPDU(str(msg), 0x6A, 0x88)
 
-        #Function not supported
+        # Function not supported
         return ResponseAPDU("", 0x6A, 0x81)
 
     def disconnect(self):
@@ -221,7 +221,7 @@ class Acr122(PcscReader):
               0x63: {0x00: 'The operation is failed.',
                     0x01: 'The PN532 does not response.',
                     0x27: 'Command not acceptable in context of PN532',
-                    #0x27:'The checksum of the Contactless Response is wrong.',
+                    # 0x27:'The checksum of the Contactless Response is wrong.',
                     0x7F: 'The PNNAME = "GENERIC PC/SC"532_Contactless Command is wrong.'},
               0x90: 'Success'
               }
@@ -267,8 +267,8 @@ class Acr122(PcscReader):
                 raise ReaderException(err)
 
         except KeyError:
-            #Unknown error from acr122
-            #Checked in the upper layer
+            # Unknown error from acr122
+            # Checked in the upper layer
             data, sw1, sw2 = self._removePN532Header(res[0])
             return ResponseAPDU(hexListToBin(data), sw1, sw2)
 
@@ -290,7 +290,7 @@ class ReaderManager(Singleton):
     Manage the readers.
     """
 
-    #The driver for a kind of reader. The ACR122 is a special case of the PCSC Reader
+    # The driver for a kind of reader. The ACR122 is a special case of the PCSC Reader
     readers = {
             PcscReader.__name__: PcscReader,
             Acr122.__name__: Acr122,

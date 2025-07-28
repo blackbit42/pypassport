@@ -150,7 +150,7 @@ class ActiveAuthentication(Logger):
             offset = -1
         elif sig[-1] == 0xCC:
             self.T = sig[-2]
-            #hash = The algorithm corresponding to the algo designed by T
+            # hash = The algorithm corresponding to the algo designed by T
             offset = -2
         else:
             raise ActiveAuthenticationException("Unknow hash algorithm")
@@ -158,7 +158,7 @@ class ActiveAuthentication(Logger):
         self.log("Determine hash algorithm by trailer T*")
         self.log("\tT: " + binToHexRep(self.T))
 
-        #Find out the hash size
+        # Find out the hash size
         hashSize = len(hash(b"test").digest())
 
         return (hash, hashSize, offset)

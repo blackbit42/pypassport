@@ -28,10 +28,10 @@ MRZ_nico      = "EH288866<9BEL8605113M1303269<<<<<<<<<<<<<<00"
 MRZ_caro      = "EH266828<7BEL8405243F1302206<<<<<<<<<<<<<<02"
 MRZ_n =         "7065198411GBR9703072M1206256<<<<<<<<<<<<<<02"
 
-#Remplire la 2e ligne ici
-#MRZ_ = "4479426958USA4307121M1806173228204573<883790"
-##Dir ou enregistrer les dumps
-#DIR_DUMP = "c:\\tmp"
+# Remplire la 2e ligne ici
+# MRZ_ = "4479426958USA4307121M1806173228204573<883790"
+## Dir ou enregistrer les dumps
+# DIR_DUMP = "c:\\tmp"
 
 
 def trace(name, msg):

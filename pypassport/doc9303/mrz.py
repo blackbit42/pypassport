@@ -82,7 +82,7 @@ class MRZ(object):
     def _checkDigitsTD1(self, mrz1, mrz2):
 
         if mrz1[14] == "<":
-            #Document number is bigger than 9 caracters
+            # Document number is bigger than 9 caracters
             tmp = mrz1[15:30].strip("<")
             self._docNumber = mrz1[5:14] + tmp[:-1]
             self._docNumberCD = tmp[-1]
@@ -115,7 +115,7 @@ class MRZ(object):
     def _checkDigitsTD2(self, mrz):
 
         if mrz[9] == "<":
-            #Document number is bigger than 9 caracters
+            # Document number is bigger than 9 caracters
             tmp = mrz[24:35].strip("<")
             self._docNumber = mrz[0:9] + tmp[:-1]
             cd = tmp[-1]
@@ -190,7 +190,7 @@ class MRZ(object):
         name_firstName = self._transformField(name + "<<" + firstname, 39)
         line1 = self._transformField(type + issuer + name_firstName, 44)
 
-        #num = self._transformField(num, 9)
+        # num = self._transformField(num, 9)
         nat = self._transformField(nat, 3)
         birth = self._transformField(birth, 6)
         sex = self._transformField(sex, 1)

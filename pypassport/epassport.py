@@ -137,7 +137,7 @@ class EPassport(dict, logger.Logger):
     
     
     """
-    #TODO: property pr le buffSize de la lecture et pour choisir si FS ou SFID
+    # TODO: property pr le buffSize de la lecture et pour choisir si FS ou SFID
     def __init__(self, reader, epMrz=None):
         """
         This object provide most of the functionnalities described in the EPassport document.
@@ -353,7 +353,7 @@ class EPassport(dict, logger.Logger):
 
         return self
 
-    #Dict overwriting
+    # Dict overwriting
     def __getitem__(self, tag):
         """
         @param tag: A Valid tag representing a dataGroup
@@ -385,7 +385,7 @@ class EPassport(dict, logger.Logger):
                 return self._getDG(tag)
             except iso7816.Iso7816Exception as exc:
                 if exc[1] == 105 and exc[2] == 130:
-                    #Security status not satisfied TODO support multiple levels of secure messaging
+                    # Security status not satisfied TODO support multiple levels of secure messaging
                     if self.isSecureMessaging:
                         self.log("Security status not satisfied, while secure messaging. Will reset connection")
                         self.reset()

@@ -29,7 +29,7 @@ from pypassport.derobjectidentifier import *
 from pypassport.singleton import Singleton
 from hashlib import *
 import os, sys
-#import Image
+# import Image
 
 
 class DataGroupException(Exception):
@@ -186,21 +186,21 @@ class DataGroup1(DataGroup):
 
         # DOB
         self["5F57"] = data[30:36]
-        #check digit DOB
+        # check digit DOB
         self["5F05"] = data[36:37]
-        #sex
+        # sex
         self["5F35"] = data[37:38]
-        #DOE
+        # DOE
         self["59"] = data[38:44]
-        #check DOE
+        # check DOE
         self["5F06"] = data[44:45]
-        #nationality
+        # nationality
         self["5F2C"] = data[45:48]
-        #opt data
+        # opt data
         self["53"].append(data[48:59])
-        #comp check
+        # comp check
         self["5F07"] = data[59:60]
-        #name of holder
+        # name of holder
         self["5B"] = data[60:]
 
 
@@ -209,7 +209,7 @@ class DataGroup1(DataGroup):
         self["5F03"] = data[0:2]
         # issuing state 3bytes TAG 5F28
         self["5F28"] = data[2:5]
-        #name of holder 31bytes
+        # name of holder 31bytes
         self["5B"] = data[5:36]
         # Doc no 9bytes TAG 5A
         self["5A"] = data[36:45]
@@ -238,7 +238,7 @@ class DataGroup1(DataGroup):
         # issuing state 3bytes TAG 5F28
         self["5F28"] = data[2:5]
         # Name of holder 39bytes TAG 5B
-        #self["5F5B"] = " ".join(list(filter(None,data[5:44].decode().split('<'))))
+        # self["5F5B"] = " ".join(list(filter(None,data[5:44].decode().split('<'))))
         self["5F5B"] = data[5:44]
         # Doc no 9bytes TAG 5A
         self["5A"]   = data[44:53]
@@ -281,32 +281,32 @@ class DataGroup2(DataGroup):
     def parse(self):
         self._byteNb = 0
 
-        #7f61
+        # 7f61
         tag = self._getTag()
         length = self._getLength()
 
-        #02
+        # 02
         tag = self._getTag()
         self[tag] = self._getValue()
         nbInstance = binToHex(self[tag])
 
         for x in range(nbInstance):
-            #7F60
+            # 7F60
             tag = self._getTag()
             self._getLength()
-            #A1
+            # A1
             templateID = self._getTag()
-            #Read A
+            # Read A
             v = self._getValue()
             dgf = DataGroupFile()
             dgf.body = v
             dg = DataGroup(dgf)
             dg.parse()
             data = dg
-            #Transform the binary data into usable data
+            # Transform the binary data into usable data
             for x in data:
                 data[x] = binToHexRep(data[x])
-            #5F2E or 7F2E
+            # 5F2E or 7F2E
             tag = self._getTag()
             value = self._getValue()
             headerSize, data['meta'] = ISO19794_5.analyse(binToHexRep(value))
@@ -460,13 +460,13 @@ class DataGroup16(DataGroup):
         DataGroup.__init__(self, dgFile)
 
     def parse(self):
-         #Read the number of templates
+         # Read the number of templates
          self._tagOffset = 0
          tag = self._getTag()
          nbInstance = binToHex(self._getValue())
 
          for i in range(nbInstance):
-             #Read each Template Element
+             # Read each Template Element
              tag = self._getTag()
              self[i] = self._parseTemplate(self._getValue())
 
@@ -661,7 +661,7 @@ class SFIDataGroupReader(DataGroupReader):
         DataGroupReader.__init__(self, iso7816, maxSize)
 
     def _selectFile(self, tag):
-        #Read the AID + the body size
+        # Read the AID + the body size
         SFI = (hexRepToHex(converter.toSEF(tag)) ^ 0x80) * 256
         self._offset = SFI
 

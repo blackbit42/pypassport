@@ -192,7 +192,7 @@ class BAC(Logger):
         mifd = mac(self._ksmac, pad(eifd))
         self.log("Compute MAC over eifd with TDES key Kmac as calculated in-Appendix 5.2")
         self.log("\tMifd: " + binToHexRep(mifd))
-        #Construct APDU
+        # Construct APDU
 
         cmd_data = eifd + mifd
         self.log("Construct command data for MUTUAL AUTHENTICATE")
@@ -239,8 +239,8 @@ class BAC(Logger):
         kseed = b""
         for i in range(len(kifd)):
             kseed += struct.pack("B", kifd[i] ^ response_kicc[i])
-            #kseed += hex(int(binToHexRep(kifd)[i],16) ^ int(binToHexRep(response_kicc)[i],16))[2:]
-        #return hexRepToBin(kseed)
+            # kseed += hex(int(binToHexRep(kifd)[i],16) ^ int(binToHexRep(response_kicc)[i],16))[2:]
+        # return hexRepToBin(kseed)
         return kseed
     def mrz_information(self, mrz):
         """

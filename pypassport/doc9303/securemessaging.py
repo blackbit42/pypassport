@@ -118,7 +118,7 @@ class SecureMessaging(Ciphering):
         do8e = b""
         offset = 0
 
-        #Check for a SM error
+        # Check for a SM error
         if(rapdu.sw1 != 0x90 or rapdu.sw2 != 0x00):
             return rapdu
 
@@ -127,8 +127,8 @@ class SecureMessaging(Ciphering):
         self.log("Receive response APDU of MRTD's chip")
         self.log("\tRAPDU: " + binToHexRep(rapdu))
 
-        #DO'87'
-        #Mandatory if data is returned, otherwise absent
+        # DO'87'
+        # Mandatory if data is returned, otherwise absent
         if rapdu[0] == 0x87:
             (encDataLength, o) = asn1Length(rapdu[1:])
             offset = 1 + o
@@ -141,8 +141,8 @@ class SecureMessaging(Ciphering):
             offset += encDataLength
             needCC = True
 
-        #DO'99'
-        #Mandatory, only absent if SM error occurs
+        # DO'99'
+        # Mandatory, only absent if SM error occurs
         do99 = rapdu[offset:offset+4]
         sw1 = rapdu[offset+2]
         sw2 = rapdu[offset+3]
@@ -150,18 +150,18 @@ class SecureMessaging(Ciphering):
         needCC = True
         # removed hexRepToBin("9902"):
         if do99[0:2] != b"\x99\x02":
-            #SM error, return the error code
+            # SM error, return the error code
             return ResponseAPDU([], sw1, sw2)
 
         self.log(rapdu[offset])
-        #DO'8E'
-        #Mandatory if DO'87' and/or DO'99' is present
+        # DO'8E'
+        # Mandatory if DO'87' and/or DO'99' is present
         if rapdu[offset] == 0x8E:
             ccLength = binToHex(rapdu[offset+1])
             CC = rapdu[offset+2:offset+2+ccLength]
             do8e = rapdu[offset:offset+2+ccLength]
 
-            #CheckCC
+            # CheckCC
 
             tmp = ""
             if do87:
@@ -194,7 +194,7 @@ class SecureMessaging(Ciphering):
 
         data = []
         if(do87Data):
-            #There is a payload
+            # There is a payload
             tdes= DES3.new(self._ksenc, DES.MODE_CBC, b'\0'*8)
             data = unpad(tdes.decrypt(do87Data))
             self.log("Decrypt data of DO'87 with KSenc")

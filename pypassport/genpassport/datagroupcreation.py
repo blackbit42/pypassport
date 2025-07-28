@@ -99,16 +99,16 @@ class DataGroup2Creation(Creation):
             width = 0
             height = 0
 
-        #Biometric Header Template
+        # Biometric Header Template
         bht = DataGroupFileCreation("A1")
         bht.addDataObject("87", hexRepToBin("0101"))
         bht.addDataObject("88", hexRepToBin("0008"))
 
-        #Biometric Data Block
+        # Biometric Data Block
         bdb = DataGroupFileCreation("5F2E")
         bdb.body = ISO19794_5.createHeader('JPG', width, height, len(img)) + img
 
-        #Biometric Information Group Template
+        # Biometric Information Group Template
         bigt = DataGroupFileCreation("7F61")
         bigt.addDataObject("02", hexRepToBin("01"))
         bigt.addDataObject("7F60", bht.file + bdb.file)

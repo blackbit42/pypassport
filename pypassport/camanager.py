@@ -59,7 +59,7 @@ class CAManager(object):
         data = None
         format = None
         for format in CertFormat:
-            #TODO: Deplacer le code openssl dans OpenSSL
+            # TODO: Deplacer le code openssl dans OpenSSL
             a = "openssl x509 -hash -in "+ file +" -inform "+format + " -noout"
             r = os.popen(a, "rb")
             data = r.read().strip()
