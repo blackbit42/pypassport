@@ -76,7 +76,7 @@ def toAsn1Length(data):
     if data <= binToHex(b"\x7F"):
         return hexToBin(data)
     if data >= binToHex(b"\x80") and data <= binToHex(b"\xFF"):
-        return b"\x81" + hexRepToBin( "%02x" % data)
+        return b"\x81" + hexRepToBin("%02x" % data)
     if data >= binToHex(b"\x01\x00") and data <= binToHex(b"\xFF\xFF"):
         return b"\x82" + hexRepToBin("%04x" % data)
 
@@ -147,6 +147,6 @@ class LDSSecurityObject(Sequence):
 
 
 class SubjectPublicKeyInfo(Sequence):
-    componentType = NamedTypes( NamedType('algorithm', AlgorithmIdentifier()),
+    componentType = NamedTypes(NamedType('algorithm', AlgorithmIdentifier()),
                                           NamedType('subjectPublicKey', BitString())
                                           )

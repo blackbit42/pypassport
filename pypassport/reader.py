@@ -191,23 +191,23 @@ class apduWrapper(object):
 
 class Acr122(PcscReader):
 
-    Control = {     "AntennaPowerOff":  [0x01, 0x00],
+    Control = {"AntennaPowerOff":  [0x01, 0x00],
                     "AntennaPowerOn":   [0x01, 0x01],
                     "ResetTimer":       [0x05, 0x00, 0x00, 0x00]
               }
 
-    Polling = {     "ISO14443A": [0x01, 0x00]
+    Polling = {"ISO14443A": [0x01, 0x00]
               }
 
-    Speed = {       "212 kbps": [0x01, 0x01, 0x01],
+    Speed = {"212 kbps": [0x01, 0x01, 0x01],
                     "424 kbps": [0x01, 0x02, 0x02]
             }
 
-    Pseudo_APDU = { "DirectTransmit":  [0xFF, 0x00, 0x00, 0x00],
+    Pseudo_APDU = {"DirectTransmit":  [0xFF, 0x00, 0x00, 0x00],
                     "GetResponse":     [0xFF, 0xC0, 0x00, 0x00]
                    }
 
-    PN532_Cmd = {   "InListPassiveTarget": [0xD4, 0x4A, 0x01, 0x01],
+    PN532_Cmd = {"InListPassiveTarget": [0xD4, 0x4A, 0x01, 0x01],
                     "InDataExchange":      [0xD4, 0x40, 0x01],
                     "Control":             [0xD4, 0x32],
                     "Polling":             [0xD4, 0x4A],

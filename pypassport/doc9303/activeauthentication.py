@@ -204,6 +204,6 @@ class ActiveAuthentication(Logger):
     def _asn1Parse(self):
         if self._dg15 != None:
             certType = SubjectPublicKeyInfo()
-            return decoder.decode( self._dg15.body, asn1Spec = certType)[0]
+            return decoder.decode(self._dg15.body, asn1Spec = certType)[0]
         return ""
 

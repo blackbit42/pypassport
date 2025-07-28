@@ -27,7 +27,7 @@ class EPassportCreator(Logger):
         self._forged = []
 
         for x in ep:
-            if x not in ( converter.toTAG("DG15"), converter.toTAG("Common")):
+            if x not in (converter.toTAG("DG15"), converter.toTAG("Common")):
                 self._forged.append(ep[x])
 
         # Forge a Common file without DG15
