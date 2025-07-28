@@ -111,9 +111,8 @@ class OpenSSL(Logger):
             self._toDisk("pubK", pubK)
             self._toDisk("signature", signature)
             self._execute("rsautl -inkey pubK -in signature -verify -pubin -raw -out res -keyform DER", True)
-            sig = open("res", "rb")
-            data = sig.read()
-            sig.close()
+            with open("res", "rb") as sig:
+                data = sig.read()
         finally:
             self._remFromDisk("pubK")
             self._remFromDisk("challenge")
@@ -136,9 +135,8 @@ class OpenSSL(Logger):
             self._opensslLocation = "java -jar "
             cmd = "createSod.jar --certificate ds.cer --content sodContent --keypass titus --privatekey p12 --out signed"
             res = self._execute(cmd, True)
-            f = open("signed", "rb")
-            res = f.read()
-            f.close()
+            with open("signed", "rb") as f:
+                res = f.read()
             return res
         finally:
             self._opensslLocation = bkup
@@ -303,10 +301,9 @@ class OpenSSL(Logger):
             self._remFromDisk("crl")
 
     def _toDisk(self, name, data=None):
-        f = open(name, "wb")
-        if data:
-            f.write(data)
-        f.close()
+        with open(name, "wb") as f:
+            if data:
+                f.write(data)
 
     def _remFromDisk(self, name):
         try:
@@ -319,17 +316,17 @@ class OpenSSL(Logger):
         cmd = self._opensslLocation + " " + toExecute
         self.log(cmd)
 
-        res = subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-        out = res.stdout.read()
-        err = res.stderr.read()
+        with subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE) as res:
+            out = res.stdout.read()
+            err = res.stderr.read()
 
-        if ((not out) and err and not empty):
-            raise OpenSSLException(err)
+            if ((not out) and err and not empty):
+                raise OpenSSLException(err)
 
-        if err:
-            self.log(err)
+            if err:
+                self.log(err)
 
-        return out
+            return out
 
     def _isOpenSSL(self):
         cmd = "version"

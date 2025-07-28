@@ -81,18 +81,14 @@ o = openssl.OpenSSL()
 o.register(trace)
 
 if not CREATE_CERT:
-    f = open(WORKING_DIR + "\\csca", encoding="utf-8")
-    csca = f.read()
-    f.close()
-    f = open(WORKING_DIR + "\\cscaKey", encoding="utf-8")
-    cscaKey = f.read()
-    f.close()
-    f = open(WORKING_DIR + "\\ds", encoding="utf-8")
-    ds = f.read()
-    f.close()
-    f = open(WORKING_DIR + "\\dsKey", encoding="utf-8")
-    dsKey = f.read()
-    f.close()
+    with open(WORKING_DIR + "\\csca", encoding="utf-8") as f:
+        csca = f.read()
+    with open(WORKING_DIR + "\\cscaKey", encoding="utf-8") as f:
+        cscaKey = f.read()
+    with open(WORKING_DIR + "\\ds", encoding="utf-8") as f:
+        ds = f.read()
+    with open(WORKING_DIR + "\\dsKey", encoding="utf-8") as f:
+        dsKey = f.read()
 
     ca = pki.CA(csca=csca, cscaKey=cscaKey)
     ca.register(trace)

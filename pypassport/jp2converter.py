@@ -35,9 +35,8 @@ def ConvertJp2(input_):
     @return: A binary string representing the picture in bmp, or the original input if the input is not a jp2 stream.
     """
 
-    jp2 = open("tmp.jp2", "wb")
-    jp2.write(input_)
-    jp2.close()
+    with open("tmp.jp2", "wb") as jp2:
+        jp2.write(input_)
 
     local = ""
     if (sys.platform != "win32") and os.path.isfile('geojasper'):
@@ -46,9 +45,8 @@ def ConvertJp2(input_):
     a.close()
 
     try:
-        f = open("tmp.jpg", "rb")
-        input_ = f.read()
-        f.close()
+        with open("tmp.jpg", "rb") as f:
+            input_ = f.read()
     except IOError:
         pass
     finally:

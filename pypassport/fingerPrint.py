@@ -74,9 +74,8 @@ class FingerPrint():
         if certif:
             res["DSCertificate"] = self._doc.getCertificate()
 
-            f = open("tmp.cer", "w", encoding="utf-8")
-            f.write(certif)
-            f.close()
+            with open("tmp.cer", "w", encoding="utf-8") as f:
+                f.write(certif)
 
             f = os.popen("openssl x509 -in tmp.cer -noout -serial")
             res["certSerialNumber"] = f.read().strip()

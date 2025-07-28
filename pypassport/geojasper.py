@@ -43,14 +43,14 @@ class GeoJasper(Logger):
         cmd = self._geojasperLocation + " " + toExecute
         self.log(cmd)
 
-        res = subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-        out = res.stdout.read()
-        err = res.stderr.read()
+        with subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE) as res:
+            out = res.stdout.read()
+            err = res.stderr.read()
 
-        if ((not out) and err and not empty):
-            raise GeoJasperException(err)
+            if ((not out) and err and not empty):
+                raise GeoJasperException(err)
 
-        return out
+            return out
 
     def _isGeoJasperSSL(self):
         cmd = "--version"
@@ -63,8 +63,7 @@ class GeoJasper(Logger):
         self._execute("-f "+inFile+" -F "+outFile)
 
     def toDisk(self, data, file="tmp.jp2"):
-        jp2 = open(file, "wb")
-        jp2.write(data)
-        jp2.close()
+        with open(file, "wb") as jp2:
+            jp2.write(data)
 
     location = property(_getGeojasperLocation, _setGeojasperLocation, None, None)

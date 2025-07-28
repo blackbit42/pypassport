@@ -97,9 +97,8 @@ class DataGroup2Creation(Creation):
 
     def create(self, imgPath):
 
-        f = open(imgPath, 'rb')
-        img = f.read()
-        f.close()
+        with open(imgPath, 'rb') as f:
+            img = f.read()
         try:
             width, height = Image.open(imgPath).size
         except BaseException:
@@ -130,10 +129,9 @@ class DataGroup7Creation(Creation):
         self._dgc = DataGroupFileCreation(converter.toTAG("DG7"))
 
     def create(self, signPath):
-        f = open(signPath, 'rb')
-        self._dgc.addDataObject("02", hexRepToBin("01"))
-        self._dgc.addDataObject("5F43", f.read())
-        f.close()
+        with open(signPath, 'rb') as f:
+            self._dgc.addDataObject("02", hexRepToBin("01"))
+            self._dgc.addDataObject("5F43", f.read())
 
         return DataGroup7(self._dgc).parse()
 

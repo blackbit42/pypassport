@@ -711,9 +711,8 @@ class DataGroupDump():
         @param format_: Specify the file name format. (FID, TAG, SEF,...)
         @type format_: An element out of the converter.types enumeration.
         """
-        f = open(self._path + converter.to(format_, dg.tag) + self._ext, "wb")
-        f.write(dg.file)
-        f.close()
+        with open(self._path + converter.to(format_, dg.tag) + self._ext, "wb") as f:
+            f.write(dg.file)
 
     def dumpData(self, data, name):
         """
@@ -727,6 +726,5 @@ class DataGroupDump():
         """
         if data is None:
             return
-        f = open(self._path + name, "wb")
-        f.write(data)
-        f.close()
+        with open(self._path + name, "wb") as f:
+            f.write(data)
