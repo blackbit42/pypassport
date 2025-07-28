@@ -99,12 +99,12 @@ class SecureMessaging(Ciphering):
         self.log("\tProtectedAPDU: " + binToHexRep(protectedAPDU))
 
         return CommandAPDU(binToHexRep(protectedAPDU[0]),
-                    binToHexRep(protectedAPDU[1]),
-                    binToHexRep(protectedAPDU[2]),
-                    binToHexRep(protectedAPDU[3]),
-                    binToHexRep(protectedAPDU[4]),
-                    binToHexRep(protectedAPDU[5:-1]),
-                    binToHexRep(protectedAPDU[-1]))
+                           binToHexRep(protectedAPDU[1]),
+                           binToHexRep(protectedAPDU[2]),
+                           binToHexRep(protectedAPDU[3]),
+                           binToHexRep(protectedAPDU[4]),
+                           binToHexRep(protectedAPDU[5:-1]),
+                           binToHexRep(protectedAPDU[-1]))
 
 
     def unprotect(self, rapdu):

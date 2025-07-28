@@ -34,9 +34,9 @@ _Table = {
          types.FID: ["011E", "0101", "0102", "0103", "0104", "0105", "0106", "0107", "0108", "0109", "010A", "010B", "010C", "010D", "010E", "010F", "0110", "011D", "011C"],
          types.TAG: ["60", "61", "75", "63", "76", "65", "66", "67", "68", "69", "6A", "6B", "6C", "6D", "6E", "6F", "70", "77", "42"],
          types.CLASS: ["Com", "DataGroup1", "DataGroup2", "DataGroup3", "DataGroup4", "DataGroup5", \
-                "DataGroup6", "DataGroup7",  "DataGroup8", "DataGroup9", "DataGroup10", \
-                "DataGroup11", "DataGroup12", "DataGroup13", "DataGroup14", "DataGroup15", \
-                "DataGroup16", "SOD", "CardAccess"],
+                       "DataGroup6", "DataGroup7",  "DataGroup8", "DataGroup9", "DataGroup10", \
+                       "DataGroup11", "DataGroup12", "DataGroup13", "DataGroup14", "DataGroup15", \
+                       "DataGroup16", "SOD", "CardAccess"],
          types.OTHER: ["EF", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "SOD", "CARDACCESS"],
          types.ORDER: ["00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18"],
          types.GRT: ["EF_COM", "Datagroup1", "Datagroup2", "Datagroup3", "Datagroup4", "Datagroup5", "Datagroup6", "Datagroup7", "Datagroup8", "Datagroup9", "Datagroup10", "Datagroup11", "Datagroup12", "Datagroup13", "Datagroup14", "Datagroup15", "Datagroup16", "EF_SOD", "EF_CARDACCESS"]
