@@ -316,6 +316,6 @@ class ISO19794_5:
         deviceType = "0000"
         quality = "0000"
 
-        return hexRepToBin(header+version+recordLength+numberOfImage+ImageBlockLength+numberOfFeaturePoint+gender\
-                           + eyeColour+hairColour+featureMask+expression+poseAngle+poseAngleUncertainty\
+        return hexRepToBin(header+version+recordLength+numberOfImage+ImageBlockLength+numberOfFeaturePoint+gender
+                           + eyeColour+hairColour+featureMask+expression+poseAngle+poseAngleUncertainty
                            + imageFaceType+imageDataType+width+height+colourSpace+sourceType+deviceType+quality)
