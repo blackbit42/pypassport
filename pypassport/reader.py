@@ -21,9 +21,8 @@ import sys
 import time
 
 from .apdu import CommandAPDU, ResponseAPDU
-from smartcard.util import *
 from pypassport.apdu import CommandAPDU, ResponseAPDU
-from pypassport.hexfunctions import *
+from pypassport.hexfunctions import hexRepToHex, hexListToBin
 from pypassport.singleton import Singleton
 from pypassport.logger import Logger
 from pypassport.doc9303 import converter

@@ -44,8 +44,7 @@ class EPassport(dict, logger.Logger):
 
 
     >>> import os
-    >>> from pypassport.epassport import *
-    >>> from pypassport.iso7816 import *
+    >>> from pypassport.epassport import EPassport
     >>> sep = os.path.sep
     >>> sim = "data" + sep + "dump" + sep + "test"
     >>> p = EPassport(None, sim)

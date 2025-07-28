@@ -16,14 +16,13 @@
 # License along with pyPassport.
 # If not, see <http://www.gnu.org/licenses/>.
 
+from pypassport.asn1 import asn1Length
+from pypassport.doc9303 import converter
 from pypassport.tlvparser import TLVParser, TLVParserException
-from pypassport.asn1 import *
-from pypassport.hexfunctions import *
+from pypassport.hexfunctions import binToHexRep, binToHex, hexRepToHex
 from pypassport.logger import Logger
 from pypassport.iso19794 import ISO19794_5
-from pypassport.derobjectidentifier import *
 from pypassport.singleton import Singleton
-from hashlib import *
 import os
 # import Image
 
@@ -108,7 +107,7 @@ class DataGroup(TLVParser, DataGroupFile):
         Convert concatenated bin tags into a list of string tag.
 
         >>> from pypassport.doc9303.datagroup import DataGroup, DataGroupFile
-        >>> from pypassport.hexfunctions import *
+        >>> from pypassport.hexfunctions import hexRepToBin
         >>> header = None
         >>> body = hexRepToBin("5C0A5F0E5F115F425F125F13")
         >>> dgf = DataGroupFile()

@@ -1,9 +1,14 @@
 from pypassport.doc9303 import converter, mrz
+from pypassport.hexfunctions import binToHexRep, hexRepToBin
+from pypassport.iso19794 import ISO19794_5
 from pypassport.openssl import OpenSSL
 from pypassport.logger import Logger
-from pypassport.doc9303.datagroup import *
-from pypassport.derobjectidentifier import *
-from pypassport.asn1 import *
+from pypassport.doc9303.datagroup import DataGroupFile, Com, DataGroup1, DataGroup2, DataGroup7, DataGroup11, DataGroup12, SOD
+from pypassport.derobjectidentifier import OIDrevert
+from pypassport.asn1 import toAsn1Length, LDSSecurityObject, AlgorithmIdentifier, ObjectIdentifier, DataGroupHashValues, DataGroupHash
+
+from pyasn1.type.univ import Null, Integer, OctetString
+from pyasn1.codec.der import encoder
 
 
 class DataGroupFileCreation(DataGroupFile):

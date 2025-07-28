@@ -16,11 +16,12 @@
 # License along with pyPassport.
 # If not, see <http://www.gnu.org/licenses/>.
 
-from pypassport.hexfunctions import *
-from pyasn1.type.univ import *
-from pyasn1.type.namedtype import *
-from pyasn1.type.namedval import *
-from pyasn1.type.constraint import *
+from pypassport.hexfunctions import binToHex, binToHexRep, hexToBin, hexRepToBin
+
+from pyasn1.type.constraint import ValueSizeConstraint
+from pyasn1.type.univ import Sequence, ObjectIdentifier, Null, Integer, OctetString, SequenceOf, BitString
+from pyasn1.type.namedtype import NamedTypes, NamedType, OptionalNamedType
+from pyasn1.type.namedval import NamedValues
 
 
 class asn1Exception(Exception):
@@ -32,7 +33,7 @@ def asn1Length(data):
     """
     Take an asn.1 length, and return a couple with the decoded length in hexa and the total length of the encoding (1,2 or 3 bytes)
 
-    >>> from pyPassport.asn1.asn1 import *
+    >>> from pyPassport.asn1.asn1 import asn1Length
     >>> asn1Length("\x22")
     (34, 1)
     >>> asn1Length("\x81\xaa")

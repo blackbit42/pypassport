@@ -16,11 +16,10 @@
 # License along with pyPassport.
 # If not, see <http://www.gnu.org/licenses/>.
 
-from pypassport.hexfunctions import *
+from pypassport.hexfunctions import binToHexRep
 from pypassport.doc9303 import converter
 from pypassport.doc9303 import datagroup
-from hashlib import *
-from pypassport.derobjectidentifier import *
+from pypassport.derobjectidentifier import OID, OIDException
 from pypassport.logger import Logger
 from pypassport.camanager import CAManager
 from pypassport.openssl import OpenSSL

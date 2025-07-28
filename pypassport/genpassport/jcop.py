@@ -1,8 +1,8 @@
-from pypassport.externalCall import *
+from pypassport.externalCall import ExternalCall
 from pypassport import iso7816
 from pypassport.doc9303 import converter, mrz, bac
 from pypassport.apdu import CommandAPDU
-from pypassport.hexfunctions import *
+from pypassport.hexfunctions import binToHexRep
 from pypassport.logger import Logger
 
 

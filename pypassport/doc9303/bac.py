@@ -25,8 +25,7 @@ from hashlib import sha1
 
 from pypassport.doc9303.mrz import MRZ
 from pypassport.logger import Logger
-from pypassport.hexfunctions import *
-from pypassport.iso9797 import *
+from pypassport.iso9797 import mac, pad
 from pypassport import apdu
 from pypassport.hexfunctions import hexToHexRep, binToHexRep, rawbytes
 from pypassport.iso7816 import Iso7816

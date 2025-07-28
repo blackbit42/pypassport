@@ -18,8 +18,8 @@
 
 import os
 import time
-from pypassport.hexfunctions import *
-from pypassport.doc9303.converter import *
+from pypassport.hexfunctions import binToHexRep
+from pypassport.doc9303.converter import toDG
 
 
 class FingerPrint(object):

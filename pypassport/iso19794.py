@@ -20,7 +20,7 @@
 # Only implement -5 part about biometric pictures
 
 from operator import and_
-from pypassport.hexfunctions import *
+from pypassport.hexfunctions import hexRepToBin, intToHexRep
 
 FAC = '46414300'
 

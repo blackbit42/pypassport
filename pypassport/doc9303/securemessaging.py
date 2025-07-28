@@ -19,8 +19,8 @@
 from pypassport.apdu import CommandAPDU, ResponseAPDU
 from pypassport.iso9797 import pad, unpad, mac
 from Crypto.Cipher import DES3, DES
-from pypassport.hexfunctions import *
-from pypassport.asn1 import *
+from pypassport.hexfunctions import binToHexRep, intToBin, hexToBin, binToHex, hexRepToBin, hexListToBin
+from pypassport.asn1 import asn1Length, toAsn1Length
 from pypassport.logger import Logger
 
 

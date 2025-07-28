@@ -17,12 +17,12 @@
 # If not, see <http://www.gnu.org/licenses/>.
 
 import os
-from hashlib import *
+from hashlib import sha1
 from pyasn1.codec.der import decoder
-from pypassport.asn1 import *
+from pypassport.asn1 import SubjectPublicKeyInfo
 
-from pypassport.hexfunctions import *
-from pypassport.derobjectidentifier import *
+from pypassport.hexfunctions import binToHexRep
+from pypassport.derobjectidentifier import OID
 from pypassport.logger import Logger
 from pypassport.openssl import OpenSSL
 from pypassport.doc9303 import datagroup

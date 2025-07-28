@@ -16,7 +16,7 @@
 # License along with pyPassport.
 # If not, see <http://www.gnu.org/licenses/>.
 
-from pypassport.hexfunctions import *
+from pypassport.hexfunctions import binToHexRep, hexListToBin, hexRepToBin, hexRepToList, hexToHexRep
 
 
 class CommandAPDU(object):
