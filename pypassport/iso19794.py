@@ -29,7 +29,7 @@ ISO19794_5_GENDER = {'00': 'Unspecified',
                      '01': 'Male',
                      '02': 'Female',
                      '03': 'Unknown'
-                   }
+                     }
 
 ISO19794_5_EYECOLOUR = {'00': 'Unspecified',
                         '01': 'Black',
@@ -40,7 +40,7 @@ ISO19794_5_EYECOLOUR = {'00': 'Unspecified',
                         '06': 'Multi',
                         '07': 'Pink',
                         '08': 'Other'
-                      }
+                        }
 
 ISO19794_5_HAIRCOLOUR = {'00': 'Unspecified',
                          '01': 'Bald',
@@ -53,7 +53,7 @@ ISO19794_5_HAIRCOLOUR = {'00': 'Unspecified',
                          '08': 'Green',
                          '09': 'Blue',
                          'ff': 'Other'
-                       }
+                         }
 
 ISO19794_5_FEATURE = {0x01: 'Specified',
                       0x02: 'Glasses',
@@ -66,7 +66,7 @@ ISO19794_5_FEATURE = {0x01: 'Specified',
                       0x100: 'Right Eyepatch',
                       0x200: 'Dark Glasses',
                       0x400: 'Distorted'
-                    }
+                      }
 
 ISO19794_5_EXPRESSION = {'0000': 'Unspecified',
                          '0001': 'Neutral',
@@ -76,29 +76,29 @@ ISO19794_5_EXPRESSION = {'0000': 'Unspecified',
                          '0005': 'Looking Away',
                          '0006': 'Squinting',
                          '0007': 'Frowning'
-                       }
+                         }
 
 ISO19794_5_IMG_TYPE = {'00': 'Unspecified (Front)',
                        '01': 'Basic',
                        '02': 'Full Front',
                        '03': 'Token Front',
                        '04': 'Other'
-                      }
+                       }
 
 ISO19794_5_IMG_DTYPE = {'00': 'JPEG',
                         '01': 'JPEG 2000'
-                      }
+                        }
 
 ISO19794_5_IMG_FTYPE = {'00': 'JPG',
                         '01': 'JP2'
-                      }
+                        }
 
 ISO19794_5_IMG_CSPACE = {'00': 'Unspecified',
                          '01': 'RGB24',
                          '02': 'YUV422',
                          '03': 'GREY8BIT',
                          '04': 'Other'
-                       }
+                         }
 
 ISO19794_5_IMG_SOURCE = {'00': 'Unspecified',
                          '01': 'Static Unspecified',
@@ -108,7 +108,7 @@ ISO19794_5_IMG_SOURCE = {'00': 'Unspecified',
                          '05': 'Video Analogue',
                          '06': 'Video Digital',
                          '07': 'Unknown'
-                       }
+                         }
 
 ISO19794_5_IMG_QUALITY = {'0000': 'Unspecified'}
 

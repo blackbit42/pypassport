@@ -194,14 +194,14 @@ class Acr122(PcscReader):
     Control = {"AntennaPowerOff":  [0x01, 0x00],
                     "AntennaPowerOn":   [0x01, 0x01],
                     "ResetTimer":       [0x05, 0x00, 0x00, 0x00]
-              }
+               }
 
     Polling = {"ISO14443A": [0x01, 0x00]
-              }
+               }
 
     Speed = {"212 kbps": [0x01, 0x01, 0x01],
                     "424 kbps": [0x01, 0x02, 0x02]
-            }
+             }
 
     Pseudo_APDU = {"DirectTransmit":  [0xFF, 0x00, 0x00, 0x00],
                     "GetResponse":     [0xFF, 0xC0, 0x00, 0x00]
@@ -214,7 +214,7 @@ class Acr122(PcscReader):
                     # Change to Baud Rate 424 kbps
                     "Speed":               [0xD4, 0x4E]
 
-                }
+                 }
 
     Errors = {0x61: 'SW2 Bytes left to read',
               0x63: {0x00: 'The operation is failed.',

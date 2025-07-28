@@ -149,4 +149,4 @@ class LDSSecurityObject(Sequence):
 class SubjectPublicKeyInfo(Sequence):
     componentType = NamedTypes(NamedType('algorithm', AlgorithmIdentifier()),
                                           NamedType('subjectPublicKey', BitString())
-                                          )
+                               )

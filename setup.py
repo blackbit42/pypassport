@@ -33,7 +33,7 @@ setup(
 
     package_data={'': ['*.py'],
                     'pypassport': ['README', 'LICENSE'],
-                    },
+                  },
 
     # metadata for upload to PyPI
     license="LGPL",
