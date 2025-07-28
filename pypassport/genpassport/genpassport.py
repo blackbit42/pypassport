@@ -42,6 +42,7 @@ def trace(name, str):
     if TRACE:
         print(name + "> " + str)
 
+
 # Set the Country Signing CA information
 CSCA = pki.DistinguishedName(
     C="BE",

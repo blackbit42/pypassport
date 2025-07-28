@@ -20,6 +20,7 @@ class OIDException(Exception):
     def __init__(self, *params):
         Exception.__init__(self, *params)
 
+
 # Use a value that can be evaluated by a Crypto lib.
 # Here SHA and SHA256 are two classes from Crypto.Hash import *
 # So the passiveAuth class can just do an eval( OID['oid'] ) to get the algo class

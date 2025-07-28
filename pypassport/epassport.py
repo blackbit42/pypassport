@@ -539,6 +539,7 @@ class EPassport(dict, logger.Logger):
     isSecureMessaging = property(_isSecureMessaging)
     openSsl = property(_getOpenSslDirectory, _setOpenSslDirectory, None, None)
 
+
 if __name__ == "__main__":
     import doctest
     doctest.testmod()

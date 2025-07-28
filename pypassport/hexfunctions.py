@@ -136,6 +136,7 @@ def intToHexRep(data, size=2):
 def intToHexList(data):
     return binToHexList(intToBin(data))
 
+
 import struct
 
 

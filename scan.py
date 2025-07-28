@@ -43,6 +43,7 @@ def encode_binary(obj):
     else:
         return obj
 
+
 #                                   XXXXXXXXX        YYMMDD           YYMMDD
 MRZ = calculateMRZ(passportNumber="123456789", DOB="840104", expiry="220229")
 

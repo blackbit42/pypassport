@@ -38,6 +38,7 @@ def trace(name, msg):
     if name == "EPassport":
         print(name + "> " + msg)
 
+
 sep = os.path.sep
 Sim = False
 r = None

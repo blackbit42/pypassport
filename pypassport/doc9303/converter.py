@@ -27,6 +27,7 @@ class types(object):
     ORDER = "ORDER"
     GRT = "GRT"
 
+
 _Table = {
          types.DG: ["Common", "DG1", "DG2", "DG3", "DG4", "DG5", "DG6", "DG7", "DG8", "DG9", "DG10", "DG11", "DG12", "DG13", "DG14", "DG15", "DG16", "SecurityData", "CardAccess"],
          types.EF: ["EF.COM", "EF.DG1", "EF.DG2", "EF.DG3", "EF.DG4", "EF.DG5", "EF.DG6", "EF.DG7", "EF.DG8", "EF.DG9", "EF.DG10", "EF.DG11", "EF.DG12", "EF.DG13", "EF.DG14", "EF.DG15", "EF.DG16", "EF.SOD", "EF.CARDACCESS"],
