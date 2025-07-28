@@ -16,6 +16,8 @@
 # License along with pyPassport.
 # If not, see <http://www.gnu.org/licenses/>.
 
+import os
+
 from pypassport.asn1 import asn1Length
 from pypassport.doc9303 import converter
 from pypassport.tlvparser import TLVParser, TLVParserException
@@ -23,8 +25,6 @@ from pypassport.hexfunctions import binToHexRep, binToHex, hexRepToHex
 from pypassport.logger import Logger
 from pypassport.iso19794 import ISO19794_5
 from pypassport.singleton import Singleton
-import os
-# import Image
 
 
 class DataGroupException(Exception):

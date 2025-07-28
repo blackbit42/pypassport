@@ -20,7 +20,6 @@ import os
 import sys
 import time
 
-from .apdu import CommandAPDU, ResponseAPDU
 from pypassport.apdu import CommandAPDU, ResponseAPDU
 from pypassport.hexfunctions import hexRepToHex, hexListToBin
 from pypassport.singleton import Singleton

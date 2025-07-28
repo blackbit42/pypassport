@@ -18,9 +18,9 @@
 
 import os
 from hashlib import sha1
+
 from pyasn1.codec.der import decoder
 from pypassport.asn1 import SubjectPublicKeyInfo
-
 from pypassport.hexfunctions import binToHexRep
 from pypassport.derobjectidentifier import OID
 from pypassport.logger import Logger

@@ -18,10 +18,10 @@
 
 import os
 import struct
+from hashlib import sha1
 
 from Crypto.Cipher import DES3
 from Crypto.Cipher import DES
-from hashlib import sha1
 
 from pypassport.doc9303.mrz import MRZ
 from pypassport.logger import Logger

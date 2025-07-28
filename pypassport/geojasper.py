@@ -17,6 +17,7 @@
 # If not, see <http://www.gnu.org/licenses/>.
 
 import subprocess
+
 from pypassport.logger import Logger
 
 

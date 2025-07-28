@@ -17,13 +17,14 @@
 # If not, see <http://www.gnu.org/licenses/>.
 
 
+import os
+import traceback
+
 from pypassport.doc9303 import datagroup, passiveauthentication, activeauthentication, bac, converter, securemessaging, mrz
 from pypassport import camanager
 from pypassport import openssl
 from pypassport import iso7816
 from pypassport import logger
-import os
-import traceback
 
 
 class EPassportException(Exception):

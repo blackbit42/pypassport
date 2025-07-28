@@ -16,9 +16,10 @@
 # License along with pyPassport.
 # If not, see <http://www.gnu.org/licenses/>.
 
-import time
-from pypassport import epassport, reader
 import os
+import time
+
+from pypassport import epassport, reader
 
 MRZ_bob = "EH123456<0BEL8510035M1508075<<<<<<<<<<<<<<02"
 MRZ_oli = "EH276509<0BEL8406158M1302217<<<<<<<<<<<<<<04"

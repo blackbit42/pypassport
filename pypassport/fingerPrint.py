@@ -18,6 +18,7 @@
 
 import os
 import time
+
 from pypassport.hexfunctions import binToHexRep
 from pypassport.doc9303.converter import toDG
 

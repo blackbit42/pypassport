@@ -16,8 +16,8 @@
 # License along with pyPassport.
 # If not, see <http://www.gnu.org/licenses/>.
 
-from pypassport.hexfunctions import binToHexRep, hexToHexRep
 from pypassport import apdu
+from pypassport.hexfunctions import binToHexRep, hexToHexRep
 from pypassport.logger import Logger
 
 

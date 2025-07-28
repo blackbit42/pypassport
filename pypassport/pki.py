@@ -1,6 +1,8 @@
-from pypassport.openssl import OpenSSL, OpenSSLException
-from .logger import Logger
+import shutil
 import os
+
+from pypassport.logger import Logger
+from pypassport.openssl import OpenSSL, OpenSSLException
 
 
 class DistinguishedName(object):
