@@ -165,10 +165,10 @@ class MRZ(object):
         cpt = 0
         res = 0
         for x in value:
-            tmp = self._weight[str(x)] * self._weighting[cpt %3]
+            tmp = self._weight[str(x)] * self._weighting[cpt % 3]
             res += tmp
             cpt += 1
-        return str(res %10)
+        return str(res % 10)
 
     def buildMRZ(self, type, issuer, name, firstname, nat, sex, num, birth, exp):
         """ Build MRZ using the informations given by dates and passport number

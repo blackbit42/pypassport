@@ -14,9 +14,9 @@ def calculateChecksum(value):
     counter = 0
     result = 0
     for x in value:
-        result += characterWeight[str(x)] * weighting[counter %3]
+        result += characterWeight[str(x)] * weighting[counter % 3]
         counter += 1
-    return str(result %10)
+    return str(result % 10)
 
 
 def calculateMRZ(passportNumber, DOB, expiry):
