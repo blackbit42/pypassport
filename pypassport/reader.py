@@ -139,14 +139,14 @@ class PcscReader(Reader):
             self.sc = smartcard
         except:
             if sys.platform == 'darwin':
-                msg =  "The smart card service/daemon is not started.\n"
+                msg = "The smart card service/daemon is not started.\n"
                 msg += "Please insert a reader and restart the application."
             elif sys.platform == 'win32':
-                msg =  "The smart card service is not started.\n"
+                msg = "The smart card service is not started.\n"
                 msg += "Please execute the following command in your os shell: \n"
                 msg += "Windows: net start scardsvr"
             else:
-                msg =  "The smart card daemon is not started.\n"
+                msg = "The smart card daemon is not started.\n"
                 msg += "Please execute the following command in your os shell: \n"
                 msg += "Linux: sudo /etc/init.d/pcscd start"
             raise ReaderException(msg)
@@ -247,7 +247,7 @@ class Acr122(PcscReader):
         try:
             # Error Handling
             if res[1] == 0x61:
-                wrappedApdu =  Acr122.Pseudo_APDU["GetResponse"] + [res[2]]
+                wrappedApdu = Acr122.Pseudo_APDU["GetResponse"] + [res[2]]
                 res = self._pcsc_connection.transmit(wrappedApdu)
                 # Error Handling
                 msg = Acr122.Errors[res[1]]

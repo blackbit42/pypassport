@@ -28,7 +28,7 @@ def calculateMRZ(passportNumber, DOB, expiry):
     expiryCheck = calculateChecksum(expiry)
     mrzNumber = passportNumber + passportCheck + DOB + DOBCheck + expiry + expiryCheck
     mrzCheck = calculateChecksum(mrzNumber).zfill(2)
-    mrz =  passportNumber + passportCheck + "XXX" + DOB + DOBCheck + "X" + expiry + expiryCheck + "<<<<<<<<<<<<<<" + mrzCheck
+    mrz = passportNumber + passportCheck + "XXX" + DOB + DOBCheck + "X" + expiry + expiryCheck + "<<<<<<<<<<<<<<" + mrzCheck
     return mrz
 
 

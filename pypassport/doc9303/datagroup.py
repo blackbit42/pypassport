@@ -584,7 +584,7 @@ class DataGroupReader(Logger):
         self.offset += 1
         self.log("Body Size: " + str(self._bodySize) + " Offset " + str(self.offset))
         if (converter.toTAG(dg) != binToHexRep(header[0])):
-            raise Exception("Wrong AID: " + binToHexRep(header[0]) + " instead of " +  converter.toTAG(dg))
+            raise Exception("Wrong AID: " + binToHexRep(header[0]) + " instead of " + converter.toTAG(dg))
 
         return header[:self.offset]
 

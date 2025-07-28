@@ -336,6 +336,6 @@ class BAC(Logger):
             y = f & 0xfe
             parity = 0
             for z in range(8):
-                parity += y >>  z & 1
+                parity += y >> z & 1
             adjusted += (y + (not parity % 2)).to_bytes(1, 'big')
         return adjusted

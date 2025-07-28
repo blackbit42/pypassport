@@ -271,7 +271,7 @@ class PassiveAuthentication(Logger):
             raise OIDException("No such algorithm for OID " + str(oid))
 
     def __str__(self):
-        res =  "version: " + self._content["version"] + "\n"
+        res = "version: " + self._content["version"] + "\n"
         res += "hashAlgorithm: " + self._content["hashAlgorithm"] + "\n"
         res += "dataGroupHashValues: " + "\n"
 
