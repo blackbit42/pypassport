@@ -1,4 +1,4 @@
-## Copyright 2009 Jean-Francois Houzard, Olivier Roger
+# Copyright 2009 Jean-Francois Houzard, Olivier Roger
 #
 # This file is part of pypassport.
 #

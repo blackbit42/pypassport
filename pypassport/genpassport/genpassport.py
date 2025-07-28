@@ -106,7 +106,7 @@ else:
     dgd.dumpData(csca, "csca")
     dgd.dumpData(cscaKey, "cscaKey")
     dgd.dumpData(o.x509ToDER(csca), "csca.cer")
-    ## Generate the DS Certificate and its private key in PEM
+    # Generate the DS Certificate and its private key in PEM
     (ds, dsKey) = ca.createDS(DS_KEY_SIZE, DS_VALIDITY_PERIOD, DS)
     dgd.dumpData(ds, "ds")
     dgd.dumpData(dsKey, "dsKey")
