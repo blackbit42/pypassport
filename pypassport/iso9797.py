@@ -46,8 +46,8 @@ def mac(key, msg):
     # October 01,2004
     # p46 of 57
 
-#        print 'MAC'
-#        print '---'
+    #        print 'MAC'
+    #        print '---'
 
     size = int(len(msg) / 8)
     y = b'\0'*8
@@ -55,7 +55,7 @@ def mac(key, msg):
 #        print 'IV: ' + binToHexRep(y)
 
     for i in range(size):
-#            print('x' + str(i) + ': ' + binToHexRep(msg[i*8:i*8+8]))
+        #            print('x' + str(i) + ': ' + binToHexRep(msg[i*8:i*8+8]))
         y = tdesa.encrypt(msg[i*8:i*8+8])
 #            print('y' + str(i) + ': ' + binToHexRep(y))
 
