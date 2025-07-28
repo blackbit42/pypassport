@@ -111,7 +111,7 @@ class CA(Logger):
 
         try:
             os.mkdir(self._loc)
-        except:
+        except BaseException:
             pass
 
         self._openssl = OpenSSL('"' + self._configFile + '"')
@@ -223,7 +223,7 @@ class CA(Logger):
     def resetConfig(self):
         try:
             shutil.rmtree(self._loc)
-        except:
+        except BaseException:
             pass
         os.makedirs(os.path.join(self._loc, 'newcerts'))
         self._openssl._toDisk(os.path.join(self._loc, 'index.txt'))

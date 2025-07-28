@@ -310,7 +310,7 @@ class OpenSSL(Logger):
     def _remFromDisk(self, name):
         try:
             os.remove(name)
-        except:
+        except BaseException:
             pass
 
     def _execute(self, toExecute, empty=False):

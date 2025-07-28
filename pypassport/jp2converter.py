@@ -54,7 +54,7 @@ def ConvertJp2(input):
         try:
             os.remove("tmp.jp2")
             os.remove("tmp.jpg")
-        except:
+        except BaseException:
             pass
 
     return input

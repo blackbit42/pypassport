@@ -475,7 +475,7 @@ class EPassport(dict, logger.Logger):
                     for tag in ["5F2E", "7F2E"]:
                         if tag in dg2[A]:
                             tmp.append(dg2[A][tag])
-        except:
+        except BaseException:
             pass
 
         return tmp

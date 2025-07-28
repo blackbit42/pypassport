@@ -137,7 +137,7 @@ class PcscReader(Reader):
         try:
             import smartcard
             self.sc = smartcard
-        except:
+        except BaseException:
             if sys.platform == 'darwin':
                 msg = "The smart card service/daemon is not started.\n"
                 msg += "Please insert a reader and restart the application."

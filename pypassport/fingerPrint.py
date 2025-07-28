@@ -108,7 +108,7 @@ class FingerPrint(object):
 
             try:
                 self._doc["DG7"]
-            except:
+            except BaseException:
                 res["generation"] = 4
 
         res["DGs"] = self.calculateDGSize()

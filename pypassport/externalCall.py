@@ -17,7 +17,7 @@ class ExternalCall(object):
     def remFromDisk(self, name):
         try:
             os.remove(name)
-        except:
+        except BaseException:
             pass
 
     def execute(self, cmd):

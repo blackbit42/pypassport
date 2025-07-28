@@ -95,7 +95,7 @@ class DataGroup2Creation(Creation):
         try:
             import Image
             width, height = Image.open(imgPath).size
-        except:
+        except BaseException:
             width = 0
             height = 0
 
