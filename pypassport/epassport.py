@@ -394,8 +394,7 @@ class EPassport(dict, logger.Logger):
                     self.log("Enabling Secure Messaging")
                     self.doBasicAccessControl()
                     return self._getDG(tag)
-                else:
-                    raise datagroup.DataGroupException(str(exc))
+                raise datagroup.DataGroupException(str(exc))
             except KeyError:
                 raise datagroup.DataGroupException("The data group '" + str(tag) + "' does not exist")
             except Exception as msg:

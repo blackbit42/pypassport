@@ -148,8 +148,7 @@ class Iso7816(Logger):
 
             if msg == "Success":
                 return res.res
-            else:
-                raise Iso7816Exception(msg, res.sw1, res.sw2)
+            raise Iso7816Exception(msg, res.sw1, res.sw2)
         except KeyError:
             raise Iso7816Exception("Unknown error", res.sw1, res.sw2)
 

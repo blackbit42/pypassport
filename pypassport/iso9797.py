@@ -34,9 +34,8 @@ def unpad(tounpad):
     if tounpad[i] == 0x80:
         return tounpad[0:i]
 
-    else:
-        # Pas de padding
-        return tounpad
+    # Pas de padding
+    return tounpad
 
 
 def mac(key, msg):

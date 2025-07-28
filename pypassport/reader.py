@@ -107,7 +107,7 @@ class DumpReader(Reader):
                     return ResponseAPDU(str(msg), 0x6A, 0x82)
             return ResponseAPDU("", 0x90, 0x00)
 
-        elif apdu.ins == "B0":
+        if apdu.ins == "B0":
             # ReadBinary
             try:
                 offset = hexRepToHex(apdu.p1 + apdu.p2)
@@ -255,8 +255,7 @@ class Acr122(PcscReader):
                 if msg == "Success":
                     data, sw1, sw2 = self._removePN532Header(res[0])
                     return ResponseAPDU(hexListToBin(data), sw1, sw2)
-                else:
-                    raise ReaderException(Acr122.Errors[res[1]][res[2]])
+                raise ReaderException(Acr122.Errors[res[1]][res[2]])
 
             else:
                 try:
@@ -374,11 +373,10 @@ class ReaderManager(Singleton):
                 raise TimeOutException("Time-out")
             return r
 
-        else:
-            reader = self.create(driver)
-            while not reader.connect(readerNum) and cpt < timeout:
-                time.sleep(wait)
-                cpt += wait
-            if cpt == timeout:
-                raise TimeOutException("Time-out")
-            return reader
+        reader = self.create(driver)
+        while not reader.connect(readerNum) and cpt < timeout:
+            time.sleep(wait)
+            cpt += wait
+        if cpt == timeout:
+            raise TimeOutException("Time-out")
+        return reader
