@@ -1,3 +1,5 @@
+import Image
+
 from pypassport.doc9303 import converter, mrz
 from pypassport.hexfunctions import binToHexRep, hexRepToBin
 from pypassport.iso19794 import ISO19794_5
@@ -99,7 +101,6 @@ class DataGroup2Creation(Creation):
         img = f.read()
         f.close()
         try:
-            import Image
             width, height = Image.open(imgPath).size
         except BaseException:
             width = 0

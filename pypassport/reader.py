@@ -20,6 +20,8 @@ import os
 import sys
 import time
 
+import smartcard
+
 from pypassport.apdu import CommandAPDU, ResponseAPDU
 from pypassport.hexfunctions import hexRepToHex, hexListToBin
 from pypassport.singleton import Singleton
@@ -136,7 +138,6 @@ class PcscReader(Reader):
 
     def importSC(self):
         try:
-            import smartcard
             self.sc = smartcard
         except BaseException:
             if sys.platform == 'darwin':
