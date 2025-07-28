@@ -204,7 +204,7 @@ class PassiveAuthentication(Logger):
         hash = {}
 
         certType = LDSSecurityObject()
-        cert = decoder.decode(data, asn1Spec = certType)[0]
+        cert = decoder.decode(data, asn1Spec=certType)[0]
 
         content['version'] = cert.getComponentByName('version').prettyPrint()
         content['hashAlgorithm'] = cert.getComponentByName('hashAlgorithm').getComponentByName('algorithm').prettyPrint()

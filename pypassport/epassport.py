@@ -501,7 +501,7 @@ class EPassport(dict, logger.Logger):
         except Exception:
             return None
 
-    def dump(self, directory=os.path.expanduser('~'), format=converter.types.GRT, extension = ".bin"):
+    def dump(self, directory=os.path.expanduser('~'), format=converter.types.GRT, extension=".bin"):
         """
         Dump the ePassport content on disk as well ass the faces ans signatures in jpeg,
         the DG15 public key and the Document Signer Certificate.

@@ -51,7 +51,7 @@ class GPlatform(object):
 
 class JavaCardWritter(Logger):
 
-    def __init__(self, reader, maxSize = 0xDF):
+    def __init__(self, reader, maxSize=0xDF):
         """
         @param reader: A Reader
         @type Reader
