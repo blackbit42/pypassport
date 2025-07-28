@@ -19,7 +19,7 @@
 # DOC9303-2 pg III-38
 
 tagToName = {
-# tagLDSToName = {
+    # tagLDSToName = {
              "02": "Integer",
              "5C": "Tag list",
 
@@ -141,10 +141,10 @@ tagToName = {
              "BD": "Repeating template, 13 occurrence Biometric header",
              "BE": "Repeating template, 14 occurrence Biometric header",
              "BF": "Repeating template, 15 occurrence Biometric header",
-#             }
+    #             }
 
-# DOC9303-2 pg III-40
-# tagMRZtoName = {
+    # DOC9303-2 pg III-40
+    # tagMRZtoName = {
              "53": "Optional Data",
              "59": "Date of Expiry or valid Until Date",
              "02": "Document Number",
@@ -163,16 +163,16 @@ tagToName = {
              "5F35": "Sex",
              "5F57": "Date of birth (6 digit)",
 
-# From DG1 (information tags)
+    # From DG1 (information tags)
              "5F28": "Issuing State or Organization",
              "5F5B": "Name of Holder", # version 2006
              "5B": "Name of Holder",   # version 2008
              "5A": "Document Number",
 
-#            }
+    #            }
 
-# DOC9303-2 pg III-40
-# tagRFUtoName = {
+    # DOC9303-2 pg III-40
+    # tagRFUtoName = {
              "5F44": "Country of entry/exit",
              "5F45": "Date of entry/exit",
              "5F46": "Port of entry/exit",
@@ -185,7 +185,7 @@ tagToName = {
              "72": "Template for Border Crossing Schemes",
              "73": "Template for Travel Record Data Group",
 
-# DataGroup
+    # DataGroup
              "60": "Index",
              "61": "MRZ",
              "75": "Face",
