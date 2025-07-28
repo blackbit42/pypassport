@@ -431,7 +431,7 @@ class DataGroup13(DataGroup):
 class DataGroup14(DataGroup):
 
     def __init__(self, dgFile):
-        DataGroup.__init__(self, dgFile)#Reserved for future use (RFU)
+        DataGroup.__init__(self, dgFile)  # Reserved for future use (RFU)
 
     def parse(self):
         return self
@@ -540,7 +540,7 @@ class DataGroupReader(Logger):
 
         self._file = DataGroupFile()
         self._bodySize = 0
-        self._bodyOffset = 0    #The beginning of the body data
+        self._bodyOffset = 0  # The beginning of the body data
         self._offset = 0
         self._maxSize = maxSize
         self.processed = Events()

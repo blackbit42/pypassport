@@ -27,7 +27,7 @@ DUMP = False
 # Install the applet in the JCOP
 INSTALL_APPLET = True
 # Send dump to JCOP
-JCOP = True #An ePassport emulator applet must be installer on the JCOP
+JCOP = True  # An ePassport emulator applet must be installer on the JCOP
 # create a new set of certitificates
 CREATE_CERT = False
 # Set the location where certificates and dump are stored/loaded
@@ -61,16 +61,16 @@ DS_KEY_SIZE = 1024
 DS_VALIDITY_PERIOD = 365
 
 # Set the passport information
-ISSUER = "BEL"                        #3 chars
+ISSUER = "BEL"  # 3 chars
 NAME = "Smith"
-SURNAME = "John"#39 chars for both n and fn
-NATIONALITY = "BEL"                   #3 chars
-SEX = "M"                             #1 char
-PASSPORT_NUM = "EH123456"             #9 chars
-BIRTH_DATE = "031085"                 #6 chars
-EXPIRY_DATE = "070815"                #6 chars
+SURNAME = "John"  # 39 chars for both n and fn
+NATIONALITY = "BEL"  # 3 chars
+SEX = "M"  # 1 char
+PASSPORT_NUM = "EH123456"  # 9 chars
+BIRTH_DATE = "031085"  # 6 chars
+EXPIRY_DATE = "070815"  # 6 chars
 
-ISSUE_DATA = "11072009"                 #6 chars
+ISSUE_DATA = "11072009"  # 6 chars
 IMAGE_PATH = "C:/jf.jpg"
 SIGNATURE_PATH = "C:/jfSignature.jpg"
 BIRTH_PLACE = "Huy"
