@@ -193,9 +193,9 @@ class EPassport(dict, logger.Logger):
     def getCSCADirectory(self):
         return self._CSCADirectory
 
-    def setCSCADirectory(self, value, hash=False):
+    def setCSCADirectory(self, value, hash_=False):
         self._CSCADirectory = camanager.CAManager(value)
-        if hash:
+        if hash_:
             self.log("Document Signer Certificate hash creation")
             self._CSCADirectory.toHashes()
 
@@ -323,10 +323,10 @@ class EPassport(dict, logger.Logger):
 
         @return: A list with the data group tags present in the passport.
         """
-        list = []
+        list_ = []
         for tag in self["Common"]["5C"]:
-            list.append(converter.toDG(tag))
-        return list
+            list_.append(converter.toDG(tag))
+        return list_
 
     def readDataGroups(self):
         """
@@ -335,10 +335,10 @@ class EPassport(dict, logger.Logger):
 
         @return: A list of dataGroup objects.
         """
-        list = []
+        list_ = []
         for dg in self["Common"]["5C"]:
-            list.append(self[dg])
-        return list
+            list_.append(self[dg])
+        return list_
 
     def readPassport(self):
         """
@@ -503,7 +503,7 @@ class EPassport(dict, logger.Logger):
         except Exception:
             return None
 
-    def dump(self, directory=os.path.expanduser('~'), format=converter.types.GRT, extension=".bin"):
+    def dump(self, directory=os.path.expanduser('~'), format_=converter.types.GRT, extension=".bin"):
         """
         Dump the ePassport content on disk as well ass the faces ans signatures in jpeg,
         the DG15 public key and the Document Signer Certificate.
@@ -511,11 +511,11 @@ class EPassport(dict, logger.Logger):
         By default, the files are stored in the user directory (~) with the Golden Reader Tool naming format
 
         @param directory: The taget directory
-        @param format: File naming format (see the convertion module)
+        @param format_: File naming format (see the convertion module)
         @param extension: File extension
         """
         dgd = datagroup.DataGroupDump(directory, extension)
-        dgd.dump(self, format)
+        dgd.dump(self, format_)
 
         cpt = 0
         for sig in self.getSignatures():

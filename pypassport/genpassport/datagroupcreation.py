@@ -82,9 +82,9 @@ class DataGroup1Creation(Creation):
     def __init__(self):
         self._dgc = DataGroupFileCreation(converter.toTAG("DG1"))
 
-    def create(self, type, issuer, name, surname, nat, sex, passportID, birthDate, expiryDate):
+    def create(self, type_, issuer, name, surname, nat, sex, passportID, birthDate, expiryDate):
         m = mrz.MRZ(None)
-        forgedMRZ = m.buildMRZ(type, issuer, name, surname, nat, sex, passportID, self._convertDate(birthDate), self._convertDate(expiryDate))
+        forgedMRZ = m.buildMRZ(type_, issuer, name, surname, nat, sex, passportID, self._convertDate(birthDate), self._convertDate(expiryDate))
 
         self._dgc.addDataObject("5F1F", forgedMRZ)
 

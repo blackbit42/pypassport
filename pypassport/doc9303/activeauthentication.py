@@ -83,7 +83,7 @@ class ActiveAuthentication(Logger):
         self.signature = self._getSignature(self.RND_IFD)
         self.F = self._decryptSignature(dg15.body, self.signature)
 
-        (hash, hashSize, offset) = self._getHashAlgo(self.F)
+        (hash_, hashSize, offset) = self._getHashAlgo(self.F)
         self.D = self._extractDigest(self.F, hashSize, offset)
         self.M1 = self._extractM1(self.F, hashSize, offset)
 
@@ -92,7 +92,7 @@ class ActiveAuthentication(Logger):
         self.log("Concatenate M1 with known M2")
         self.log("\tM*: " + binToHexRep(self.M_))
 
-        self.D_ = self._hash(hash, self.M_)
+        self.D_ = self._hash(hash_, self.M_)
 
         self.log("Compare D and D*")
         self.log("\t" + str(self.D == self.D_))
@@ -131,8 +131,8 @@ class ActiveAuthentication(Logger):
 
         return data
 
-    def _hash(self, hash, data):
-        digest = hash(data).digest()
+    def _hash(self, hash_, data):
+        digest = hash_(data).digest()
 
         self.log("Calculate digest of M*")
         self.log("\tD*: " + binToHexRep(digest))
@@ -140,13 +140,13 @@ class ActiveAuthentication(Logger):
         return digest
 
     def _getHashAlgo(self, sig):
-        hash = None
+        hash_ = None
         offset = None
         hashSize = None
 
         if sig[-1] == 0xBC:
             self.T = sig[-1]
-            hash = sha1
+            hash_ = sha1
             offset = -1
         elif sig[-1] == 0xCC:
             self.T = sig[-2]
@@ -159,9 +159,9 @@ class ActiveAuthentication(Logger):
         self.log("\tT: " + binToHexRep(self.T))
 
         # Find out the hash size
-        hashSize = len(hash(b"test").digest())
+        hashSize = len(hash_(b"test").digest())
 
-        return (hash, hashSize, offset)
+        return (hash_, hashSize, offset)
 
     def _extractDigest(self, sig, hashSize, offset):
         digest = sig[offset - hashSize:offset]

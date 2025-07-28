@@ -170,7 +170,7 @@ class MRZ():
             cpt += 1
         return str(res % 10)
 
-    def buildMRZ(self, type, issuer, name, firstname, nat, sex, num, birth, exp):
+    def buildMRZ(self, type_, issuer, name, firstname, nat, sex, num, birth, exp):
         """ Build MRZ using the informations given by dates and passport number
 
             @note: sex and nat field are not necessary to BAC and are then
@@ -181,10 +181,10 @@ class MRZ():
                         the rest il put in the optional field with the check digit
                         initial check digit il replaced by a '<' character
         """
-        type = self._transformField(type, 2)
+        type_ = self._transformField(type_, 2)
         issuer = self._transformField(issuer, 3)
         name_firstName = self._transformField(name + "<<" + firstname, 39)
-        line1 = self._transformField(type + issuer + name_firstName, 44)
+        line1 = self._transformField(type_ + issuer + name_firstName, 44)
 
         # num = self._transformField(num, 9)
         nat = self._transformField(nat, 3)

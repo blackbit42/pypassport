@@ -689,29 +689,29 @@ class DataGroupDump():
         else:
             raise Exception(path + " is not a valid directory")
 
-    def dump(self, ep, format=converter.types.FID):
+    def dump(self, ep, format_=converter.types.FID):
         """
         Save the dataGroup binaries on the HDD.
         The name format is specified by the format parameter.
 
         @param ep: The EPassport object.
         @type ep: A dictionary
-        @param format: Specify the file name format. (FID, TAG, SEF,...)
-        @type format: An element out of the converter.types enumeration.
+        @param format_: Specify the file name format. (FID, TAG, SEF,...)
+        @type format_: An element out of the converter.types enumeration.
         """
         for tag in ep:
-            self.dumpDG(ep[tag], format)
+            self.dumpDG(ep[tag], format_)
 
-    def dumpDG(self, dg, format=converter.types.FID):
+    def dumpDG(self, dg, format_=converter.types.FID):
         """
         Save the specified dataGroup on the HDD.
 
         @param dg: A filled dataGroup object
         @type dg: A dataGroup object
-        @param format: Specify the file name format. (FID, TAG, SEF,...)
-        @type format: An element out of the converter.types enumeration.
+        @param format_: Specify the file name format. (FID, TAG, SEF,...)
+        @type format_: An element out of the converter.types enumeration.
         """
-        f = open(self._path + converter.to(format, dg.tag) + self._ext, "wb")
+        f = open(self._path + converter.to(format_, dg.tag) + self._ext, "wb")
         f.write(dg.file)
         f.close()
 

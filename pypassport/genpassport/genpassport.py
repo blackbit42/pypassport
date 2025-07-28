@@ -38,9 +38,9 @@ APPLET_PATH = "D:\\download\\epassport_emulator_v1.02\\epassport.cap"
 READER_NUM = 2
 
 
-def trace(name, str):
+def trace(name, str_):
     if TRACE:
-        print(name + "> " + str)
+        print(name + "> " + str_)
 
 
 # Set the Country Signing CA information

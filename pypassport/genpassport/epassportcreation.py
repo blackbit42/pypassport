@@ -38,11 +38,11 @@ class EPassportCreator(Logger):
         # Forge a Common file without DG15
         self._forged.append(ComCreation().create(self._forged))
 
-    def toDisk(self, type=converter.types.GRT, ext="", path="."):
+    def toDisk(self, type_=converter.types.GRT, ext="", path="."):
         """
         Write the data groups on disk.
 
-        @param type: The output file format. See convert.py for the options
+        @param type_: The output file format. See convert.py for the options
         @param ext: The output extension file.
         """
 
@@ -51,7 +51,7 @@ class EPassportCreator(Logger):
 
         dgd = DataGroupDump(path, ext)
         for dg in self._forged:
-            dgd.dumpDG(dg, type)
+            dgd.dumpDG(dg, type_)
 
     def toJCOP(self):
         """

@@ -200,7 +200,7 @@ class PassiveAuthentication(Logger):
         self.log("Read the relevant Data Groups from the LDS")
 
         content = {}
-        hash = {}
+        hash_ = {}
 
         certType = LDSSecurityObject()
         cert = decoder.decode(data, asn1Spec=certType)[0]
@@ -209,9 +209,9 @@ class PassiveAuthentication(Logger):
         content['hashAlgorithm'] = cert.getComponentByName('hashAlgorithm').getComponentByName('algorithm').prettyPrint()
 
         for h in cert.getComponentByName('dataGroupHashValues'):
-            hash[h.getComponentByName('dataGroupNumber').prettyPrint()] = h.getComponentByName('dataGroupHashValue')
+            hash_[h.getComponentByName('dataGroupNumber').prettyPrint()] = h.getComponentByName('dataGroupHashValue')
 
-        content['dataGroupHashValues'] = hash
+        content['dataGroupHashValues'] = hash_
 
         return content
 

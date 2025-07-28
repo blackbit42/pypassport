@@ -25,18 +25,18 @@ class jp2ConverterException(Exception):
         Exception.__init__(self, *params)
 
 
-def ConvertJp2(input):
+def ConvertJp2(input_):
     """
     If the input is a jp2 picture, the image is transformed into bmp,
     else the image is returned without any modifications.
 
-    @param input: A binary string representing the picture to convert
-    @type input: A string
+    @param input_: A binary string representing the picture to convert
+    @type input_: A string
     @return: A binary string representing the picture in bmp, or the original input if the input is not a jp2 stream.
     """
 
     jp2 = open("tmp.jp2", "wb")
-    jp2.write(input)
+    jp2.write(input_)
     jp2.close()
 
     local = ""
@@ -47,7 +47,7 @@ def ConvertJp2(input):
 
     try:
         f = open("tmp.jpg", "rb")
-        input = f.read()
+        input_ = f.read()
         f.close()
     except IOError:
         pass
@@ -58,4 +58,4 @@ def ConvertJp2(input):
         except BaseException:
             pass
 
-    return input
+    return input_

@@ -94,10 +94,10 @@ def hexRepToHex(string):
     return binToHex(hexRepToBin(string))
 
 
-def listToHexRep(list):
+def listToHexRep(list_):
     """[170, 187, 204] --> 'AABBCC'"""
     out = []
-    for item in list:
+    for item in list_:
         out.append('%02X' % (item))
     return out.upper()
 
@@ -112,8 +112,8 @@ def hexListToBin(data):
 
 def hexListToHex(data):
     """[0xAA, 0xBB] --> 43707"""
-    bin = hexListToBin(data)
-    return binToHex(bin)
+    bin_ = hexListToBin(data)
+    return binToHex(bin_)
 
 
 def hexListToHexRep(data):
