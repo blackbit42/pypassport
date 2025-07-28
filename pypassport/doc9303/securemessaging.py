@@ -65,10 +65,10 @@ class SecureMessaging(Ciphering):
         do97 = b""
 
         tmp = "Concatenate CmdHeader"
-        if(apdu.getData()):
+        if (apdu.getData()):
             tmp += " and DO87"
             do87 = self._buildD087(apdu)
-        if(apdu.getLe()):
+        if (apdu.getLe()):
             tmp += " and DO97"
             do97 = self._buildD097(apdu)
 
@@ -114,7 +114,7 @@ class SecureMessaging(Ciphering):
         offset = 0
 
         # Check for a SM error
-        if(rapdu.sw1 != 0x90 or rapdu.sw2 != 0x00):
+        if (rapdu.sw1 != 0x90 or rapdu.sw2 != 0x00):
             return rapdu
 
         rapdu = rapdu.getBinAPDU()
@@ -187,7 +187,7 @@ class SecureMessaging(Ciphering):
             raise SecureMessagingException("Mandatory id DO'87' and/or DO'99' is present")
 
         data = []
-        if(do87Data):
+        if (do87Data):
             # There is a payload
             tdes = DES3.new(self._ksenc, DES.MODE_CBC, b'\0'*8)
             data = unpad(tdes.decrypt(do87Data))

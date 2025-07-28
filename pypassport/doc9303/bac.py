@@ -161,7 +161,7 @@ class BAC(Logger):
         @type rnd_icc: A 8 bytes binary string
         @return: The APDU binary data for the mutual authenticate command
         """
-        if(type(rnd_icc) == str):
+        if (type(rnd_icc) == str):
             rnd_icc = rawbytes(rnd_icc)
         self._rnd_icc = rnd_icc
         self.log("Request an 8 byte random number from the MRTD's chip")
@@ -331,7 +331,7 @@ class BAC(Logger):
         adjusted = b''
         for x in range(len(data)):
             f = data[x]
-            if(type(f) == str):
+            if (type(f) == str):
                 f = ord(f)
             y = f & 0xfe
             parity = 0

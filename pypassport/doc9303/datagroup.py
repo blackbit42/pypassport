@@ -174,7 +174,7 @@ class DataGroup1(DataGroup):
         self["53"] = []
 
         # opt data or if doc no > 9 chars, least significant chars of doc no plus doc no check digit plus filler char
-        if(self["5F04"].decode() == '<'):
+        if (self["5F04"].decode() == '<'):
             self["5A"] += data[15:28]
         else:
             self["53"].append(data[15:30])
@@ -583,7 +583,7 @@ class DataGroupReader(Logger):
         (self._bodySize, self.offset) = asn1Length(header[1:])
         self.offset += 1
         self.log("Body Size: " + str(self._bodySize) + " Offset " + str(self.offset))
-        if(converter.toTAG(dg) != binToHexRep(header[0])):
+        if (converter.toTAG(dg) != binToHexRep(header[0])):
             raise Exception("Wrong AID: " + binToHexRep(header[0]) + " instead of " +  converter.toTAG(dg))
 
         return header[:self.offset]
