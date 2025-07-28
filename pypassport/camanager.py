@@ -18,8 +18,6 @@
 
 import os
 import os.path
-import shutil
-from pypassport.logger import Logger
 
 CertFormat = ["PEM", "DER"]
 

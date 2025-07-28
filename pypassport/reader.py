@@ -18,7 +18,6 @@
 
 import os, sys, time
 
-from pypassport import hexfunctions
 from .apdu import CommandAPDU, ResponseAPDU
 from smartcard.util import *
 from pypassport.apdu import CommandAPDU, ResponseAPDU

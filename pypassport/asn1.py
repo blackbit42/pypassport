@@ -21,7 +21,6 @@ from pyasn1.type.univ import *
 from pyasn1.type.namedtype import *
 from pyasn1.type.namedval import *
 from pyasn1.type.constraint import *
-from pyasn1.codec.der import encoder
 
 
 class asn1Exception(Exception):

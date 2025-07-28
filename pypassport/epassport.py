@@ -17,12 +17,11 @@
 # If not, see <http://www.gnu.org/licenses/>.
 
 
-from pypassport.doc9303 import datagroup, passiveauthentication, activeauthentication, bac, converter, securemessaging, mrz, tagconverter
+from pypassport.doc9303 import datagroup, passiveauthentication, activeauthentication, bac, converter, securemessaging, mrz
 from pypassport import camanager
 from pypassport import openssl
 from pypassport import iso7816
 from pypassport import logger
-from pypassport import apdu
 import os, traceback
 
 

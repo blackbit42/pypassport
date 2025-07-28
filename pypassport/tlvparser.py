@@ -16,7 +16,6 @@
 # License along with pyPassport.
 # If not, see <http://www.gnu.org/licenses/>.
 
-from pypassport.hexfunctions import *
 from pypassport.asn1 import asn1Exception, asn1Length
 
 

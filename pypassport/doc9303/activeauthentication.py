@@ -18,14 +18,13 @@
 
 import os
 from hashlib import *
-from pyasn1.codec.der import decoder, encoder
-from pyasn1.type import namedtype, univ
+from pyasn1.codec.der import decoder
 from pypassport.asn1 import *
 
 from pypassport.hexfunctions import *
 from pypassport.derobjectidentifier import *
 from pypassport.logger import Logger
-from pypassport.openssl import OpenSSL, OpenSSLException
+from pypassport.openssl import OpenSSL
 from pypassport.doc9303 import datagroup
 
 

@@ -1,6 +1,5 @@
 from pypassport import epassport, reader
 import json
-import base64
 
 
 def calculateChecksum( value ):

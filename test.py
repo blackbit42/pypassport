@@ -17,7 +17,7 @@
 # If not, see <http://www.gnu.org/licenses/>.
 
 from pypassport import epassport, reader
-import os, string
+import os
 
 MRZ_bob       = "EH123456<0BEL8510035M1508075<<<<<<<<<<<<<<02"
 MRZ_oli       = "EH276509<0BEL8406158M1302217<<<<<<<<<<<<<<04"

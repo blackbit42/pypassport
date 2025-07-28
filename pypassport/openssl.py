@@ -16,9 +16,8 @@
 # License along with pyPassport.
 # If not, see <http://www.gnu.org/licenses/>.
 
-import os, shutil
+import os
 import subprocess
-from pypassport import hexfunctions
 from pypassport.logger import Logger
 
 

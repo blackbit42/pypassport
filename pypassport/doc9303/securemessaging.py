@@ -22,7 +22,6 @@ from Crypto.Cipher import DES3, DES
 from pypassport.hexfunctions import *
 from pypassport.asn1 import *
 from pypassport.logger import Logger
-import struct
 
 
 class Ciphering(Logger):

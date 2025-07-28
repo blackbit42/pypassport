@@ -19,7 +19,6 @@ from pypassport import openssl, reader
 from pypassport import pki
 from pypassport.doc9303 import datagroup
 from pypassport.genpassport import epassportcreation, jcop
-import time
 
 # Activate the trace log
 TRACE = True

@@ -18,10 +18,8 @@
 
 import os
 import time
-from pypassport import epassport
 from pypassport.hexfunctions import *
 from pypassport.doc9303.converter import *
-from pypassport.apdu import CommandAPDU
 
 
 class FingerPrint(object):

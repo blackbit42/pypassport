@@ -1,5 +1,5 @@
 from pypassport.doc9303 import converter, mrz
-from pypassport.openssl import OpenSSL, OpenSSLException
+from pypassport.openssl import OpenSSL
 from pypassport.logger import Logger
 from pypassport.doc9303.datagroup import *
 from pypassport.derobjectidentifier import *

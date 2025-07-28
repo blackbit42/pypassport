@@ -16,20 +16,17 @@
 # License along with pyPassport.
 # If not, see <http://www.gnu.org/licenses/>.
 
-import os
 from pypassport.hexfunctions import *
 from pypassport.doc9303 import converter
 from pypassport.doc9303 import datagroup
 from hashlib import *
 from pypassport.derobjectidentifier import *
-import subprocess
 from pypassport.logger import Logger
 from pypassport.camanager import CAManager
-from pypassport.openssl import OpenSSL, OpenSSLException
+from pypassport.openssl import OpenSSL
 from pypassport.doc9303.datagroup import LDSSecurityObject
 
-from pyasn1.type import univ, namedtype, namedval, constraint
-from pyasn1.codec.der import encoder, decoder
+from pyasn1.codec.der import decoder
 
 
 class PassiveAuthenticationException(Exception):

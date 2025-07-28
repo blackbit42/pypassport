@@ -17,7 +17,6 @@
 # If not, see <http://www.gnu.org/licenses/>.
 
 from Crypto.Cipher import DES
-from pypassport.hexfunctions import *
 
 
 def pad(toPad):

@@ -16,7 +16,6 @@
 # License along with pyPassport.
 # If not, see <http://www.gnu.org/licenses/>.
 
-from pypassport.reader import ReaderException
 from pypassport.hexfunctions import *
 from pypassport import apdu
 from pypassport.logger import Logger

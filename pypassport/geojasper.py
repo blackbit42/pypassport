@@ -16,8 +16,6 @@
 # License along with pyPassport.
 # If not, see <http://www.gnu.org/licenses/>.
 
-import os
-from string import replace
 import subprocess
 from pypassport.logger import Logger
 

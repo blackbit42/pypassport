@@ -16,19 +16,15 @@
 # License along with pyPassport.
 # If not, see <http://www.gnu.org/licenses/>.
 
-from pypassport import doc9303
 from pypassport.tlvparser import TLVParser, TLVParserException
 from pypassport.asn1 import *
 from pypassport.hexfunctions import *
 from pypassport.logger import Logger
 from pypassport.iso19794 import ISO19794_5
-from pypassport.iso7816 import Iso7816
-from pypassport.doc9303 import converter, mrz, bac
-from pypassport.openssl import OpenSSL, OpenSSLException
 from pypassport.derobjectidentifier import *
 from pypassport.singleton import Singleton
 from hashlib import *
-import os, sys
+import os
 # import Image
 
 
