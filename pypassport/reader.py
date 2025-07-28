@@ -213,11 +213,11 @@ class Acr122(PcscReader):
                 }
 
     Errors = {0x61: 'SW2 Bytes left to read',
-              0x63:{0x00:'The operation is failed.',
-                    0x01:'The PN532 does not response.',
+              0x63: {0x00: 'The operation is failed.',
+                    0x01: 'The PN532 does not response.',
                     0x27: 'Command not acceptable in context of PN532',
                     #0x27:'The checksum of the Contactless Response is wrong.',
-                    0x7F:'The PNNAME = "GENERIC PC/SC"532_Contactless Command is wrong.'},
+                    0x7F: 'The PNNAME = "GENERIC PC/SC"532_Contactless Command is wrong.'},
               0x90: 'Success'
               }
 
@@ -226,11 +226,11 @@ class Acr122(PcscReader):
 
     def connect(self, rn=None):
         if super(Acr122, self).connect(rn):
-            res = self.transmit(apduWrapper(Acr122.Control["AntennaPowerOff"]),"Control")
-            res = self.transmit(apduWrapper(Acr122.Control["AntennaPowerOn"]),"Control")
-            res = self.transmit(apduWrapper(Acr122.Control["ResetTimer"]),"Control")
-            res = self.transmit(apduWrapper(Acr122.Polling["ISO14443A"]),"Polling")
-            res = self.transmit(apduWrapper(Acr122.Speed["424 kbps"]),"Speed")
+            res = self.transmit(apduWrapper(Acr122.Control["AntennaPowerOff"]), "Control")
+            res = self.transmit(apduWrapper(Acr122.Control["AntennaPowerOn"]), "Control")
+            res = self.transmit(apduWrapper(Acr122.Control["ResetTimer"]), "Control")
+            res = self.transmit(apduWrapper(Acr122.Polling["ISO14443A"]), "Polling")
+            res = self.transmit(apduWrapper(Acr122.Speed["424 kbps"]), "Speed")
             return True
 
     def transmit(self, APDU, PN532_Cmd="InDataExchange"):
@@ -267,7 +267,7 @@ class Acr122(PcscReader):
             data, sw1, sw2 = self._removePN532Header(res[0])
             return ResponseAPDU(hexListToBin(data), sw1, sw2)
 
-    def _removePN532Header(self,data):
+    def _removePN532Header(self, data):
         # direct transmit or speed change response -- 3 bytes of header
         if (data[0:2] == [0xD5, 0x41] or data[0:2] == [0xD5, 0x4F]) and data[2] == 0x00:
             return data[3:-2], data[-2], data [-1]

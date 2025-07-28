@@ -115,10 +115,10 @@ class BAC(Logger):
         self.log("\tKseed: " + binToHexRep(Kseed))
 
         self.log("Compute Encryption key (c:" + binToHexRep(BAC.KENC) + ")")
-        kenc = self.keyDerivation(Kseed,BAC.KENC)
+        kenc = self.keyDerivation(Kseed, BAC.KENC)
 
         self.log("Compute MAC Computation key (c:" + binToHexRep(BAC.KMAC) + ")")
-        kmac = self.keyDerivation(Kseed,BAC.KMAC)
+        kmac = self.keyDerivation(Kseed, BAC.KMAC)
 
         return (kenc, kmac)
 
@@ -181,7 +181,7 @@ class BAC(Logger):
         self.log("Concatenate RND.IFD, RND.ICC and Kifd")       
         self.log("\tS: " + binToHexRep(s))
 
-        tdes= DES3.new(self._ksenc,DES.MODE_CBC,b'\0'*8)
+        tdes= DES3.new(self._ksenc, DES.MODE_CBC, b'\0'*8)
 
         eifd= tdes.encrypt(s)
         self.log("Encrypt S with TDES key Kenc as calculated in Appendix 5.2")
@@ -215,15 +215,15 @@ class BAC(Logger):
         # mac(self._ksmac, data[0:32]) != data[32:]:
         #    raise Exception("The MAC value is not correct")
 
-        tdes= DES3.new(self._ksenc,DES.MODE_CBC,b'\0'*8)
+        tdes= DES3.new(self._ksenc, DES.MODE_CBC, b'\0'*8)
         response = tdes.decrypt(data[0:32])
         response_kicc = response[16:32]
         Kseed = self._xor(self._kifd, response_kicc)
         self.log("Calculate XOR of Kifd and Kicc")
         self.log("\tKseed: " + binToHexRep(Kseed))
 
-        KSenc = self.keyDerivation(Kseed,BAC.KENC)
-        KSmac = self.keyDerivation(Kseed,BAC.KMAC)
+        KSenc = self.keyDerivation(Kseed, BAC.KENC)
+        KSmac = self.keyDerivation(Kseed, BAC.KMAC)
         self.log("Calculate Session Keys (KSenc and KSmac) using Appendix 5.1")
         self.log("\tKSenc: " + binToHexRep(KSenc))
         self.log("\tKSmac: " + binToHexRep(KSmac))
@@ -236,7 +236,7 @@ class BAC(Logger):
     def _xor(self, kifd, response_kicc):
         kseed = b""
         for i in range(len(kifd)):
-            kseed += struct.pack("B",kifd[i] ^ response_kicc[i])
+            kseed += struct.pack("B", kifd[i] ^ response_kicc[i])
             #kseed += hex(int(binToHexRep(kifd)[i],16) ^ int(binToHexRep(response_kicc)[i],16))[2:]
         #return hexRepToBin(kseed)
         return kseed
@@ -302,7 +302,7 @@ class BAC(Logger):
         @return: Return a 16 bytes key
         """
 
-        if c not in (BAC.KENC,BAC.KMAC):
+        if c not in (BAC.KENC, BAC.KMAC):
             raise BACException("Bad parameter (c=0 or c=1)")
 
         d = kseed + c
@@ -338,6 +338,6 @@ class BAC(Logger):
             parity= 0
             for z in range(8):
                 parity += y >>  z & 1
-            adjusted += (y + (not parity % 2)).to_bytes(1,'big')
+            adjusted += (y + (not parity % 2)).to_bytes(1, 'big')
         return adjusted
 

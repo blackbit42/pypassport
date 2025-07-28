@@ -19,7 +19,7 @@
 import os
 from hashlib import *
 from pyasn1.codec.der import decoder, encoder
-from pyasn1.type import namedtype,univ
+from pyasn1.type import namedtype, univ
 from pypassport.asn1 import *
 
 from pypassport.hexfunctions import *

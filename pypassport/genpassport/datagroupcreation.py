@@ -89,7 +89,7 @@ class DataGroup2Creation(Creation):
         f.close()
         try:
             import Image
-            width,height = Image.open(imgPath).size
+            width, height = Image.open(imgPath).size
         except:
             width = 0
             height = 0

@@ -20,7 +20,7 @@
 
 def binToHex(val):
     """'\xaa\xbb' --> 4307"""
-    return int(binToHexRep(val),16)
+    return int(binToHexRep(val), 16)
 
 def binToHexRep(data):
     """'\xaa\xbb' --> 'aabb'"""
@@ -55,7 +55,7 @@ def hexToHexList(string):
     n= 0
     out= []
     while n < len(string):
-        out.append(int(string[n:n+2],16))
+        out.append(int(string[n:n+2], 16))
         n += 2
     return out
 
@@ -66,7 +66,7 @@ def hexRepToBin(string):
     output= b''
     x= 0
     while x < len(string):
-            output += struct.pack('B', int(string[x:x + 2],16))
+            output += struct.pack('B', int(string[x:x + 2], 16))
             x += 2
     return output
 
@@ -75,7 +75,7 @@ def hexRepToList(string):
     n= 0
     out= []
     while n < len(string):
-        out.append(int(string[n:n+2],16))
+        out.append(int(string[n:n+2], 16))
         n += 2
     return out
 

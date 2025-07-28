@@ -89,7 +89,7 @@ class AlgorithmIdentifier(Sequence):
 
 ub_DataGroups = Integer(16)
 
-id_icao = ObjectIdentifier((2,23,136))
+id_icao = ObjectIdentifier((2, 23, 136))
 id_icao_mrtd = ObjectIdentifier(id_icao + (1,))
 id_icao_mrtdsecurity = ObjectIdentifier(id_icao_mrtd + (1,))
 id_icao_ldsSecurityObject = ObjectIdentifier(id_icao_mrtdsecurity + (1,))

@@ -58,8 +58,8 @@ def mac(key, msg):
             y = tdesa.encrypt(msg[i*8:i*8+8])
 #            print('y' + str(i) + ': ' + binToHexRep(y))
 
-        tdesb = DES.new(key[8:16],DES.MODE_ECB)
-        tdesa = DES.new(key[0:8],DES.MODE_ECB)
+        tdesb = DES.new(key[8:16], DES.MODE_ECB)
+        tdesa = DES.new(key[0:8], DES.MODE_ECB)
 
         b = tdesb.decrypt(y)
 #        print 'b: ' + binToHexRep(b)

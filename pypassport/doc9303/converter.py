@@ -28,10 +28,10 @@ class types(object):
     GRT = "GRT"
 
 _Table = {
-         types.DG : ["Common", "DG1", "DG2", "DG3", "DG4", "DG5", "DG6", "DG7", "DG8", "DG9", "DG10", "DG11", "DG12", "DG13", "DG14", "DG15", "DG16", "SecurityData","CardAccess"],
-         types.EF : ["EF.COM", "EF.DG1", "EF.DG2", "EF.DG3", "EF.DG4", "EF.DG5", "EF.DG6", "EF.DG7", "EF.DG8", "EF.DG9", "EF.DG10", "EF.DG11", "EF.DG12", "EF.DG13", "EF.DG14", "EF.DG15", "EF.DG16", "EF.SOD","EF.CARDACCESS"],
-         types.SEF : ["1E", "01", "02", "03", "04", "05", "06", "07", "08", "09", "0A", "0B", "0C", "0D", "0E", "0F", "10", "1D","1C"],
-         types.FID : ["011E", "0101", "0102", "0103", "0104", "0105", "0106", "0107", "0108", "0109", "010A", "010B", "010C", "010D", "010E", "010F", "0110", "011D","011C"],
+         types.DG : ["Common", "DG1", "DG2", "DG3", "DG4", "DG5", "DG6", "DG7", "DG8", "DG9", "DG10", "DG11", "DG12", "DG13", "DG14", "DG15", "DG16", "SecurityData", "CardAccess"],
+         types.EF : ["EF.COM", "EF.DG1", "EF.DG2", "EF.DG3", "EF.DG4", "EF.DG5", "EF.DG6", "EF.DG7", "EF.DG8", "EF.DG9", "EF.DG10", "EF.DG11", "EF.DG12", "EF.DG13", "EF.DG14", "EF.DG15", "EF.DG16", "EF.SOD", "EF.CARDACCESS"],
+         types.SEF : ["1E", "01", "02", "03", "04", "05", "06", "07", "08", "09", "0A", "0B", "0C", "0D", "0E", "0F", "10", "1D", "1C"],
+         types.FID : ["011E", "0101", "0102", "0103", "0104", "0105", "0106", "0107", "0108", "0109", "010A", "010B", "010C", "010D", "010E", "010F", "0110", "011D", "011C"],
          types.TAG : ["60", "61", "75", "63", "76", "65", "66", "67", "68", "69", "6A", "6B", "6C", "6D", "6E", "6F", "70", "77", "42"],
          types.CLASS : ["Com", "DataGroup1", "DataGroup2", "DataGroup3", "DataGroup4", "DataGroup5", \
                 "DataGroup6", "DataGroup7",  "DataGroup8", "DataGroup9", "DataGroup10", \

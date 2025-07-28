@@ -25,92 +25,92 @@ from pypassport.hexfunctions import *
 FAC= '46414300'
 
 # ISO 19794_5 (Biometric identifiers)
-ISO19794_5_GENDER= {'00':'Unspecified',
-                    '01':'Male',
-                    '02':'Female',
-                    '03':'Unknown'
+ISO19794_5_GENDER= {'00': 'Unspecified',
+                    '01': 'Male',
+                    '02': 'Female',
+                    '03': 'Unknown'
                    }
 
-ISO19794_5_EYECOLOUR= {'00':'Unspecified',
-                       '01':'Black',
-                       '02':'Blue',
-                       '03':'Brown',
-                       '04':'Grey',
-                       '05':'Green',
-                       '06':'Multi',
-                       '07':'Pink',
-                       '08':'Other'
+ISO19794_5_EYECOLOUR= {'00': 'Unspecified',
+                       '01': 'Black',
+                       '02': 'Blue',
+                       '03': 'Brown',
+                       '04': 'Grey',
+                       '05': 'Green',
+                       '06': 'Multi',
+                       '07': 'Pink',
+                       '08': 'Other'
                       }
 
-ISO19794_5_HAIRCOLOUR= {'00':'Unspecified',
-                        '01':'Bald',
-                        '02':'Black',
-                        '03':'Blonde',
-                        '04':'Brown',
-                        '05':'Grey',
-                        '06':'White',
-                        '07':'Red',
-                        '08':'Green',
-                        '09':'Blue',
-                        'ff':'Other'
+ISO19794_5_HAIRCOLOUR= {'00': 'Unspecified',
+                        '01': 'Bald',
+                        '02': 'Black',
+                        '03': 'Blonde',
+                        '04': 'Brown',
+                        '05': 'Grey',
+                        '06': 'White',
+                        '07': 'Red',
+                        '08': 'Green',
+                        '09': 'Blue',
+                        'ff': 'Other'
                        }    
 
-ISO19794_5_FEATURE= {0x01:'Specified',
-                     0x02:'Glasses',
-                     0x04:'Moustache',
-                     0x08:'Beard',
-                     0x10:'Teeth Visible',
-                     0x20:'Blink',
-                     0x40:'Mouth Open',
-                     0x80:'Left Eyepatch',
-                     0x100:'Right Eyepatch',
-                     0x200:'Dark Glasses',
-                     0x400:'Distorted'                     
+ISO19794_5_FEATURE= {0x01: 'Specified',
+                     0x02: 'Glasses',
+                     0x04: 'Moustache',
+                     0x08: 'Beard',
+                     0x10: 'Teeth Visible',
+                     0x20: 'Blink',
+                     0x40: 'Mouth Open',
+                     0x80: 'Left Eyepatch',
+                     0x100: 'Right Eyepatch',
+                     0x200: 'Dark Glasses',
+                     0x400: 'Distorted'                     
                     }
 
-ISO19794_5_EXPRESSION= {'0000':'Unspecified',
-                        '0001':'Neutral',
-                        '0002':'Smile Closed',
-                        '0003':'Smile Open',
-                        '0004':'Raised Eyebrow',
-                        '0005':'Looking Away',
-                        '0006':'Squinting',
-                        '0007':'Frowning'
+ISO19794_5_EXPRESSION= {'0000': 'Unspecified',
+                        '0001': 'Neutral',
+                        '0002': 'Smile Closed',
+                        '0003': 'Smile Open',
+                        '0004': 'Raised Eyebrow',
+                        '0005': 'Looking Away',
+                        '0006': 'Squinting',
+                        '0007': 'Frowning'
                        }
 
-ISO19794_5_IMG_TYPE= {'00':'Unspecified (Front)',
-                      '01':'Basic',
-                      '02':'Full Front',
-                      '03':'Token Front',
-                      '04':'Other'
+ISO19794_5_IMG_TYPE= {'00': 'Unspecified (Front)',
+                      '01': 'Basic',
+                      '02': 'Full Front',
+                      '03': 'Token Front',
+                      '04': 'Other'
                       }
 
-ISO19794_5_IMG_DTYPE= {'00':'JPEG',
-                       '01':'JPEG 2000'
+ISO19794_5_IMG_DTYPE= {'00': 'JPEG',
+                       '01': 'JPEG 2000'
                       }
 
-ISO19794_5_IMG_FTYPE= {'00':'JPG',
-                       '01':'JP2'
+ISO19794_5_IMG_FTYPE= {'00': 'JPG',
+                       '01': 'JP2'
                       }
 
-ISO19794_5_IMG_CSPACE= {'00':'Unspecified',
-                        '01':'RGB24',
-                        '02':'YUV422',
-                        '03':'GREY8BIT',
-                        '04':'Other'
+ISO19794_5_IMG_CSPACE= {'00': 'Unspecified',
+                        '01': 'RGB24',
+                        '02': 'YUV422',
+                        '03': 'GREY8BIT',
+                        '04': 'Other'
                        }
 
-ISO19794_5_IMG_SOURCE= {'00':'Unspecified',
-                        '01':'Static Unspecified',
-                        '02':'Static Digital',
-                        '03':'Static Scan',
-                        '04':'Video Unknown',
-                        '05':'Video Analogue',
-                        '06':'Video Digital',
-                        '07':'Unknown'
+ISO19794_5_IMG_SOURCE= {'00': 'Unspecified',
+                        '01': 'Static Unspecified',
+                        '02': 'Static Digital',
+                        '03': 'Static Scan',
+                        '04': 'Video Unknown',
+                        '05': 'Video Analogue',
+                        '06': 'Video Digital',
+                        '07': 'Unknown'
                        }
 
-ISO19794_5_IMG_QUALITY= {'0000':'Unspecified'}
+ISO19794_5_IMG_QUALITY= {'0000': 'Unspecified'}
 
 class ISO19794_5:
     """ Implement the ISO19794-5 concerning biometric Facial Pictures """
@@ -140,20 +140,20 @@ class ISO19794_5:
 
         tag = data[offset:offset+8]
         offset += 8
-        result['LengthOfRecord'] = int(tag,16)
+        result['LengthOfRecord'] = int(tag, 16)
 
         tag = data[offset:offset+4]
         offset += 4
-        result['NumberOfFacialImages'] = int(tag,16)
+        result['NumberOfFacialImages'] = int(tag, 16)
 
         tag = data[offset:offset+8]
         offset += 8
-        result['FaceImageBlockLength'] = int(tag,16)
+        result['FaceImageBlockLength'] = int(tag, 16)
 
 
         tag = data[offset:offset+4]
         offset += 4
-        result['NumberOfFeaturePoint'] = int(tag,16)
+        result['NumberOfFeaturePoint'] = int(tag, 16)
 
         tag = data[offset:offset+2]
         offset += 2
@@ -164,20 +164,20 @@ class ISO19794_5:
         try:
             result['EyeColour'] = ISO19794_5_EYECOLOUR[tag]
         except KeyError:
-            result['EyeColour'] = int(tag,16)
+            result['EyeColour'] = int(tag, 16)
 
         tag = data[offset:offset+2]
         offset += 2
         try:
             result['HairColour'] = ISO19794_5_HAIRCOLOUR[tag]
         except KeyError:
-            result['HairColour'] = int(tag,16)        
+            result['HairColour'] = int(tag, 16)        
 
         tag = data[offset:offset+6]
         offset += 6
         result['FeatureMask'] = tag
 
-        mask = int(tag,16)
+        mask = int(tag, 16)
         features = {}
         for key, value in list(ISO19794_5_FEATURE.items()):
             if and_(mask, key):
@@ -189,7 +189,7 @@ class ISO19794_5:
         try:
             result['Expression'] = ISO19794_5_EXPRESSION[tag]
         except KeyError:
-            result['Expression'] = int(tag,16)
+            result['Expression'] = int(tag, 16)
 
         tag = data[offset:offset+6]
         offset += 6
@@ -212,11 +212,11 @@ class ISO19794_5:
 
             tag = data[offset:offset+4]
             offset += 4
-            feature['HorizontalPosition'] = int(tag,16)
+            feature['HorizontalPosition'] = int(tag, 16)
 
             tag = data[offset:offset+4]
             offset += 4
-            feature['VerticalPosition'] = int(tag,16)
+            feature['VerticalPosition'] = int(tag, 16)
 
             tag = data[offset:offset+4]
             offset += 4
@@ -231,40 +231,40 @@ class ISO19794_5:
         try:
             result['FaceImageType'] = ISO19794_5_IMG_TYPE[tag]
         except KeyError:
-            result['FaceImageType'] = int(tag,16)             
+            result['FaceImageType'] = int(tag, 16)             
 
         tag = data[offset:offset+2]
         offset += 2
         try:
             result['ImageDataType'] = ISO19794_5_IMG_DTYPE[tag]
         except KeyError:
-            result['ImageDataType'] = int(tag,16)             
+            result['ImageDataType'] = int(tag, 16)             
 
         tag = data[offset:offset+4]
         offset += 4
-        result['ImageWidth'] = int(tag,16)
+        result['ImageWidth'] = int(tag, 16)
 
         tag = data[offset:offset+4]
         offset += 4
-        result['ImageHeight'] = int(tag,16)
+        result['ImageHeight'] = int(tag, 16)
 
         tag = data[offset:offset+2]
         offset += 2
         try:
             result['ImageColourSpace'] = ISO19794_5_IMG_CSPACE[tag]
         except KeyError:
-            result['ImageColourSpace'] = int(tag,16)            
+            result['ImageColourSpace'] = int(tag, 16)            
 
         tag = data[offset:offset+2]
         offset += 2
         try:
             result['ImageSourceType'] = ISO19794_5_IMG_SOURCE[tag]
         except KeyError:
-            result['ImageSourceType'] = int(tag,16)              
+            result['ImageSourceType'] = int(tag, 16)              
 
         tag = data[offset:offset+4]
         offset += 4
-        result['ImageDeviceType'] = int(tag,16)
+        result['ImageDeviceType'] = int(tag, 16)
 
         tag = data[offset:offset+4]
         offset += 4
