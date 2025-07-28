@@ -228,8 +228,8 @@ class SecureMessaging(Ciphering):
         res = hexToBin(out)
         return res
 
-    def _buildD08E(self, mac):
-        res = hexListToBin([0x8E, len(mac)]) + mac
+    def _buildD08E(self, mac_):
+        res = hexListToBin([0x8E, len(mac_)]) + mac_
         self.log("Build DO'8E")
         self.log("\tDO8E: " + binToHexRep(res))
         return res
