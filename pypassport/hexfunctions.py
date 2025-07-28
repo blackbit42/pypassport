@@ -138,8 +138,6 @@ def intToHexList(data):
     return binToHexList(intToBin(data))
 
 
-
-
 def rawbytes(s):
     return s
     """Convert a string to raw bytes without encoding"""
