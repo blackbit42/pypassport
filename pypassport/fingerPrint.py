@@ -145,4 +145,3 @@ class FingerPrint(object):
         start = time.time()
         self._doc.readPassport()
         return time.time() - start
-

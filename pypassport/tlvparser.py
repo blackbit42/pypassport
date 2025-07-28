@@ -56,6 +56,3 @@ class TLVParser(dict):
             raise TLVParserException(exc[0])
 
         return self
-
-
-

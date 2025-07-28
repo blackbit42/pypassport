@@ -161,5 +161,3 @@ class ResponseAPDU(object):
     sw1 = property(getSW1, setSW1)
 
     sw2 = property(getSW2, setSW2)
-
-

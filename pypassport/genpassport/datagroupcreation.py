@@ -208,4 +208,3 @@ class SODCreation(Creation):
                 hashes[converter.toOrder(dg.tag)] = res.digest()
 
         return hashes
-

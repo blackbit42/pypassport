@@ -339,4 +339,3 @@ class BAC(Logger):
                 parity += y >>  z & 1
             adjusted += (y + (not parity % 2)).to_bytes(1, 'big')
         return adjusted
-

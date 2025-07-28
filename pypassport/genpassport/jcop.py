@@ -89,4 +89,3 @@ class JavaCardWritter(Logger):
         self._iso7816.transmit(toSend, "Set KSeed")
 
         self.log("Kseed set")
-

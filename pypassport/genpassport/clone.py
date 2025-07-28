@@ -54,4 +54,3 @@ r = reader.ReaderManager().waitForCard()
 epc = epassportcreation.EPassportCreator(None, None, r)
 epc.setEPassport(ep)
 print(epc.toJCOP())
-

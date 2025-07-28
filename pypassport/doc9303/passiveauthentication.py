@@ -280,4 +280,3 @@ class PassiveAuthentication(Logger):
             res += "dataGroupHashValue: " + binToHexRep(self._content["dataGroupHashValues"][dghv]) + "\n"
 
         return res
-

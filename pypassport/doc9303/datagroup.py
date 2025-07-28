@@ -727,4 +727,3 @@ class DataGroupDump(object):
         f = open(self._path + name, "wb")
         f.write(data)
         f.close()
-

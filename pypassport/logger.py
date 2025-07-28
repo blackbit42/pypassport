@@ -36,5 +36,3 @@ class Logger(object):
 
         for listenerFct in self._listeners:
             listenerFct(n, msg)
-
-

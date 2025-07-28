@@ -236,4 +236,3 @@ class MRZ(object):
     dateOfBirth = property(getDateOfBirth)
     dateOfExpiry = property(getDateOfExpiry)
     checked = property(getChecked)
-

@@ -346,5 +346,3 @@ class OpenSSL(Logger):
             self._remFromDisk("crl")
 
     location = property(_getOpensslLocation, _setOpensslLocation, None, None)
-
-

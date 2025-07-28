@@ -242,5 +242,3 @@ class SecureMessaging(Ciphering):
 
     def __str__(self):
         return "KSenc: " + binToHexRep(self._ksenc) + "\n" + "KSmac: " + binToHexRep(self._ksmac) + "\n" + "SSC: " + binToHexRep(self._ssc)
-
-

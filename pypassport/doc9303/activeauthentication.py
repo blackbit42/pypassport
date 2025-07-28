@@ -206,4 +206,3 @@ class ActiveAuthentication(Logger):
             certType = SubjectPublicKeyInfo()
             return decoder.decode(self._dg15.body, asn1Spec=certType)[0]
         return ""
-
