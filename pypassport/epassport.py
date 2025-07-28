@@ -102,7 +102,7 @@ class EPassport(dict, logger.Logger):
     Reading DG15
     Active Authentication: True
     True
-    >>> p.CSCADirectory = 'D:\\workspace\\pypassport\\src\data\\cert'
+    >>> p.CSCADirectory = 'D:\\workspace\\pypassport\\src\\data\\cert'
     >>> try:
     ...     p.doVerifySODCertificate()
     ... except OpenSSLException, msg:
